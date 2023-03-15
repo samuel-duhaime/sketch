@@ -1,36 +1,49 @@
+import { useState } from "react";
+import styled from "styled-components";
+import { SIZE } from "../../helpers/contants/constants";
+import TopMenuCreate from "./menu/TopMenuCreate";
+import Sections from "./sections/Sections";
+import SectionActions from "./sections/SectionActions";
+import ElementActions from "./sections/ElementActions";
+import Document from "./document/Document";
+
 const Create = () => {
+   const [section, setSection] = useState("text");
+
    return (
       <>
-         <nav>
-            <div>
-               <div>Home</div>
-               <div>File</div>
-               <div>Save</div>
-               <div>Icon</div>
-               <div>Icon</div>
-            </div>
-            <div>
-               <div>Document name</div>
-               <div>Icon</div>
-               <div>Icon</div>
-               <div>Share</div>
-            </div>
-         </nav>
+         {/* Top menu */}
+         <TopMenuCreate />
 
-         <main>
-            <section>
-               <div>Text</div>
-               <div>Shape</div>
-               <div>Photos</div>
-               <div>Uploads</div>
-            </section>
-            <section>Text section content</section>
+         <MainLayout>
+            {/* Sections */}
+            <Sections
+               section={section}
+               setSection={setSection}
+            />
+            <SectionActions section={section} />
 
-            <section>Element section content</section>
-            <section>Page</section>
-         </main>
+            <ContentLayout>
+               {/* Elements actions */}
+               <ElementActions />
+
+               {/* Document */}
+               <Document />
+            </ContentLayout>
+         </MainLayout>
       </>
    );
 };
+
+const MainLayout = styled.main`
+   display: flex;
+   min-height: calc(100vh - ${SIZE.topMenuHeight});
+`;
+
+const ContentLayout = styled.div`
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+`;
 
 export default Create;

@@ -1,13 +1,11 @@
 // Colors constants
 export const COLORS = {
    primary: "#7b61ff", // Bright blue/purple
-   // lightPrimary: "hsl(258deg, 100%, 95%)", // Light bright purple
 
-   // gray: "#DEDEDE", // Neutral gray
-   // lightgray: "#F7F9F9", // Light gray
+   gray: "rgb(235,236,240)", // Dark gray
 
-   // red: "red", // Red
-   // lightRed: "mistyrose", // Light red
+   darkBlack: "#18191B", // Dark black
+   lightBlack: "rgb(37,38,39)", // Light black
 
    boxShadow: "0px 1px 5px 0px rgba(0, 0, 0, 0.25)", // Box-shadow
 };
@@ -20,8 +18,6 @@ export const FONTS = {
 
 // Size contants
 export const SIZE = {
-   topMenuHeight: "60px",
-   // pageTitleHeight: "60px", // Page title height
-   // computerWidth: "1000px", // Big computer screen width
-   // tabletWidth: "800px", // Tablet screen width
+   topMenuHeight: "60px", // TopMenu of Home and Create
+   elementActionsHeight: "50px", // Create ElementsActions
 };

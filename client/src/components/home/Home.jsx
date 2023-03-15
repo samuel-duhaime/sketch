@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
-import TopMenu from "../global/navigation/TopMenu";
+import TopMenuHome from "./TopMenuHome";
 import Button from "../global/button/Button";
 import { SIZE } from "../../helpers/contants/constants";
 
@@ -10,8 +10,8 @@ const Home = () => {
 
    return (
       <>
-         <TopMenu />
-         
+         <TopMenuHome />
+
          <MainLayout>
             <HomeSection>
                <div>
@@ -24,11 +24,16 @@ const Home = () => {
                   {/* Button */}
                   <FullDiv>
                      {isAuthenticated ? (
-                        <Link to="/create/new">
-                           <Button>Create a document</Button>
-                        </Link>
+                        <NewLink to="/create/new">
+                           <Button size="big">Create a document</Button>
+                        </NewLink>
                      ) : (
-                        <Button onClick={() => loginWithRedirect()}>Sign up for free</Button>
+                        <Button
+                           size="big"
+                           onClick={() => loginWithRedirect()}
+                        >
+                           Sign up for free
+                        </Button>
                      )}
                   </FullDiv>
                </TextContainer>
@@ -71,6 +76,10 @@ const H1 = styled.h1`
 
 const FullDiv = styled.div`
    width: 100%;
+`;
+
+const NewLink = styled(Link)`
+   text-decoration: none;
 `;
 
 const TextContainer = styled.div`

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
-import { COLORS, FONTS, SIZE } from "../../../helpers/contants/constants";
-import Button from "../button/Button";
-import Tippy from "../library/Tippy";
+import { COLORS, FONTS, SIZE } from "../../helpers/contants/constants";
+import Button from "../global/button/Button";
+import Tippy from "../global/library/Tippy";
 
-const TopMenu = () => {
+const TopMenuHome = () => {
    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
    return (
@@ -24,15 +24,16 @@ const TopMenu = () => {
             {/* Button and picture */}
             {isAuthenticated ? (
                <Actions>
-                  <Link to="/create/new">
+                  <NewLink to="/create/new">
                      <Button>Create</Button>
-                  </Link>
+                  </NewLink>
                   <Tippy
                      content={
-                        <Button onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-                           Sign Out
-                        </Button>
+                        <DropDownButton onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                           Sign out
+                        </DropDownButton>
                      }
+                     trigger="click"
                   >
                      <Image
                         src={user.picture}
@@ -42,7 +43,7 @@ const TopMenu = () => {
                </Actions>
             ) : (
                <div>
-                  <Button onClick={() => loginWithRedirect()}>Log In</Button>
+                  <Button onClick={() => loginWithRedirect()}>Sign up</Button>
                </div>
             )}
          </TopMenuContainer>
@@ -89,6 +90,7 @@ const Image = styled.img`
    width: 40px;
    height: 40px;
    border-radius: 50%;
+   cursor: pointer;
 `;
 
 const Actions = styled.div`
@@ -96,4 +98,24 @@ const Actions = styled.div`
    gap: 10px;
 `;
 
-export default TopMenu;
+const NewLink = styled(Link)`
+   text-decoration: none;
+`;
+
+const DropDownButton = styled.button`
+   width: 120px;
+   padding: 10px;
+   border: none;
+   border-radius: 5px;
+   background-color: white;
+   font-size: 18px;
+   font-family: ${FONTS.secondFontFamily};
+   text-align: left;
+   cursor: pointer;
+
+   &:is(:hover, :focus) {
+      background-color: ${COLORS.gray};
+   }
+`;
+
+export default TopMenuHome;
