@@ -113,7 +113,7 @@ const DropDownButton = styled.button`
    text-align: left;
    cursor: pointer;
 
-   &:is(:hover, :focus) {
+   &:is(:hover, :focus-visible) {
       background-color: ${COLORS.gray};
    }
 `;

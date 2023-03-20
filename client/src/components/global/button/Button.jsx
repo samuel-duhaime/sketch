@@ -39,7 +39,7 @@ const ButtonComponent = styled.button`
          ? `background-color: white; color: black;`
          : ""}
    
-   &:is(:hover, :focus) {
+   &:is(:hover, :focus-visible) {
       opacity: 0.8;
    }
 `;

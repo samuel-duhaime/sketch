@@ -9,40 +9,6 @@
          "backgroundColor": "white",
          "elements": [
             {
-               "type": "text",
-               "id": "text1",
-               "text": "Text normal",
-               "x": 100,
-               "y": 50,
-               "width": 120,
-               "height": 100,
-               "fontFamily": "Nunito",
-               "fontSize": 16,
-               "isBold": false,
-               "isItalic": false,
-               "isUnderline": false,
-               "isUppercase": false,
-               "align": "left",
-               "opacity": 1
-            },
-            {
-               "type": "text",
-               "id": "text2",
-               "text": "Text bold italic right uppercase",
-               "x": 200,
-               "y": 50,
-               "width": 120,
-               "height": 100,
-               "fontFamily": "Arial",
-               "fontSize": 20,
-               "isBold": true,
-               "isItalic": true,
-               "isUnderline": true,
-               "isUppercase": true,
-               "align": "right",
-               "opacity": 0.7
-            },
-            {
                "type": "rectangle",
                "id": "rectangle1",
                "x": 100,
@@ -77,8 +43,50 @@
                "y": 300,
                "width": 200,
                "height": 100
+            },
+            {
+               "type": "text",
+               "id": "text1",
+               "text": "Text normal",
+               "x": 100,
+               "y": 50,
+               "width": 120,
+               "height": 100,
+               "fontFamily": "Nunito",
+               "fontSize": 16,
+               "isBold": false,
+               "isItalic": false,
+               "isUnderline": false,
+               "isUppercase": false,
+               "align": "left",
+               "opacity": 1
+            },
+            {
+               "type": "text",
+               "id": "text2",
+               "text": "Text bold italic right uppercase",
+               "x": 200,
+               "y": 50,
+               "width": 120,
+               "height": 100,
+               "fontFamily": "Arial",
+               "fontSize": 20,
+               "isBold": true,
+               "isItalic": true,
+               "isUnderline": true,
+               "isUppercase": true,
+               "align": "right",
+               "opacity": 0.7
             }
          ]
+      },
+      {
+         "page": 2,
+         "pageName": "Page name 2",
+         "width": 800,
+         "height": 550,
+         "backgroundColor": "white",
+         "elements": []
       }
    ]
 }

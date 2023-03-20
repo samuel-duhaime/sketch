@@ -1,14 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
+import testDocument from "../../data/testDocument.json";
 import { SIZE } from "../../helpers/contants/constants";
 import TopMenuCreate from "./menu/TopMenuCreate";
 import Sections from "./sections/Sections";
-import SectionActions from "./sections/SectionActions";
-import ElementActions from "./sections/ElementActions";
+import SectionActions from "./actions/SectionActions";
+import ElementActions from "./actions/ElementActions";
 import Document from "./document/Document";
 
 const Create = () => {
-   const [section, setSection] = useState("text");
+   const [selectedSection, setSelectedSection] = useState("text");
+   const [selectedElement, setSelectedElement] = useState(null);
 
    return (
       <>
@@ -18,17 +20,21 @@ const Create = () => {
          <MainLayout>
             {/* Sections */}
             <Sections
-               section={section}
-               setSection={setSection}
+               selectedSection={selectedSection}
+               setSelectedSection={setSelectedSection}
             />
-            <SectionActions section={section} />
+            <SectionActions selectedSection={selectedSection} />
 
             <ContentLayout>
                {/* Elements actions */}
-               <ElementActions />
+               <ElementActions selectedElement={selectedElement} />
 
                {/* Document */}
-               <Document />
+               <Document
+                  document={testDocument}
+                  selectedElement={selectedElement}
+                  setSelectedElement={setSelectedElement}
+               />
             </ContentLayout>
          </MainLayout>
       </>

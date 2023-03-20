@@ -2,7 +2,8 @@
 export const COLORS = {
    primary: "#7b61ff", // Bright blue/purple
 
-   gray: "rgb(235,236,240)", // Dark gray
+   gray: "rgb(235,236,240)", // Gray
+   darkGray: "rgb(220,220,220)", // Dark gray
 
    darkBlack: "#18191B", // Dark black
    lightBlack: "rgb(37,38,39)", // Light black

@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { COLORS } from "../../../helpers/contants/constants";
-import TextSection from "./TextSection";
-import ShapesSection from "./ShapesSection";
-import PhotosSection from "./PhotosSection";
-import UploadsSection from "./UploadsSection";
+import TextSection from "../sections/TextSection";
+import ShapesSection from "../sections/ShapesSection";
+import PhotosSection from "../sections/PhotosSection";
+import UploadsSection from "../sections/UploadsSection";
 
-const SectionActions = ({ section }) => {
+const SectionActions = ({ selectedSection }) => {
    return (
       <SectionActionsContainer>
-         {section === "text" ? (
+         {selectedSection === "text" ? (
             <TextSection />
-         ) : section === "shapes" ? (
+         ) : selectedSection === "shapes" ? (
             <ShapesSection />
-         ) : section === "photos" ? (
+         ) : selectedSection === "photos" ? (
             <PhotosSection />
          ) : (
             <UploadsSection />

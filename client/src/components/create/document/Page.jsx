@@ -6,10 +6,17 @@ import Text from "../elements/Text";
 import Rectangle from "../elements/Rectangle";
 import Image from "../elements/Image";
 
-const Page = ({ page }) => {
+const Page = ({ page, selectedElement, setSelectedElement }) => {
+   // Deselected an element when clicking outsite but in the Stage
+   const handleDeselectedElement = (ev) => {
+      if (ev.target === ev.target.getStage()) {
+         setSelectedElement(null);
+      }
+   };
+
    return (
       <>
-         <PageActions width={page.width} />
+         <PageActions page={page} />
          <PageContainer
             width={page.width}
             height={page.height}
@@ -18,6 +25,8 @@ const Page = ({ page }) => {
             <Stage
                width={page.width}
                height={page.height}
+               onMouseDown={handleDeselectedElement}
+               onTouchStart={handleDeselectedElement}
             >
                <Layer>
                   {/* Elements */}
@@ -26,24 +35,30 @@ const Page = ({ page }) => {
                         /* Text */
                         return (
                            <Text
-                              element={element}
                               key={element.id}
+                              element={element}
+                              isSelected={element.id === selectedElement}
+                              setSelectedElement={setSelectedElement}
                            />
                         );
                      } else if (element.type === "rectangle") {
                         /* Rectangle */
                         return (
                            <Rectangle
-                              element={element}
                               key={element.id}
+                              element={element}
+                              isSelected={element.id === selectedElement}
+                              setSelectedElement={setSelectedElement}
                            />
                         );
                      } else if (element.type === "image") {
                         /* Images */
                         return (
                            <Image
-                              element={element}
                               key={element.id}
+                              element={element}
+                              isSelected={element.id === selectedElement}
+                              setSelectedElement={setSelectedElement}
                            />
                         );
                      } else {

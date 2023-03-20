@@ -2,7 +2,7 @@ import styled from "styled-components";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import { COLORS } from "../../../helpers/contants/constants";
 
-const Sections = ({ section, setSection }) => {
+const Sections = ({ selectedSection, setSelectedSection }) => {
    const sections = [
       { id: 0, text: "Text", icon: "faFont" },
       { id: 1, text: "Shapes", icon: "faShapes" },
@@ -11,7 +11,7 @@ const Sections = ({ section, setSection }) => {
    ];
 
    const handleClick = (ev, sectionName) => {
-      setSection(sectionName);
+      setSelectedSection(sectionName);
    };
 
    return (
@@ -24,7 +24,7 @@ const Sections = ({ section, setSection }) => {
                   key={sectionObject.id}
                   id={sectionObject.id}
                   onClick={(ev) => handleClick(ev, sectionName)}
-                  active={section === sectionName ? true : false}
+                  active={selectedSection === sectionName ? true : false}
                >
                   <FontAwesomeIcon icon={sectionObject.icon} />
                   <div>{sectionObject.text}</div>

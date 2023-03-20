@@ -1,6 +1,8 @@
 import { FontAwesomeIcon as FontAwesomeIconReact } from "@fortawesome/react-fontawesome";
 import {
    faAngleLeft,
+   faAngleUp,
+   faAngleDown,
    faRotateLeft,
    faRotateRight,
    faCirclePlus,
@@ -10,6 +12,11 @@ import {
    faFont,
    faImage,
    faShapes,
+   faAlignCenter,
+   faLayerGroup,
+   faCopy,
+   faTrashCan,
+   faFileCirclePlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 const FontAwesomeIcon = ({ icon }) => {
@@ -19,6 +26,12 @@ const FontAwesomeIcon = ({ icon }) => {
    switch (icon) {
       case "faAngleLeft":
          iconComponent = faAngleLeft;
+         break;
+      case "faAngleUp":
+         iconComponent = faAngleUp;
+         break;
+      case "faAngleDown":
+         iconComponent = faAngleDown;
          break;
       case "faRotateLeft":
          iconComponent = faRotateLeft;
@@ -46,6 +59,21 @@ const FontAwesomeIcon = ({ icon }) => {
          break;
       case "faCloudArrowUp":
          iconComponent = faCloudArrowUp;
+         break;
+      case "faAlignCenter":
+         iconComponent = faAlignCenter;
+         break;
+      case "faLayerGroup":
+         iconComponent = faLayerGroup;
+         break;
+      case "faCopy":
+         iconComponent = faCopy;
+         break;
+      case "faTrashCan":
+         iconComponent = faTrashCan;
+         break;
+      case "faFileCirclePlus":
+         iconComponent = faFileCirclePlus;
          break;
       default:
          iconComponent = faShapes;
