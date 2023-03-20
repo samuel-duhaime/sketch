@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Text as TextElement } from "react-konva";
 
-const Text = () => {
-   const [object, setObject] = useState({ isDragging: false, x: 50, y: 50 });
+const Text = ({ element }) => {
+   const [object, setObject] = useState({ ...element, isDragging: false });
 
    const handleDragStart = () => {
       setObject({
@@ -22,9 +22,25 @@ const Text = () => {
 
    return (
       <TextElement
-         text="Draggable Text"
+         text={object.text}
          x={object.x}
          y={object.y}
+         width={object.width}
+         fontFamily={object.fontFamily}
+         fontSize={object.fontSize}
+         fontStyle={
+            object.isItalic && object.isBold
+               ? "italic bold"
+               : object.isItalic
+               ? "italic"
+               : object.isBold
+               ? "bold"
+               : "normal"
+         }
+         fontVariant={object.isUppercase ? "small-caps" : "normal"}
+         textDecoration={object.isUnderline ? "underline" : ""}
+         align={object.align}
+         opacity={object.opacity}
          fill={object.isDragging ? "green" : "black"}
          onDragStart={handleDragStart}
          onDragEnd={handleDragEng}

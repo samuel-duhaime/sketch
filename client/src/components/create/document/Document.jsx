@@ -1,27 +1,19 @@
 import styled from "styled-components";
-import { Stage, Layer } from "react-konva";
 import { COLORS, SIZE } from "../../../helpers/contants/constants";
-import DocumentActions from "./DocumentActions";
-import Text from "../elements/Text";
-import Rectangle from "../elements/Rectangle";
-import Image from "../elements/Image";
+import Page from "./Page";
+import testDocument from "../../../data/testDocument.json";
 
 const Document = () => {
    return (
       <DocumentContainer>
-         <DocumentActions />
-         <WhiteDocument>
-            <Stage
-               width={550}
-               height={550}
-            >
-               <Layer>
-                  <Text />
-                  <Rectangle />
-                  <Image />
-               </Layer>
-            </Stage>
-         </WhiteDocument>
+         {testDocument.pages.map((page) => {
+            return (
+               <Page
+                  page={page}
+                  key={page.page}
+               />
+            );
+         })}
       </DocumentContainer>
    );
 };
@@ -36,13 +28,6 @@ const DocumentContainer = styled.div`
    min-height: calc(100vh - ${SIZE.topMenuHeight} - ${SIZE.elementActionsHeight});
    padding: 10px;
    background-color: ${COLORS.gray};
-`;
-
-const WhiteDocument = styled.section`
-   background-color: white;
-   height: 550px;
-   width: 550px;
-   box-shadow: ${COLORS.boxShadow};
 `;
 
 export default Document;
