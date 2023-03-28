@@ -1,7 +1,9 @@
 # Client
 client/node_modules
 client/.env
+client/yarn.lock
 
 # Server
 server/node_modules
 server/.env
+server/yarn.lock

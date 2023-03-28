@@ -1,25 +1,28 @@
 import styled from "styled-components";
 import { COLORS, SIZE } from "../../../helpers/contants/constants";
-import Page from "./Page";
+import Page from "../pages/Page";
 
-const Document = ({ document, selectedElement, setSelectedElement }) => {
+const Sketch = ({ sketchs, selectedElement, setSelectedElement }) => {
+   const pagesKeyData = Object.keys(sketchs).filter((keyName) => keyName.startsWith("page")); // Find all the pages key
+
    return (
-      <DocumentContainer>
-         {document.pages.map((page) => {
+      <SketchContainer>
+         {/* Return all pages */}
+         {pagesKeyData.map((pageKey) => {
             return (
                <Page
-                  key={page.page}
-                  page={page}
+                  key={sketchs?.[pageKey].page}
+                  page={sketchs?.[pageKey]}
                   selectedElement={selectedElement}
                   setSelectedElement={setSelectedElement}
                />
             );
          })}
-      </DocumentContainer>
+      </SketchContainer>
    );
 };
 
-const DocumentContainer = styled.div`
+const SketchContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -31,4 +34,4 @@ const DocumentContainer = styled.div`
    background-color: ${COLORS.gray};
 `;
 
-export default Document;
+export default Sketch;

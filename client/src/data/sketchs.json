@@ -1,0 +1,100 @@
+{
+  "_id": 0,
+  "sketchName": "Sketch name 1",
+  "isModified": false,
+  "page1": {
+    "page": 1,
+    "pageName": "Page name 1",
+    "width": 800,
+    "height": 550,
+    "backgroundColor": "white",
+    "isModified": false,
+    "elements": [
+      {
+        "id": "rectangle1",
+        "type": "rectangle",
+        "x": 100,
+        "y": 150,
+        "width": 200,
+        "height": 100,
+        "backgroundColor": "black",
+        "isModified": false
+      },
+      {
+        "id": "rectangle2",
+        "type": "rectangle",
+        "x": 400,
+        "y": 150,
+        "width": 200,
+        "height": 100,
+        "backgroundColor": "red",
+        "isModified": false
+      },
+      {
+        "id": "image1",
+        "type": "image",
+        "imageUrl": "https://cdn.wallpapersafari.com/13/38/9zvbAB.jpg",
+        "x": 100,
+        "y": 300,
+        "width": 200,
+        "height": 100,
+        "isModified": false
+      },
+      {
+        "id": "image2",
+        "type": "image",
+        "imageUrl": "https://www.sciencesetavenir.fr/assets/img/2015/01/20/cover-r4x3w1000-57e155609a060-pourquoi-le-lapin-mange-t-il-ses-crottes.jpg",
+        "x": 400,
+        "y": 300,
+        "width": 200,
+        "height": 100,
+        "isModified": false
+      },
+      {
+        "id": "text1",
+        "type": "text",
+        "text": "Text normal",
+        "x": 100,
+        "y": 50,
+        "width": 120,
+        "height": 100,
+        "fontFamily": "Nunito",
+        "fontSize": 16,
+        "isBold": false,
+        "isItalic": false,
+        "isUnderline": false,
+        "isUppercase": false,
+        "align": "left",
+        "opacity": 1,
+        "isModified": false
+      },
+      {
+        "id": "text2",
+        "type": "text",
+        "text": "Text bold italic right uppercase",
+        "x": 200,
+        "y": 50,
+        "width": 120,
+        "height": 100,
+        "fontFamily": "Arial",
+        "fontSize": 20,
+        "isBold": true,
+        "isItalic": true,
+        "isUnderline": true,
+        "isUppercase": true,
+        "align": "right",
+        "opacity": 0.7,
+        "isModified": false
+      }
+    ]
+  },
+  "page2": {
+    "page": 2,
+    "pageName": "Page name 2",
+    "width": 800,
+    "height": 550,
+    "backgroundColor": "white",
+    "elements": [],
+    "isModified": false
+  }
+}

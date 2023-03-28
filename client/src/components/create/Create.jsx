@@ -1,12 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
-import testDocument from "../../data/testDocument.json";
+import sketchs from "../../data/sketchs.json";
 import { SIZE } from "../../helpers/contants/constants";
 import TopMenuCreate from "./menu/TopMenuCreate";
 import Sections from "./sections/Sections";
 import SectionActions from "./actions/SectionActions";
 import ElementActions from "./actions/ElementActions";
-import Document from "./document/Document";
+import Document from "./sketch/Sketch";
 
 const Create = () => {
    const [selectedSection, setSelectedSection] = useState("text");
@@ -31,7 +31,7 @@ const Create = () => {
 
                {/* Document */}
                <Document
-                  document={testDocument}
+                  sketchs={sketchs}
                   selectedElement={selectedElement}
                   setSelectedElement={setSelectedElement}
                />

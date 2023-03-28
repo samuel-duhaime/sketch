@@ -1,0 +1,25 @@
+[
+  {
+    "_id": "sketch1",
+    "sketchName": "Sketch name 1",
+    "isModified": false,
+    "page1": {
+      "page": 1,
+      "pageName": "Page name 1",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "white",
+      "elements": ["rectangle1", "rectangle2", "image1", "image2", "text1", "text2"],
+      "isModified": false
+    },
+    "page2": {
+      "page": 2,
+      "pageName": "Page name 2",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "white",
+      "elements": [],
+      "isModified": false
+    }
+  }
+]
