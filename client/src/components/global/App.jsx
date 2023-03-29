@@ -5,25 +5,25 @@ import Create from "../create/Create";
 import View from "../view/View";
 
 const App = () => {
-   return (
-      <Router>
-         <GlobalStyles />
-         <Routes>
-            <Route
-               path="/"
-               element={<Home />}
-            />
-            <Route
-               path="/create/:somethingId"
-               element={<Create />}
-            />
-            <Route
-               path="/view/:somethingId"
-               element={<View />}
-            />
-         </Routes>
-      </Router>
-   );
+  return (
+    <Router>
+      <GlobalStyles />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/create/:sketchId"
+          element={<Create />}
+        />
+        <Route
+          path="/view/:sketchId"
+          element={<View />}
+        />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;

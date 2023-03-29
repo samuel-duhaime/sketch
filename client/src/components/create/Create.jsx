@@ -1,55 +1,62 @@
 import { useState } from "react";
 import styled from "styled-components";
-import sketchs from "../../data/sketchs.json";
-import { SIZE } from "../../helpers/contants/constants";
+import useSketch from "../../hooks/useSketch";
+import { SIZE } from "../../helpers/constants/constants";
 import TopMenuCreate from "./menu/TopMenuCreate";
 import Sections from "./sections/Sections";
 import SectionActions from "./actions/SectionActions";
 import ElementActions from "./actions/ElementActions";
-import Document from "./sketch/Sketch";
+import Pages from "./pages/Pages";
+import Loading from "../global/Loading/Loading";
 
+// Create page
 const Create = () => {
-   const [selectedSection, setSelectedSection] = useState("text");
-   const [selectedElement, setSelectedElement] = useState(null);
+  const [selectedSection, setSelectedSection] = useState("text");
+  const [selectedElement, setSelectedElement] = useState(null);
+  const { sketch } = useSketch();
 
-   return (
-      <>
-         {/* Top menu */}
-         <TopMenuCreate />
+  return (
+    <>
+      {/* Top menu */}
+      <TopMenuCreate />
 
-         <MainLayout>
-            {/* Sections */}
-            <Sections
-               selectedSection={selectedSection}
-               setSelectedSection={setSelectedSection}
+      <MainLayout>
+        {/* Sections */}
+        <Sections
+          selectedSection={selectedSection}
+          setSelectedSection={setSelectedSection}
+        />
+        <SectionActions selectedSection={selectedSection} />
+
+        <ContentLayout>
+          {/* Elements actions */}
+          <ElementActions selectedElement={selectedElement} />
+
+          {/* Pages container */}
+          {sketch ? (
+            <Pages
+              sketch={sketch}
+              selectedElement={selectedElement}
+              setSelectedElement={setSelectedElement}
             />
-            <SectionActions selectedSection={selectedSection} />
-
-            <ContentLayout>
-               {/* Elements actions */}
-               <ElementActions selectedElement={selectedElement} />
-
-               {/* Document */}
-               <Document
-                  sketchs={sketchs}
-                  selectedElement={selectedElement}
-                  setSelectedElement={setSelectedElement}
-               />
-            </ContentLayout>
-         </MainLayout>
-      </>
-   );
+          ) : (
+            <Loading />
+          )}
+        </ContentLayout>
+      </MainLayout>
+    </>
+  );
 };
 
 const MainLayout = styled.main`
-   display: flex;
-   min-height: calc(100vh - ${SIZE.topMenuHeight});
+  display: flex;
+  min-height: calc(100vh - ${SIZE.topMenuHeight});
 `;
 
 const ContentLayout = styled.div`
-   display: flex;
-   flex-direction: column;
-   width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `;
 
 export default Create;

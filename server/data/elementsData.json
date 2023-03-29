@@ -1,6 +1,6 @@
 [
   {
-    "_id": "rectangle1",
+    "_id": "390757e4-814d-4989-958b-8bf200e1f303",
     "type": "rectangle",
     "x": 100,
     "y": 150,
@@ -10,7 +10,7 @@
     "isModified": false
   },
   {
-    "_id": "rectangle2",
+    "_id": "577e5653-9e95-400e-bd58-0ac9c30b9acd",
     "type": "rectangle",
     "x": 400,
     "y": 150,
@@ -20,7 +20,7 @@
     "isModified": false
   },
   {
-    "_id": "image1",
+    "_id": "60fdac76-bb08-42be-bd73-2302be3294da",
     "type": "image",
     "imageUrl": "https://cdn.wallpapersafari.com/13/38/9zvbAB.jpg",
     "x": 100,
@@ -30,7 +30,7 @@
     "isModified": false
   },
   {
-    "_id": "image2",
+    "_id": "058f83ad-6f90-401b-aa53-3849aaa4e247",
     "type": "image",
     "imageUrl": "https://www.sciencesetavenir.fr/assets/img/2015/01/20/cover-r4x3w1000-57e155609a060-pourquoi-le-lapin-mange-t-il-ses-crottes.jpg",
     "x": 400,
@@ -40,7 +40,7 @@
     "isModified": false
   },
   {
-    "_id": "text1",
+    "_id": "208db958-63af-4a13-988d-6392b6109231",
     "type": "text",
     "text": "Text normal",
     "x": 100,
@@ -58,7 +58,7 @@
     "isModified": false
   },
   {
-    "_id": "text2",
+    "_id": "d9592aa4-3daa-4303-b30b-6cf47ba9d3c7",
     "type": "text",
     "text": "Text bold italic right uppercase",
     "x": 200,

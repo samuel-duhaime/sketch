@@ -10,6 +10,7 @@ const app = express();
 
 const { connectMongoDB } = require("./configs/mongoDB");
 const { getSketch } = require("./controllers/getSketch");
+const { postSketch } = require("./controllers/postSketch");
 
 /* Middlewares for the app */
 // Header for fetching
@@ -29,13 +30,10 @@ connectMongoDB(); // Connect to MongoDB
 app.get("/sketchs", (req, res) => {
   res.status(200).json({ status: 200, message: "getSketchs" });
 });
-app.get("/sketch/:sketchId", getSketch); // Get the sketch document
+app.get("/sketch/:sketchId", getSketch); // Get the Sketch document
 
 /* POST */
-// postSketch
-app.post("/sketch", (req, res) => {
-  res.status(200).json({ status: 200, message: "postSketch" });
-});
+app.post("/sketch", postSketch); // Add a new Sketch document
 // postElement
 app.post("/element", (req, res) => {
   res.status(200).json({ status: 200, message: "postElement" });

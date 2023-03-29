@@ -1,6 +1,6 @@
 const { getCollections } = require("../configs/mongoDB");
 
-// Get the sketch document
+// Get the Sketch document
 const getSketch = async (req, res) => {
   const { sketchId } = req.params;
 
@@ -11,10 +11,10 @@ const getSketch = async (req, res) => {
     const getSketch = await sketchs.findOne({ _id: sketchId });
 
     if (!getSketch) {
-      // No sketch
+      // No Sketch
       return res.status(404).json({
         status: 404,
-        message: "No sketch",
+        message: "No Sketch",
       });
     }
 
@@ -35,7 +35,6 @@ const getSketch = async (req, res) => {
 
     // Loop all the pagesKey of the page. We need a for and not a forEach, because it's async.
     for (let pagesIndex = 0; pagesIndex < pagesKey.length; pagesIndex++) {
-      console.log(pagesKey[pagesIndex]);
       await getElementsFromPage({ pageId: pagesKey[pagesIndex] });
     }
 

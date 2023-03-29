@@ -1,21 +1,21 @@
 import styled from "styled-components";
-import { COLORS } from "../../../helpers/contants/constants";
+import { COLORS } from "../../../helpers/constants/constants";
 
 const ColorInput = () => {
-   return <ColorInputElement type="color" />;
+  return <ColorInputElement type="color" />;
 };
 
 const ColorInputElement = styled.input`
-   border: none;
-   width: 32px;
-   height: 32px;
-   border-radius: 5px;
-   background-color: transparent;
-   cursor: pointer;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
 
-   &:is(:hover, :focus-visible) {
-      background-color: ${COLORS.darkGray};
-   }
+  &:is(:hover, :focus-visible) {
+    background-color: ${COLORS.darkGray};
+  }
 `;
 
 export default ColorInput;

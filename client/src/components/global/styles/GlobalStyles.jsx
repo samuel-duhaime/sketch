@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { FONTS } from "../../../helpers/contants/constants";
+import { FONTS } from "../../../helpers/constants/constants";
 
 // REF: http://meyerweb.com/eric/tools/css/reset/
 

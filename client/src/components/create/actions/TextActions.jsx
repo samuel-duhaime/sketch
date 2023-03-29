@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "../../../helpers/contants/constants";
+import { COLORS } from "../../../helpers/constants/constants";
 import FontSizeInput from "../../global/input/FontSizeInput";
 import ColorInput from "../../global/input/ColorInput";
 import ButtonIcon from "../../global/button/ButtonIcon";
@@ -7,70 +7,70 @@ import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import SelectOptions from "../../global/input/SelectOptions";
 
 const TextActions = () => {
-   return (
-      <>
-         <SelectOptions />
+  return (
+    <>
+      <SelectOptions />
 
-         {/* Font Size */}
-         <FontSizeInput />
+      {/* Font Size */}
+      <FontSizeInput />
 
-         {/* Color */}
-         <ColorInput />
+      {/* Color */}
+      <ColorInput />
 
-         {/* Bold */}
-         <ButtonIcon>
-            <Bold>B</Bold>
-         </ButtonIcon>
+      {/* Bold */}
+      <ButtonIcon>
+        <Bold>B</Bold>
+      </ButtonIcon>
 
-         {/* Italic */}
-         <ButtonIcon>
-            <Italic>I</Italic>
-         </ButtonIcon>
+      {/* Italic */}
+      <ButtonIcon>
+        <Italic>I</Italic>
+      </ButtonIcon>
 
-         {/* Underline */}
-         <ButtonIcon>
-            <Underline>U</Underline>
-         </ButtonIcon>
+      {/* Underline */}
+      <ButtonIcon>
+        <Underline>U</Underline>
+      </ButtonIcon>
 
-         {/* UpperCase */}
-         <ButtonIcon>
-            <div>Aa</div>
-         </ButtonIcon>
+      {/* UpperCase */}
+      <ButtonIcon>
+        <div>Aa</div>
+      </ButtonIcon>
 
-         <VerticalLine />
+      <VerticalLine />
 
-         {/* Align */}
-         <ButtonIcon>
-            <FontAwesomeIcon icon="faAlignCenter" />
-         </ButtonIcon>
+      {/* Align */}
+      <ButtonIcon>
+        <FontAwesomeIcon icon="faAlignCenter" />
+      </ButtonIcon>
 
-         <VerticalLine />
+      <VerticalLine />
 
-         {/* Layers */}
-         <ButtonIcon>
-            <FontAwesomeIcon icon="faLayerGroup" />
-            <div>Layers</div>
-         </ButtonIcon>
-      </>
-   );
+      {/* Layers */}
+      <ButtonIcon>
+        <FontAwesomeIcon icon="faLayerGroup" />
+        <div>Layers</div>
+      </ButtonIcon>
+    </>
+  );
 };
 
 const Bold = styled.span`
-   font-weight: 700;
+  font-weight: 700;
 `;
 
 const Italic = styled.span`
-   font-style: italic;
+  font-style: italic;
 `;
 
 const Underline = styled.span`
-   text-decoration: underline;
+  text-decoration: underline;
 `;
 
 const VerticalLine = styled.div`
-   height: 25px;
-   width: 1px;
-   background-color: ${COLORS.darkGray};
+  height: 25px;
+  width: 1px;
+  background-color: ${COLORS.darkGray};
 `;
 
 export default TextActions;
