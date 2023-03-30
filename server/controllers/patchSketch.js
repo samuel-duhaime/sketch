@@ -13,7 +13,6 @@ const patchSketch = async (req, res) => {
     });
   }
 
-  // TODO page actions
   // Set the new Sketchs modifications
   const sketchModifications = {
     ...(sketchName && { sketchName }),

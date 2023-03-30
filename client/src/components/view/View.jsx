@@ -3,7 +3,7 @@ import styled from "styled-components";
 import useSketch from "../../hooks/useSketch";
 import Page from "../create/pages/Page";
 import BotMenuView from "./BotMenuView";
-import Loading from "../global/Loading/Loading";
+import Loading from "../global/loading/Loading";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 
 // View page

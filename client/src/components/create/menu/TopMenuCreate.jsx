@@ -1,10 +1,20 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS } from "../../../helpers/constants/constants";
+import { SketchContext } from "../../global/context/SketchContext";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import Button from "../../global/button/Button";
+import Tippy from "../../global/library/Tippy";
+import ShareTippySection from "../../global/tippySection/ShareTippySection";
 
 const TopMenuCreate = () => {
+  // Sketch Context
+  const {
+    sketch,
+    actions: { saveAction, patchSketchAction },
+  } = useContext(SketchContext);
+
   return (
     <TopMenuNav>
       {/* Left TopMenu */}
@@ -16,7 +26,7 @@ const TopMenuCreate = () => {
           </Action>
         </CreateLink>
         <Action>File</Action>
-        <Action>Save</Action>
+        <Action onClick={saveAction}>Save</Action>
         <Action>
           <FontAwesomeIcon icon="faRotateLeft" />
         </Action>
@@ -27,17 +37,37 @@ const TopMenuCreate = () => {
 
       {/* Right TopMenu */}
       <TopMenuActions>
-        <Action>Document name</Action>
-        <Action>
-          <FontAwesomeIcon icon="faCirclePlus" />
-        </Action>
+        {/* Input name */}
+        <InputName
+          type="text"
+          id="sketchName"
+          name="sketchName"
+          placeholder={sketch?.sketchName}
+          valueLength={sketch?.sketchName?.length}
+          onChange={(event) => patchSketchAction({ newSketch: { sketchName: event.target.value } })}
+        />
+
+        {/* Download */}
         <Action>
           <FontAwesomeIcon icon="faCircleDown" />
         </Action>
-        <MarginButton>
-          <FontAwesomeIcon icon="faArrowUpFromBracket" />
-          <div>Share</div>
-        </MarginButton>
+
+        {/* Share */}
+        <Tippy
+          content={
+            <ShareTippySection
+              isOn={sketch?.isShared}
+              onChange={() => patchSketchAction({ newSketch: { isShared: !sketch?.isShared } })}
+              sketchId={sketch?._id}
+            />
+          }
+          trigger="click"
+        >
+          <ShareButton>
+            <FontAwesomeIcon icon="faArrowUpFromBracket" />
+            <div>Share</div>
+          </ShareButton>
+        </Tippy>
       </TopMenuActions>
     </TopMenuNav>
   );
@@ -78,7 +108,25 @@ const CreateLink = styled(Link)`
   }
 `;
 
-const MarginButton = styled(Button)`
+const InputName = styled.input`
+  padding: 10px;
+  text-align: right;
+  height: 40px;
+  width: ${(props) =>
+    props.valueLength ? `calc(${props.valueLength}ch + 3ch)` : "10ch"}; // Width with number of characters + 3
+  border: none;
+  border-radius: 5px;
+
+  &:is(:hover, :focus) {
+    border: 1px solid black;
+  }
+
+  &::placeholder {
+    color: black;
+  }
+`;
+
+const ShareButton = styled(Button)`
   margin-left: 10px;
 `;
 

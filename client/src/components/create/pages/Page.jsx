@@ -1,12 +1,16 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { Stage, Layer } from "react-konva";
 import { COLORS } from "../../../helpers/constants/constants";
+import { SketchContext } from "../../global/context/SketchContext";
 import PageActions from "./PageActions";
 import Text from "../elements/Text";
 import Rectangle from "../elements/Rectangle";
 import Image from "../elements/Image";
 
-const Page = ({ page, selectedElement, setSelectedElement, isViewPage = false }) => {
+const Page = ({ page, isViewPage }) => {
+  const { selectedElement, setSelectedElement } = useContext(SketchContext); // Sketch Context
+
   // Deselected an element when clicking outsite but in the Stage
   const handleDeselectedElement = (ev) => {
     if (ev.target === ev.target.getStage()) {
@@ -17,7 +21,7 @@ const Page = ({ page, selectedElement, setSelectedElement, isViewPage = false })
   return (
     <>
       {/* Don't show on View page */}
-      {!isViewPage === <PageActions page={page} />}
+      {!isViewPage && <PageActions page={page} />}
 
       <PageContainer
         width={page?.width}

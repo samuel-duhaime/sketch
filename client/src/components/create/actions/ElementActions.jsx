@@ -1,11 +1,16 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { COLORS } from "../../../helpers/constants/constants";
+import { SketchContext } from "../../global/context/SketchContext";
 import TextActions from "./TextActions";
 
-const ElementActions = ({ selectedElement }) => {
+const ElementActions = () => {
+  const { selectedElement } = useContext(SketchContext); // Sketch Context
+
   return (
     <SectionContainer>
       <TextActions />
+      {JSON.stringify(selectedElement)}
     </SectionContainer>
   );
 };

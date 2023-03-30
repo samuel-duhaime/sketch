@@ -1,19 +1,30 @@
-import { useState } from "react";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import useSketch from "../../hooks/useSketch";
+// import useSketch from "../../hooks/useSketch";
 import { SIZE } from "../../helpers/constants/constants";
+import { SketchContext } from "../global/context/SketchContext";
 import TopMenuCreate from "./menu/TopMenuCreate";
 import Sections from "./sections/Sections";
 import SectionActions from "./actions/SectionActions";
 import ElementActions from "./actions/ElementActions";
 import Pages from "./pages/Pages";
-import Loading from "../global/Loading/Loading";
+import Loading from "../global/loading/Loading";
 
 // Create page
 const Create = () => {
-  const [selectedSection, setSelectedSection] = useState("text");
-  const [selectedElement, setSelectedElement] = useState(null);
-  const { sketch } = useSketch();
+  const { sketchId } = useParams(); // Take the sketchId params
+  
+  // Sketch Context
+  const {
+    sketch,
+    actions: { fetchSketchAction },
+  } = useContext(SketchContext);
+
+  // Fetch Sketch inside SketchContext
+  useEffect(() => {
+    fetchSketchAction({ sketchId });
+  }, [sketchId]);
 
   return (
     <>
@@ -22,26 +33,17 @@ const Create = () => {
 
       <MainLayout>
         {/* Sections */}
-        <Sections
-          selectedSection={selectedSection}
-          setSelectedSection={setSelectedSection}
-        />
-        <SectionActions selectedSection={selectedSection} />
+        <Sections />
+
+        {/* Sections actions */}
+        <SectionActions />
 
         <ContentLayout>
           {/* Elements actions */}
-          <ElementActions selectedElement={selectedElement} />
+          <ElementActions />
 
           {/* Pages container */}
-          {sketch ? (
-            <Pages
-              sketch={sketch}
-              selectedElement={selectedElement}
-              setSelectedElement={setSelectedElement}
-            />
-          ) : (
-            <Loading />
-          )}
+          {sketch ? <Pages sketch={sketch} /> : <Loading />}
         </ContentLayout>
       </MainLayout>
     </>

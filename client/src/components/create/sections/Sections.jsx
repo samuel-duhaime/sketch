@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { SketchContext } from "../../global/context/SketchContext";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import { COLORS } from "../../../helpers/constants/constants";
 
-const Sections = ({ selectedSection, setSelectedSection }) => {
+const Sections = () => {
+  const { selectedSection, setSelectedSection } = useContext(SketchContext); // Sketch Context
+
+  /* sections object */
   const sections = [
     { id: 0, text: "Text", icon: "faFont" },
     { id: 1, text: "Shapes", icon: "faShapes" },

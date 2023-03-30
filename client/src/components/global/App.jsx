@@ -3,7 +3,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Home from "../home/Home";
 import Create from "../create/Create";
 import View from "../view/View";
-import { SketchProvider } from "./components/global/context/SketchContext";
+import { SketchProvider } from "./context/SketchContext";
 
 const App = () => {
   return (
@@ -14,19 +14,21 @@ const App = () => {
           path="/"
           element={<Home />}
         />
-        <Route
-          path="/create/:sketchId"
-          element={
-            <SketchProvider>
-              <Create />
-            </SketchProvider>
-          }
-        />
-        <Route
-          path="/view/:sketchId"
-          element={<View />}
-        />
       </Routes>
+
+      {/* Sketch provider context */}
+      <SketchProvider>
+        <Routes>
+          <Route
+            path="/create/:sketchId"
+            element={<Create />}
+          />
+          <Route
+            path="/view/:sketchId"
+            element={<View />}
+          />
+        </Routes>
+      </SketchProvider>
     </Router>
   );
 };

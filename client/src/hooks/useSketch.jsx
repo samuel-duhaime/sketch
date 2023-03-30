@@ -23,7 +23,7 @@ const useSketch = () => {
     fetchApi({ apiUrl: "/sketch/" + sketchId, setData: setSketch });
   }, [isRefetch, sketchId]);
 
-  return { sketch, sketchId, setSketch, refetch };
+  return { sketch, setSketch, sketchId, refetch };
 };
 
 export default useSketch;

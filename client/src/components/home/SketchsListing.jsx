@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useSketchs from "../../hooks/useSketchs";
 import SketchCard from "./SketchCard";
-import Loading from "../global/Loading/Loading";
+import Loading from "../global/loading/Loading";
 
 // Sketchs listing of the SketchCard
 const SketchsListing = () => {

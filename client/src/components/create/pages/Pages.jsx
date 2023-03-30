@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import Page from "./Page";
 
-const Pages = ({ sketch, selectedElement, setSelectedElement }) => {
+const Pages = ({ sketch }) => {
   const pagesKeyData = Object.keys(sketch).filter((keyName) => keyName.startsWith("page")); // Find all the pages key
 
   return (
@@ -13,8 +13,7 @@ const Pages = ({ sketch, selectedElement, setSelectedElement }) => {
           <Page
             key={sketch?.[pageKey].page}
             page={sketch?.[pageKey]}
-            selectedElement={selectedElement}
-            setSelectedElement={setSelectedElement}
+            isViewPage={false}
           />
         );
       })}
