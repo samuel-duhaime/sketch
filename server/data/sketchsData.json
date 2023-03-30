@@ -3,6 +3,7 @@
     "_id": "39471209-15e8-4d62-9f9b-deb712579887",
     "sketchName": "Sketch name 1",
     "isModified": false,
+    "isShared": true,
     "page1": {
       "page": 1,
       "pageName": "Page name 1",

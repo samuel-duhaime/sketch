@@ -31,8 +31,8 @@ const postSketch = async (req, res) => {
     }
 
     // All good
-    return res.status(200).json({
-      status: 200,
+    return res.status(201).json({
+      status: 201,
       data: postSketch.insertedId,
       message: "New Sketch",
     });
@@ -43,9 +43,6 @@ const postSketch = async (req, res) => {
       message: err.message,
     });
   }
-
-  // All good
-  res.status(200).json({ status: 200, message: "postSketch" });
 };
 
 module.exports = { postSketch };

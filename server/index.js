@@ -9,8 +9,10 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 
 const { connectMongoDB } = require("./configs/mongoDB");
+const { getSketchs } = require("./controllers/getSketchs");
 const { getSketch } = require("./controllers/getSketch");
 const { postSketch } = require("./controllers/postSketch");
+const { patchSketch } = require("./controllers/patchSketch");
 
 /* Middlewares for the app */
 // Header for fetching
@@ -26,10 +28,7 @@ app.use(express.urlencoded({ extended: false })); // Only parsed bodies
 connectMongoDB(); // Connect to MongoDB
 
 /* GET */
-// getSketchs
-app.get("/sketchs", (req, res) => {
-  res.status(200).json({ status: 200, message: "getSketchs" });
-});
+app.get("/sketchs", getSketchs); // Get all the Sketchs documents
 app.get("/sketch/:sketchId", getSketch); // Get the Sketch document
 
 /* POST */
@@ -44,10 +43,7 @@ app.post("/upload/image", (req, res) => {
 });
 
 /* Patch */
-// patchSketch
-app.patch("/sketch", (req, res) => {
-  res.status(200).json({ status: 200, message: "patchSketch" });
-});
+app.patch("/sketch/:sketchId", patchSketch); // Update the Sketch document
 // patchElement
 app.patch("/element", (req, res) => {
   res.status(200).json({ status: 200, message: "patchElement" });

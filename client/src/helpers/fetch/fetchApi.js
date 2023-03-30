@@ -15,8 +15,8 @@ export const fetchApi = async ({ apiUrl, method = "GET", body, setData }) => {
 
     const { data, status, message } = await fetchResult.json(); // Get the json response
 
-    // For status error
-    if (status !== 200) {
+    // For status error that don't start with 20x
+    if (!status.toString().startsWith("20")) {
       throw new Error(message); // Throw error message
     }
 

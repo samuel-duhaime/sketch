@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 
-const BotMenuView = () => {
+const BotMenuView = ({ sketchId }) => {
   return (
     <BotMenuSection>
       <SideDiv>
@@ -17,9 +17,11 @@ const BotMenuView = () => {
         </Icon>
 
         {/* Edit */}
-        <Icon>
-          <FontAwesomeIcon icon="faPenToSquare" />
-        </Icon>
+        <LinkNoDecoration to={"/create/" + sketchId}>
+          <Icon>
+            <FontAwesomeIcon icon="faPenToSquare" />
+          </Icon>
+        </LinkNoDecoration>
       </SideDiv>
 
       {/* Logo */}

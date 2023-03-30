@@ -6,6 +6,7 @@ import { SIZE } from "../../helpers/constants/constants";
 import handleCreateSketch from "../../helpers/handlers/handleCreateSketch";
 import TopMenuHome from "./TopMenuHome";
 import Button from "../global/button/Button";
+import SketchsListing from "./SketchsListing";
 
 const Home = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
@@ -26,12 +27,10 @@ const Home = () => {
 
       <MainLayout>
         <HomeSection>
-          <div>
-            <H1>What will you teach today? {sketchId}</H1>
-          </div>
+          <H1>What will you teach today?</H1>
 
           <TextContainer>
-            <div>Sketch makes it easy to create teaching material to share with collegues and students.</div>
+            <div>Sketch makes it easy to create teaching material to share with colleagues and students.</div>
 
             {/* Button */}
             <FullDiv>
@@ -40,7 +39,7 @@ const Home = () => {
                   size="big"
                   onClick={() => handleCreateSketch({ setSketchId })}
                 >
-                  Create a document
+                  Create a Sketch
                 </Button>
               ) : (
                 <Button
@@ -58,6 +57,9 @@ const Home = () => {
             src="/assets/images/demoTest.png"
           />
         </HomeSection>
+
+        {/* Recent sketchs */}
+        <SketchsListing />
       </MainLayout>
     </>
   );
@@ -67,9 +69,7 @@ const MainLayout = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: calc(100vh - ${SIZE.topMenuHeight});
   max-width: 1240px;
-  padding: 20px;
   margin: 0 auto;
 `;
 
@@ -77,10 +77,10 @@ const HomeSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  justify-content: center;
+  min-height: calc(100vh - ${SIZE.topMenuHeight});
   gap: 20px;
-  padding: 10px 0;
-  margin: auto;
+  padding: 20px 0;
 `;
 
 const H1 = styled.h1`

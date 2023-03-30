@@ -8,7 +8,7 @@ import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 
 // View page
 const View = () => {
-  const { sketch } = useSketch();
+  const { sketch, sketchId } = useSketch();
   const [pagesKeyData, setPagesKeyData] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -64,7 +64,7 @@ const View = () => {
           )}
 
           {/* Bot menu */}
-          <BotMenuView />
+          <BotMenuView sketchId={sketchId} />
         </>
       ) : (
         <Loading theme="dark" />

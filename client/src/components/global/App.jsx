@@ -3,6 +3,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Home from "../home/Home";
 import Create from "../create/Create";
 import View from "../view/View";
+import { SketchProvider } from "./components/global/context/SketchContext";
 
 const App = () => {
   return (
@@ -15,7 +16,11 @@ const App = () => {
         />
         <Route
           path="/create/:sketchId"
-          element={<Create />}
+          element={
+            <SketchProvider>
+              <Create />
+            </SketchProvider>
+          }
         />
         <Route
           path="/view/:sketchId"
