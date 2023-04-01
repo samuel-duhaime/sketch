@@ -1,39 +1,58 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
+import Tippy from "../global/library/Tippy";
+import ShareTippySection from "../global/tippySection/ShareTippySection";
 
 const BotMenuView = ({ sketchId }) => {
   return (
     <BotMenuSection>
       <SideDiv>
         {/* Download */}
-        <Icon>
-          <FontAwesomeIcon icon="faCircleDown" />
-        </Icon>
-
-        {/* Share */}
-        <Icon>
-          <FontAwesomeIcon icon="faArrowUpFromBracket" />
-        </Icon>
+        <Tippy
+          content={<div>Download</div>}
+          interactive={false}
+        >
+          <Icon>
+            <FontAwesomeIcon icon="faCircleDown" />
+          </Icon>
+        </Tippy>
 
         {/* Edit */}
-        <LinkNoDecoration to={"/create/" + sketchId}>
+        <Tippy
+          content={<div>Edit</div>}
+          interactive={false}
+        >
+          <LinkNoDecoration to={"/create/" + sketchId}>
+            <Icon>
+              <FontAwesomeIcon icon="faPenToSquare" />
+            </Icon>
+          </LinkNoDecoration>
+        </Tippy>
+
+        {/* Share */}
+        <Tippy content={<ShareTippySection sketchId={sketchId} />}>
           <Icon>
-            <FontAwesomeIcon icon="faPenToSquare" />
+            <FontAwesomeIcon icon="faArrowUpFromBracket" />
           </Icon>
-        </LinkNoDecoration>
+        </Tippy>
       </SideDiv>
 
       {/* Logo */}
-      <LinkNoDecoration to="/">
-        <SideDiv>
-          <LogoImg
-            src="/assets/logo/logo-light.png"
-            alt="Logo Sketch"
-          />
-          <Title>SKETCH</Title>
-        </SideDiv>
-      </LinkNoDecoration>
+      <Tippy
+        content={<div>Home</div>}
+        interactive={false}
+      >
+        <LinkNoDecoration to="/">
+          <SideDiv>
+            <LogoImg
+              src="/assets/logo/logo-light.png"
+              alt="Logo Sketch"
+            />
+            <Title>SKETCH</Title>
+          </SideDiv>
+        </LinkNoDecoration>
+      </Tippy>
     </BotMenuSection>
   );
 };

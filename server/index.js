@@ -1,17 +1,23 @@
 "use strict";
 
 // Packages
-const express = require("express");
-const morgan = require("morgan");
+const express = require("express"); // For server framework
+const morgan = require("morgan"); // For server information
 
 // Constants
 const PORT = process.env.PORT || 8000;
 const app = express();
 
+// Configs
 const { connectMongoDB } = require("./configs/mongoDB");
+const { uploadImageMulter } = require("./configs/multer");
+
+// Controllers
 const { getSketchs } = require("./controllers/getSketchs");
 const { getSketch } = require("./controllers/getSketch");
+const { getUploadImages } = require("./controllers/getUploadImages");
 const { postSketch } = require("./controllers/postSketch");
+const { postUploadImage } = require("./controllers/postUploadImage");
 const { patchSketch } = require("./controllers/patchSketch");
 
 /* Middlewares for the app */
@@ -30,6 +36,7 @@ connectMongoDB(); // Connect to MongoDB
 /* GET */
 app.get("/sketchs", getSketchs); // Get all the Sketchs documents
 app.get("/sketch/:sketchId", getSketch); // Get the Sketch document
+app.get("/upload/images", getUploadImages); // Get all the Images upload documents
 
 /* POST */
 app.post("/sketch", postSketch); // Add a new Sketch document
@@ -37,10 +44,7 @@ app.post("/sketch", postSketch); // Add a new Sketch document
 app.post("/element", (req, res) => {
   res.status(200).json({ status: 200, message: "postElement" });
 });
-// postUploadImage
-app.post("/upload/image", (req, res) => {
-  res.status(200).json({ status: 200, message: "postUploadImage" });
-});
+app.post("/upload/image", uploadImageMulter.single("image"), postUploadImage); // Add a new upload image
 
 /* Patch */
 app.patch("/sketch/:sketchId", patchSketch); // Update the Sketch document

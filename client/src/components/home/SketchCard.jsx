@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { COLORS } from "../../helpers/constants/constants";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
+import Tippy from "../global/library/Tippy";
+import ShareTippySection from "../global/tippySection/ShareTippySection";
 
 // Sketch card for HomePage
 const SketchCard = ({ sketch }) => {
@@ -26,21 +28,33 @@ const SketchCard = ({ sketch }) => {
       {/* Icons */}
       <Icons>
         {/* Download */}
-        <Icon>
-          <FontAwesomeIcon icon="faCircleDown" />
-        </Icon>
+        <Tippy
+          content={<div>Download</div>}
+          interactive={false}
+        >
+          <Icon>
+            <FontAwesomeIcon icon="faCircleDown" />
+          </Icon>
+        </Tippy>
 
         {/* Edit */}
-        <Link to={"/create/" + sketch?._id}>
-          <Icon>
-            <FontAwesomeIcon icon="faPenToSquare" />
-          </Icon>
-        </Link>
+        <Tippy
+          content={<div>Edit</div>}
+          interactive={false}
+        >
+          <Link to={"/create/" + sketch?._id}>
+            <Icon>
+              <FontAwesomeIcon icon="faPenToSquare" />
+            </Icon>
+          </Link>
+        </Tippy>
 
         {/* Share */}
-        <Icon>
-          <FontAwesomeIcon icon="faArrowUpFromBracket" />
-        </Icon>
+        <Tippy content={<ShareTippySection sketchId={sketch?._id} />}>
+          <Icon>
+            <FontAwesomeIcon icon="faArrowUpFromBracket" />
+          </Icon>
+        </Tippy>
       </Icons>
     </SketchCardSection>
   );

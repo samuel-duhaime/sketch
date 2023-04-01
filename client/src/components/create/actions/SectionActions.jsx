@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { COLORS } from "../../../helpers/constants/constants";
+import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import TextSection from "../sections/TextSection";
 import ShapesSection from "../sections/ShapesSection";
@@ -26,10 +26,14 @@ const SectionActions = () => {
 };
 
 const SectionActionsContainer = styled.section`
+  position: fixed;
+  top: ${SIZE.topMenuHeight};
+  left: ${SIZE.sectionsWidth};
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 350px;
+  width: ${SIZE.sectionActionsWidth};
+  min-height: calc(100vh - ${SIZE.topMenuHeight});
   padding: 20px;
   background-color: ${COLORS.lightBlack};
   color: white;

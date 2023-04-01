@@ -32,7 +32,6 @@ const TopMenuHome = ({ setSketchId }) => {
                   Sign out
                 </DropDownButton>
               }
-              trigger="click"
             >
               <Image
                 src={user.picture}
@@ -51,6 +50,9 @@ const TopMenuHome = ({ setSketchId }) => {
 };
 
 const TopMenuNav = styled.nav`
+  position: sticky;
+  top: 0;
+  background-color: white;
   box-shadow: ${COLORS.boxShadow};
   width: 100%;
 `;
@@ -109,7 +111,7 @@ const DropDownButton = styled.button`
   cursor: pointer;
 
   &:is(:hover, :focus-visible) {
-    background-color: ${COLORS.gray};
+    text-decoration: underline;
   }
 `;
 

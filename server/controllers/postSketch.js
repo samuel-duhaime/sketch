@@ -6,7 +6,7 @@ const postSketch = async (req, res) => {
   try {
     const { sketchs } = getCollections(); // Get the collections
 
-    // Get the first sketch document that match with the join elements
+    // Add a Sketch
     const postSketch = await sketchs.insertOne({
       _id: uuidv4(),
       sketchName: "Undefined Sketch name",

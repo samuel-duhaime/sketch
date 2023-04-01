@@ -30,8 +30,9 @@ const connectMongoDB = async () => {
 const getCollections = () => {
   const sketchs = db.collection("sketchs"); // Sketchs collection
   const elements = db.collection("elements"); // Elements collection
+  const images = db.collection("images"); // Images uploads collection
 
-  return { sketchs, elements };
+  return { sketchs, elements, images };
 };
 
 // Close MongoDB client

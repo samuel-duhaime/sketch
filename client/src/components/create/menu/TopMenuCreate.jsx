@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLORS } from "../../../helpers/constants/constants";
+import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import Button from "../../global/button/Button";
@@ -25,7 +25,6 @@ const TopMenuCreate = () => {
             Home
           </Action>
         </CreateLink>
-        <Action>File</Action>
         <Action onClick={saveAction}>Save</Action>
         <Action>
           <FontAwesomeIcon icon="faRotateLeft" />
@@ -59,6 +58,7 @@ const TopMenuCreate = () => {
               isOn={sketch?.isShared}
               onChange={() => patchSketchAction({ newSketch: { isShared: !sketch?.isShared } })}
               sketchId={sketch?._id}
+              isCreatePage={true}
             />
           }
           trigger="click"
@@ -74,14 +74,18 @@ const TopMenuCreate = () => {
 };
 
 const TopMenuNav = styled.nav`
+  position: sticky;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
   box-shadow: ${COLORS.boxShadow};
   padding: 20px 10px;
   width: 100%;
-  height: 60px;
+  height: ${SIZE.topMenuHeight};
   font-weight: 700;
+  z-index: 2;
 `;
 
 const TopMenuActions = styled.div`

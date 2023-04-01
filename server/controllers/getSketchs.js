@@ -1,6 +1,6 @@
 const { getCollections } = require("../configs/mongoDB");
 
-// Get the Sketch document
+// Get all the Sketchs documents
 const getSketchs = async (req, res) => {
   try {
     const { sketchs } = getCollections(); // Get the collections

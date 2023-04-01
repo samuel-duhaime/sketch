@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { SketchContext } from "../../global/context/SketchContext";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
-import { COLORS } from "../../../helpers/constants/constants";
+import { COLORS, SIZE } from "../../../helpers/constants/constants";
 
 const Sections = () => {
   const { selectedSection, setSelectedSection } = useContext(SketchContext); // Sketch Context
@@ -41,9 +41,13 @@ const Sections = () => {
 };
 
 const SectionsSection = styled.section`
+  position: fixed;
+  top: ${SIZE.topMenuHeight};
+  left: 0;
   display: flex;
   flex-direction: column;
-  width: 70px;
+  width: ${SIZE.sectionsWidth};
+  min-height: calc(100vh - ${SIZE.topMenuHeight});
   background-color: ${COLORS.darkBlack};
   color: white;
 `;

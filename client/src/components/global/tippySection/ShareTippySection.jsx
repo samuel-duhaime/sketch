@@ -3,19 +3,22 @@ import styled from "styled-components";
 import SwitchInput from "../input/SwitchInput";
 import Button from "../button/Button";
 
-const ShareTippySection = ({ isOn, onChange, sketchId }) => {
+const ShareTippySection = ({ isOn, onChange, sketchId, isCreatePage = false }) => {
   const [text, setText] = useState("Copy view link");
 
   return (
     <ShareSection>
-      <SwitchDiv>
-        <div>Share witch colleagues and students.</div>
-        <SwitchInput
-          name="isShared"
-          isOn={isOn}
-          onChange={onChange}
-        />
-      </SwitchDiv>
+      {isCreatePage && (
+        <SwitchDiv>
+          <div>Share witch colleagues and students.</div>
+          <SwitchInput
+            name="isShared"
+            isOn={isOn}
+            onChange={onChange}
+          />
+        </SwitchDiv>
+      )}
+
       <Button
         size="big"
         onClick={() => {

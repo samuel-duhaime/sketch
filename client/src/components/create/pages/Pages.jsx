@@ -22,15 +22,18 @@ const Pages = ({ sketch }) => {
 };
 
 const PagesContainer = styled.div`
+  position: sticky;
+  left: calc(${SIZE.sectionsWidth} + ${SIZE.sectionActionsWidth});
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: 100%;
+  width: calc(100% - ${SIZE.sectionsWidth} - ${SIZE.sectionActionsWidth});
   min-height: calc(100vh - ${SIZE.topMenuHeight} - ${SIZE.elementActionsHeight});
   padding: 20px 10px;
   background-color: ${COLORS.gray};
+  margin-top: 50px; // Need this for good setup
 `;
 
 export default Pages;

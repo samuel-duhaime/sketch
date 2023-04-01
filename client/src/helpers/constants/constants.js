@@ -23,4 +23,7 @@ export const FONTS = {
 export const SIZE = {
   topMenuHeight: "60px", // TopMenu of Home and Create
   elementActionsHeight: "50px", // Create ElementsActions
+
+  sectionsWidth: "70px", // Create Sections width
+  sectionActionsWidth: "350px", // Create Sections actions width
 };

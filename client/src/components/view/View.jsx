@@ -45,7 +45,6 @@ const View = () => {
           {/* Page */}
           <Page
             page={sketch && pagesKeyData && sketch[pagesKeyData[pageNumber]]}
-            // page={sketch?.page1}
             isViewPage={true}
           />
 

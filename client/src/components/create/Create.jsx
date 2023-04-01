@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-// import useSketch from "../../hooks/useSketch";
 import { SIZE } from "../../helpers/constants/constants";
 import { SketchContext } from "../global/context/SketchContext";
 import TopMenuCreate from "./menu/TopMenuCreate";
