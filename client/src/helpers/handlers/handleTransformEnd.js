@@ -1,4 +1,4 @@
-// When the user have finished to transform the element
+// TODO: When the user have finished to transform the element
 const handleTransformEnd = ({ elementRef, object, setObject }) => {
    const getElement = elementRef.current; // Get the current element value
 

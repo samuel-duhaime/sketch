@@ -6,7 +6,7 @@ const patchSketch = async (req, res) => {
   const { sketchName, isShared } = req.body;
 
   // Bad request
-  if (!sketchName && !isShared) {
+  if (!sketchName && isShared !== undefined) {
     return res.status(400).json({
       status: 400,
       message: "Bad request",

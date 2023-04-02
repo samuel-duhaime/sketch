@@ -3,14 +3,27 @@ import styled from "styled-components";
 import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import TextActions from "./TextActions";
+import ShapeActions from "./ShapeActions";
+import ImageActions from "./ImageActions";
 
+// Elements actions container
 const ElementActions = () => {
-  const { selectedElement } = useContext(SketchContext); // Sketch Context
+  const {
+    selectedElement,
+    actions: { patchElementAction },
+  } = useContext(SketchContext); // Sketch Context
 
   return (
     <SectionContainer>
-      <TextActions />
-      {JSON.stringify(selectedElement)}
+      {selectedElement?.type === "text" ? (
+        <TextActions />
+      ) : selectedElement?.type === "rectangle" ? (
+        <ShapeActions />
+      ) : selectedElement?.type === "image" ? (
+        <ImageActions />
+      ) : (
+        <>No selected element</>
+      )}
     </SectionContainer>
   );
 };

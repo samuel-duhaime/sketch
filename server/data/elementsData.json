@@ -6,8 +6,7 @@
     "y": 150,
     "width": 200,
     "height": 100,
-    "backgroundColor": "black",
-    "isModified": false
+    "backgroundColor": "black"
   },
   {
     "_id": "577e5653-9e95-400e-bd58-0ac9c30b9acd",
@@ -16,8 +15,7 @@
     "y": 150,
     "width": 200,
     "height": 100,
-    "backgroundColor": "red",
-    "isModified": false
+    "backgroundColor": "red"
   },
   {
     "_id": "60fdac76-bb08-42be-bd73-2302be3294da",
@@ -26,8 +24,7 @@
     "x": 100,
     "y": 300,
     "width": 200,
-    "height": 100,
-    "isModified": false
+    "height": 100
   },
   {
     "_id": "058f83ad-6f90-401b-aa53-3849aaa4e247",
@@ -36,8 +33,7 @@
     "x": 400,
     "y": 300,
     "width": 200,
-    "height": 100,
-    "isModified": false
+    "height": 100
   },
   {
     "_id": "208db958-63af-4a13-988d-6392b6109231",
@@ -53,9 +49,7 @@
     "isItalic": false,
     "isUnderline": false,
     "isUppercase": false,
-    "align": "left",
-    "opacity": 1,
-    "isModified": false
+    "align": "left"
   },
   {
     "_id": "d9592aa4-3daa-4303-b30b-6cf47ba9d3c7",
@@ -71,8 +65,6 @@
     "isItalic": true,
     "isUnderline": true,
     "isUppercase": true,
-    "align": "right",
-    "opacity": 0.7,
-    "isModified": false
+    "align": "right"
   }
 ]

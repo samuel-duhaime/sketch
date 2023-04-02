@@ -9,12 +9,12 @@ import Rectangle from "../elements/Rectangle";
 import Image from "../elements/Image";
 
 const Page = ({ page, isViewPage }) => {
-  const { selectedElement, setSelectedElement } = useContext(SketchContext); // Sketch Context
+  const { selectedElementId, setSelectedElementId } = useContext(SketchContext); // Sketch Context
 
   // Deselected an element when clicking outsite but in the Stage
   const handleDeselectedElement = (ev) => {
     if (ev.target === ev.target.getStage()) {
-      setSelectedElement(null);
+      setSelectedElementId(null);
     }
   };
 
@@ -43,8 +43,8 @@ const Page = ({ page, isViewPage }) => {
                   <Text
                     key={element._id}
                     element={element}
-                    isSelected={element._id === selectedElement}
-                    setSelectedElement={setSelectedElement}
+                    isSelected={element._id === selectedElementId}
+                    setSelectedElementId={setSelectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 );
@@ -54,8 +54,8 @@ const Page = ({ page, isViewPage }) => {
                   <Rectangle
                     key={element._id}
                     element={element}
-                    isSelected={element._id === selectedElement}
-                    setSelectedElement={setSelectedElement}
+                    isSelected={element._id === selectedElementId}
+                    setSelectedElementId={setSelectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 );
@@ -65,8 +65,8 @@ const Page = ({ page, isViewPage }) => {
                   <Image
                     key={element._id}
                     element={element}
-                    isSelected={element._id === selectedElement}
-                    setSelectedElement={setSelectedElement}
+                    isSelected={element._id === selectedElementId}
+                    setSelectedElementId={setSelectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 );

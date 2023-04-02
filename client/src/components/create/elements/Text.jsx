@@ -5,38 +5,38 @@ import handleLimitResize from "../../../helpers/handlers/handleLimitResize";
 import handleTransformEnd from "../../../helpers/handlers/handleTransformEnd";
 import useTransformerElement from "../../../hooks/useTransformerElement";
 
-const Text = ({ element, isSelected, setSelectedElement, draggable = false }) => {
-  const { object, setObject, elementRef, transformerRef } = useTransformerElement({ element, isSelected });
+// Text element
+const Text = ({ element, isSelected, setSelectedElementId, draggable }) => {
+  const { isDragging, setIsDragging, elementRef, transformerRef } = useTransformerElement({ isSelected });
 
   return (
     <>
       <TextElement
         ref={elementRef}
-        text={object.text}
-        x={object.x}
-        y={object.y}
-        width={object.width}
-        fontFamily={object.fontFamily}
-        fontSize={object.fontSize}
+        text={element.text}
+        x={element.x}
+        y={element.y}
+        width={element.width}
+        fontFamily={element.fontFamily}
+        fontSize={element.fontSize}
         fontStyle={
-          object.isItalic && object.isBold
+          element.isItalic && element.isBold
             ? "italic bold"
-            : object.isItalic
-            ? "italic"
-            : object.isBold
-            ? "bold"
-            : "normal"
+            : element.isItalic
+              ? "italic"
+              : element.isBold
+                ? "bold"
+                : "normal"
         }
-        fontVariant={object.isUppercase ? "small-caps" : "normal"}
-        textDecoration={object.isUnderline ? "underline" : ""}
-        align={object.align}
-        opacity={object.opacity}
-        fill={object.isDragging ? "green" : "black"}
-        onClick={() => setSelectedElement(object._id)}
-        onTap={() => setSelectedElement(object._id)}
-        onDragStart={() => handleDragStart({ object, setObject })}
-        onDragEnd={(ev) => handleDragEnd(ev, { object, setObject })}
-        onTransformEnd={() => handleTransformEnd({ elementRef, object, setObject })}
+        fontVariant={element.isUppercase ? "small-caps" : "normal"}
+        textDecoration={element.isUnderline ? "underline" : ""}
+        align={element.align}
+        fill={isDragging ? "green" : "black"}
+        onClick={() => setSelectedElementId(element._id)}
+        onTap={() => setSelectedElementId(element._id)}
+        onDragStart={() => handleDragStart({ setIsDragging })}
+        onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging })}
+        // onTransformEnd={() => handleTransformEnd({ elementRef, object, setObject })}
         draggable={draggable}
       />
       {isSelected && (

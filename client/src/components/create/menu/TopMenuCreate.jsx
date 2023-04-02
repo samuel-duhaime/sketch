@@ -43,7 +43,7 @@ const TopMenuCreate = () => {
           name="sketchName"
           placeholder={sketch?.sketchName}
           valueLength={sketch?.sketchName?.length}
-          onChange={(event) => patchSketchAction({ newSketch: { sketchName: event.target.value } })}
+          onChange={(event) => patchSketchAction({ newData: { sketchName: event.target.value } })}
         />
 
         {/* Download */}
@@ -56,7 +56,7 @@ const TopMenuCreate = () => {
           content={
             <ShareTippySection
               isOn={sketch?.isShared}
-              onChange={() => patchSketchAction({ newSketch: { isShared: !sketch?.isShared } })}
+              onChange={() => patchSketchAction({ newData: { isShared: !sketch?.isShared } })}
               sketchId={sketch?._id}
               isCreatePage={true}
             />

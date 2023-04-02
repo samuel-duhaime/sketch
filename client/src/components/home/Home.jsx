@@ -27,10 +27,10 @@ const Home = () => {
 
       <MainLayout>
         <HomeSection>
-          <H1>What will you teach today?</H1>
+          <H1>Bring your lessons to life.</H1>
 
           <TextContainer>
-            <div>Sketch makes it easy to create teaching material to share with colleagues and students.</div>
+            <div>Easily create visual teaching materials to share with Sketch.</div>
 
             {/* Button */}
             <FullDiv>

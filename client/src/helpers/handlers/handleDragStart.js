@@ -1,9 +1,6 @@
 // When the user start to drag the element
-const handleDragStart = ({ object, setObject }) => {
-   setObject({
-      ...object,
-      isDragging: true,
-   });
+const handleDragStart = ({ setIsDragging }) => {
+  setIsDragging(true);
 };
 
 export default handleDragStart;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { COLORS } from "../../../helpers/constants/constants";
 
-const ButtonIcon = ({ children }) => {
-  return <ButtonIconContainer>{children}</ButtonIconContainer>;
+const ButtonIcon = ({ children, isActive = false, onClick }) => {
+  return <ButtonIconContainer isActive={isActive} onClick={onClick}>{children}</ButtonIconContainer>;
 };
 
 const ButtonIconContainer = styled.button`
@@ -15,7 +15,7 @@ const ButtonIconContainer = styled.button`
   min-height: 32px;
   border: none;
   border-radius: 5px;
-  background-color: transparent;
+  background-color: ${(props) => props.isActive ? COLORS.gray : "transparent"};
   cursor: pointer;
 
   &:is(:hover, :focus-visible) {

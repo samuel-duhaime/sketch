@@ -28,6 +28,7 @@ const SectionActions = () => {
 const SectionActionsContainer = styled.section`
   position: fixed;
   top: ${SIZE.topMenuHeight};
+  bottom: 0;
   left: ${SIZE.sectionsWidth};
   display: flex;
   flex-direction: column;
@@ -37,6 +38,7 @@ const SectionActionsContainer = styled.section`
   padding: 20px;
   background-color: ${COLORS.lightBlack};
   color: white;
+  overflow-y: auto;
 `;
 
 export default SectionActions;

@@ -12,6 +12,8 @@ import {
   faFont,
   faImage,
   faShapes,
+  faAlignLeft,
+  faAlignRight,
   faAlignCenter,
   faLayerGroup,
   faCopy,
@@ -63,6 +65,12 @@ const FontAwesomeIcon = ({ icon }) => {
       break;
     case "faCloudArrowUp":
       iconComponent = faCloudArrowUp;
+      break;
+    case "faAlignLeft":
+      iconComponent = faAlignLeft;
+      break;
+    case "faAlignRight":
+      iconComponent = faAlignRight;
       break;
     case "faAlignCenter":
       iconComponent = faAlignCenter;

@@ -1,28 +1,38 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { SketchContext } from "../context/SketchContext";
 import { COLORS } from "../../../helpers/constants/constants";
 
+// Input to change the fontSize
 const FontSizeInput = () => {
-  const [fontSize, setFontSize] = useState(16);
+  const { selectedElement, actions: { patchElementAction } } = useContext(SketchContext); // Sketch Context
 
   return (
     <FontSizeContainer>
+      {/* Minus button */}
       <Button
-        onClick={() => setFontSize(fontSize - 1)}
+        onClick={() => selectedElement?.fontSize > 1 && patchElementAction({ newData: { fontSize: selectedElement?.fontSize - 1 } })}
         style={{ borderRadius: "5px 0 0 5px" }}
       >
         -
       </Button>
+
+      {/* Text fonSize button */}
       <TextInput
         type="text"
-        value={fontSize}
+        value={selectedElement?.fontSize}
         onChange={(e) => {
-          const number = Math.round(e.target.value);
-          setFontSize(!Number.isNaN(number) ? number : fontSize); // Only set if it's a number
+          const number = Math.round(e.target.value); // Integer number
+          // Only set if it's a number
+          if (!Number.isNaN(number)) {
+            patchElementAction({ newData: { fontSize: number } })
+          }
         }}
       />
+
+      {/* Plus button */}
       <Button
-        onClick={() => setFontSize(fontSize + 1)}
+        onClick={() => patchElementAction({ newData: { fontSize: selectedElement?.fontSize + 1 } })}
         style={{ borderRadius: "0 5px 5px 0" }}
       >
         +

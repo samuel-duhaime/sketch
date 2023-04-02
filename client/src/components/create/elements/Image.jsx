@@ -6,24 +6,25 @@ import handleLimitResize from "../../../helpers/handlers/handleLimitResize";
 import handleTransformEnd from "../../../helpers/handlers/handleTransformEnd";
 import useTransformerElement from "../../../hooks/useTransformerElement";
 
-const Image = ({ element, isSelected, setSelectedElement, draggable }) => {
-  const { object, setObject, elementRef, transformerRef } = useTransformerElement({ element, isSelected });
-  const [imageUrl] = useImage(object.imageUrl);
+// Image element
+const Image = ({ element, isSelected, setSelectedElementId, draggable }) => {
+  const { isDragging, setIsDragging, elementRef, transformerRef } = useTransformerElement({ element, isSelected });
+  const [imageUrl] = useImage(element.imageUrl);
 
   return (
     <>
       <ImageElement
         ref={elementRef}
         image={imageUrl}
-        x={object.x}
-        y={object.y}
-        width={object.width}
-        height={object.height}
-        onClick={() => setSelectedElement(object._id)}
-        onTap={() => setSelectedElement(object._id)}
-        onDragStart={() => handleDragStart({ object, setObject })}
-        onDragEnd={(ev) => handleDragEnd(ev, { object, setObject })}
-        onTransformEnd={() => handleTransformEnd({ elementRef, object, setObject })}
+        x={element.x}
+        y={element.y}
+        width={element.width}
+        height={element.height}
+        onClick={() => setSelectedElementId(element._id)}
+        onTap={() => setSelectedElementId(element._id)}
+        onDragStart={() => handleDragStart({ setIsDragging })}
+        onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging })}
+        // onTransformEnd={() => handleTransformEnd({ elementRef, object, setObject })}
         draggable={draggable}
       />
       {isSelected && (

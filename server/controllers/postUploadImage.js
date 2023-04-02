@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 const { getCollections } = require("../configs/mongoDB");
 
-// Add a new upload image
+// Add a new upload image document
 const postUploadImage = async (req, res) => {
   try {
     const { images } = getCollections(); // Get the collections

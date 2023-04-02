@@ -19,6 +19,7 @@ const { getUploadImages } = require("./controllers/getUploadImages");
 const { postSketch } = require("./controllers/postSketch");
 const { postUploadImage } = require("./controllers/postUploadImage");
 const { patchSketch } = require("./controllers/patchSketch");
+const { patchElement } = require("./controllers/patchElement");
 
 /* Middlewares for the app */
 // Header for fetching
@@ -44,14 +45,11 @@ app.post("/sketch", postSketch); // Add a new Sketch document
 app.post("/element", (req, res) => {
   res.status(200).json({ status: 200, message: "postElement" });
 });
-app.post("/upload/image", uploadImageMulter.single("image"), postUploadImage); // Add a new upload image
+app.post("/upload/image", uploadImageMulter.single("image"), postUploadImage); // Add a new upload image document
 
 /* Patch */
 app.patch("/sketch/:sketchId", patchSketch); // Update the Sketch document
-// patchElement
-app.patch("/element", (req, res) => {
-  res.status(200).json({ status: 200, message: "patchElement" });
-});
+app.patch("/element/:elementId", patchElement); // Update the element document
 
 /* Catch all endpoint */
 app.get("*", (req, res) => {

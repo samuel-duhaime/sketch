@@ -36,6 +36,7 @@ const TopMenuHome = ({ setSketchId }) => {
               <Image
                 src={user.picture}
                 alt={user.name}
+                referrerPolicy="no-referrer" // So it won't get block by Google
               />
             </Tippy>
           </Actions>

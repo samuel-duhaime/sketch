@@ -62,12 +62,12 @@ const UploadsSection = () => {
   );
 };
 
-const UploadButton = styled.button`
+const UploadButton = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 310px;
-  height: 40px;
+  width: 100%;
+  min-height: 40px;
   font-size: 20px;
   font-weight: 700;
   border-radius: 10px;
@@ -82,9 +82,9 @@ const UploadButton = styled.button`
 
 const FileInput = styled.input`
   position: absolute;
-  top: 20px;
-  width: 310px;
-  height: 40px;
+  top: 20px;  
+  width: 100%;
+  min-height: 40px;
   opacity: 0; // Hide it
   cursor: pointer;
   

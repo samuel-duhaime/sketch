@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 
 // Manually attach the element to the transformer
-const useTransformerElement = ({ element, isSelected }) => {
-   const [object, setObject] = useState({ ...element, isDragging: false });
+const useTransformerElement = ({ isSelected }) => {
+   const [isDragging, setIsDragging] = useState(false); // Element is dragging
    const elementRef = useRef(); // Ref to the element
    const transformerRef = useRef(); // Ref to the transformer
 
@@ -14,7 +14,7 @@ const useTransformerElement = ({ element, isSelected }) => {
       }
    }, [isSelected]);
 
-   return { object, setObject, elementRef, transformerRef };
+   return { isDragging, setIsDragging, elementRef, transformerRef };
 };
 
 export default useTransformerElement;

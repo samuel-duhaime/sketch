@@ -20,10 +20,11 @@ const PhotoListingSection = styled.section`
 `;
 
 const Image = styled.img`
-  width: 145px;
-  height: 145px;
+  width: 100%;
+  /* height: 130px; */
   background-color: ${COLORS.darkGray};
   border-radius: 10px;
+  margin: auto;
 `;
 
 export default PhotosListing;

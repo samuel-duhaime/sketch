@@ -8,14 +8,31 @@ const initialSketch = {};
 
 // Reducer for all the actions type of sketch
 const sketchReducer = (sketch, action) => {
-  const { type, fetchSketchData, newSketch } = action; // All the action object
+  const { type, fetchSketchData, newData, selectedElementId, selectedPage } = action; // All the action object
+
 
   switch (type) {
     case "fetchSketchAction": {
-      return { ...fetchSketchData };
+      return fetchSketchData;
     }
     case "updateSketchAction": {
-      return { ...sketch, isModified: true, ...newSketch };
+      return { ...sketch, ...newData, isModified: true, };
+    }
+    case "patchElementAction": {
+      // Get the newElements
+      const newElements = sketch[selectedPage].elements.map(element => {
+        if (element._id === selectedElementId) {
+          return { ...element, ...newData, isModified: true }
+        } else {
+          return element
+        }
+      })
+      const newPage = { ...sketch[selectedPage], elements: newElements } // Get the newPage
+      const newSketch = { ...sketch, [selectedPage]: newPage } // Get the newSketch
+
+      console.log(newSketch)
+
+      return { ...newSketch };
     }
     default: {
       throw new Error(`Invalid type: ${type}`);
@@ -28,8 +45,11 @@ export const SketchProvider = ({ children }) => {
   const [sketch, dispatch] = useReducer(sketchReducer, initialSketch);
   const [isFetch, setIsFetch] = useState(false); // Only fetch one time
   const [selectedSection, setSelectedSection] = useState("text");
-  const [selectedElement, setSelectedElement] = useState(null);
-  const [selectedPage, setSelectedPage] = useState(null);
+  const [selectedElementId, setSelectedElementId] = useState(null);
+  const [selectedPage, setSelectedPage] = useState("page1");
+
+  // Filter the selectedElement
+  const selectedElement = sketch[selectedPage]?.elements?.filter(element => element._id === selectedElementId)[0]
 
   // Fetch sketch action
   const fetchSketchAction = async ({ sketchId }) => {
@@ -60,7 +80,7 @@ export const SketchProvider = ({ children }) => {
   // Save action
   const saveAction = () => {
     if (sketch.isModified === true) {
-      // Only do if Sketch is modified
+      // Only fetch if Sketch is modified
       fetchApi({
         apiUrl: "/sketch/" + sketch._id,
         method: "PATCH",
@@ -73,13 +93,17 @@ export const SketchProvider = ({ children }) => {
   };
 
   // Patch Sketch action
-  const patchSketchAction = ({ newSketch }) => {
-    dispatch({ type: "updateSketchAction", newSketch: newSketch });
+  const patchSketchAction = ({ newData }) => {
+    dispatch({ type: "updateSketchAction", newData });
   };
 
   // updatePage
-  // updateElement
-  // Save
+
+  // Patch element action
+  const patchElementAction = ({ newData }) => {
+    dispatch({ type: "patchElementAction", newData, selectedElementId, selectedPage });
+  };
+
   // SketchHistory
 
   return (
@@ -87,16 +111,17 @@ export const SketchProvider = ({ children }) => {
       value={{
         sketch,
         selectedSection,
-        // setSketchId,
         setSelectedSection,
-        selectedElement,
-        setSelectedElement,
+        selectedElementId,
+        setSelectedElementId,
         selectedPage,
         setSelectedPage,
+        selectedElement,
         actions: {
           fetchSketchAction,
           saveAction,
           patchSketchAction,
+          patchElementAction
         },
       }}
     >
