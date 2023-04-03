@@ -5,8 +5,10 @@ import { COLORS } from "../../../helpers/constants/constants";
 import FontSizeInput from "../../global/input/FontSizeInput";
 import ColorInput from "../../global/input/ColorInput";
 import ButtonIcon from "../../global/button/ButtonIcon";
+import VerticalLine from "../../lines/VerticalLine";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import SelectOptions from "../../global/input/SelectOptions";
+import Layers from "../../global/button/Layers";
 
 // Text actions
 const TextActions = () => {
@@ -17,13 +19,14 @@ const TextActions = () => {
 
   return (
     <>
+      {/* Font family */}
       <SelectOptions />
 
       {/* Font Size */}
       <FontSizeInput />
 
       {/* Color */}
-      <ColorInput />
+      <ColorInput keyName="color" />
 
       {/* Bold */}
       <ButtonIcon
@@ -81,10 +84,7 @@ const TextActions = () => {
       <VerticalLine />
 
       {/* Layers */}
-      <ButtonIcon>
-        <FontAwesomeIcon icon="faLayerGroup" />
-        <div>Layers</div>
-      </ButtonIcon>
+      <Layers />
     </>
   );
 };
@@ -99,12 +99,6 @@ const Italic = styled.span`
 
 const Underline = styled.span`
   text-decoration: underline;
-`;
-
-const VerticalLine = styled.div`
-  height: 25px;
-  width: 1px;
-  background-color: ${COLORS.darkGray};
 `;
 
 export default TextActions;

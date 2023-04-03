@@ -3,18 +3,36 @@ const { getCollections } = require("../configs/mongoDB");
 // Update the element document
 const patchElement = async (req, res) => {
   const { elementId } = req.params;
-  const { text, x, y, width, height, fontFamily, fontSize, isBold, isItalic, isUnderline, isUppercase, align } =
-    req.body;
+  const {
+    text,
+    imageUrl,
+    x,
+    y,
+    width,
+    height,
+    fontFamily,
+    fontSize,
+    color,
+    backgroundColor,
+    isBold,
+    isItalic,
+    isUnderline,
+    isUppercase,
+    align,
+  } = req.body;
 
   // Bad request
   if (
     !text &&
+    !imageUrl &&
     !x &&
     !y &&
     !width &&
     !height &&
     !fontFamily &&
     !fontSize &&
+    !color &&
+    !backgroundColor &&
     isBold !== undefined &&
     isItalic !== undefined &&
     isUnderline !== undefined &&
@@ -30,12 +48,15 @@ const patchElement = async (req, res) => {
   // Set the new element modifications
   const elementsModifications = {
     ...(text && { text }),
+    ...(imageUrl && { imageUrl }),
     ...(x && { x }),
     ...(y && { y }),
     ...(width && { width }),
     ...(height && { height }),
     ...(fontFamily && { fontFamily }),
     ...(fontSize && { fontSize }),
+    ...(color && { color }),
+    ...(backgroundColor && { backgroundColor }),
     ...(isBold !== undefined && { isBold }),
     ...(isItalic !== undefined && { isItalic }),
     ...(isUnderline !== undefined && { isUnderline }),

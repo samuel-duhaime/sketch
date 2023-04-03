@@ -1,8 +1,30 @@
+import ButtonIcon from "../../global/button/ButtonIcon";
+import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
+import VerticalLine from "../../lines/VerticalLine";
+import ColorInput from "../../global/input/ColorInput";
+import Layers from "../../global/button/Layers";
+
 // Shape actions
 const ShapeActions = () => {
   return (
-    <div>ShapeActions</div>
-  )
-}
+    <>
+      {/* Shapes */}
+      <ButtonIcon>
+        <FontAwesomeIcon icon="faShapes" />
+        <div>Shapes</div>
+      </ButtonIcon>
 
-export default ShapeActions
+      <VerticalLine />
+
+      {/* Background color */}
+      <ColorInput keyName="backgroundColor" />
+
+      <VerticalLine />
+
+      {/* Layers */}
+      <Layers />
+    </>
+  );
+};
+
+export default ShapeActions;

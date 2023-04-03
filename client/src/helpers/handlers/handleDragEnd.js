@@ -1,12 +1,8 @@
-// TODO: When the user end to drag the element
-const handleDragEnd = (ev, { setIsDragging }) => {
+// When the user end to drag the element
+const handleDragEnd = (ev, { setIsDragging, patchElementAction }) => {
   setIsDragging(false);
-  // setObject({
-  //    ...object,
-  //    isDragging: false,
-  //    x: ev.target.x(),
-  //    y: ev.target.y(),
-  // });
+
+  patchElementAction({ newData: { x: ev.target.x(), y: ev.target.y() } }); // Update element
 };
 
 export default handleDragEnd;

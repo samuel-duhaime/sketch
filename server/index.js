@@ -17,6 +17,7 @@ const { getSketchs } = require("./controllers/getSketchs");
 const { getSketch } = require("./controllers/getSketch");
 const { getUploadImages } = require("./controllers/getUploadImages");
 const { postSketch } = require("./controllers/postSketch");
+const { postElement } = require("./controllers/postElement");
 const { postUploadImage } = require("./controllers/postUploadImage");
 const { patchSketch } = require("./controllers/patchSketch");
 const { patchElement } = require("./controllers/patchElement");
@@ -41,10 +42,7 @@ app.get("/upload/images", getUploadImages); // Get all the Images upload documen
 
 /* POST */
 app.post("/sketch", postSketch); // Add a new Sketch document
-// postElement
-app.post("/element", (req, res) => {
-  res.status(200).json({ status: 200, message: "postElement" });
-});
+app.post("/element/:sketchId", postElement); // Add a new element document
 app.post("/upload/image", uploadImageMulter.single("image"), postUploadImage); // Add a new upload image document
 
 /* Patch */

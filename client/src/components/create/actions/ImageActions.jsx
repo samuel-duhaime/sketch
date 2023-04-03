@@ -1,8 +1,13 @@
+import Layers from "../../global/button/Layers";
+
 // Image actions
 const ImageActions = () => {
   return (
-    <div>ImagesActions</div>
-  )
-}
+    <>
+      {/* Layers */}
+      <Layers />
+    </>
+  );
+};
 
-export default ImageActions
+export default ImageActions;

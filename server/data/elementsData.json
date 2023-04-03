@@ -6,7 +6,7 @@
     "y": 150,
     "width": 200,
     "height": 100,
-    "backgroundColor": "black"
+    "backgroundColor": "#000000"
   },
   {
     "_id": "577e5653-9e95-400e-bd58-0ac9c30b9acd",
@@ -15,7 +15,7 @@
     "y": 150,
     "width": 200,
     "height": 100,
-    "backgroundColor": "red"
+    "backgroundColor": "#ff0000"
   },
   {
     "_id": "60fdac76-bb08-42be-bd73-2302be3294da",
@@ -43,8 +43,9 @@
     "y": 50,
     "width": 120,
     "height": 100,
-    "fontFamily": "Nunito",
+    "fontFamily": "Arial",
     "fontSize": 16,
+    "color": "#000000",
     "isBold": false,
     "isItalic": false,
     "isUnderline": false,
@@ -59,8 +60,9 @@
     "y": 50,
     "width": 120,
     "height": 100,
-    "fontFamily": "Arial",
+    "fontFamily": "Comic Sans MS",
     "fontSize": 20,
+    "color": "#ff0000",
     "isBold": true,
     "isItalic": true,
     "isUnderline": true,

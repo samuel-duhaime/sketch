@@ -8,10 +8,7 @@ import ImageActions from "./ImageActions";
 
 // Elements actions container
 const ElementActions = () => {
-  const {
-    selectedElement,
-    actions: { patchElementAction },
-  } = useContext(SketchContext); // Sketch Context
+  const { selectedElement } = useContext(SketchContext); // Sketch Context
 
   return (
     <SectionContainer>

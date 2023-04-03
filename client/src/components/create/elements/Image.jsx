@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Image as ImageElement, Transformer } from "react-konva";
 import useImage from "use-image";
+import { SketchContext } from "../../global/context/SketchContext";
 import handleDragStart from "../../../helpers/handlers/handleDragStart";
 import handleDragEnd from "../../../helpers/handlers/handleDragEnd";
 import handleLimitResize from "../../../helpers/handlers/handleLimitResize";
@@ -10,6 +12,11 @@ import useTransformerElement from "../../../hooks/useTransformerElement";
 const Image = ({ element, isSelected, setSelectedElementId, draggable }) => {
   const { isDragging, setIsDragging, elementRef, transformerRef } = useTransformerElement({ element, isSelected });
   const [imageUrl] = useImage(element.imageUrl);
+
+  // Sketch Context
+  const {
+    actions: { patchElementAction },
+  } = useContext(SketchContext);
 
   return (
     <>
@@ -22,9 +29,9 @@ const Image = ({ element, isSelected, setSelectedElementId, draggable }) => {
         height={element.height}
         onClick={() => setSelectedElementId(element._id)}
         onTap={() => setSelectedElementId(element._id)}
-        onDragStart={() => handleDragStart({ setIsDragging })}
-        onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging })}
-        // onTransformEnd={() => handleTransformEnd({ elementRef, object, setObject })}
+        onDragStart={() => handleDragStart({ setIsDragging, setSelectedElementId, elementId: element._id })}
+        onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging, patchElementAction })}
+        onTransformEnd={() => handleTransformEnd({ elementRef, patchElementAction })}
         draggable={draggable}
       />
       {isSelected && (
