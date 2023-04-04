@@ -1,74 +1,136 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { SketchContext } from "../../global/context/SketchContext";
 import Button from "../../global/button/Button";
 
 const TextSection = () => {
-   return (
-      <>
-         <div>
-            <Button size="big">Add text box</Button>
-         </div>
+  // Sketch Context
+  const {
+    actions: { postElementAction },
+  } = useContext(SketchContext);
 
-         <Buttons>
-            <h2>Heading</h2>
-            <Button
-               size="big"
-               color="white"
-            >
-               Add heading
-            </Button>
-            <Button
-               size="big"
-               color="white"
-            >
-               Add subheading
-            </Button>
-            <Button
-               size="big"
-               color="white"
-            >
-               Add small text
-            </Button>
-         </Buttons>
+  // Font Family buttons
+  const fontFamilyButtons = [
+    "Arial",
+    "Cambria",
+    "Calibri",
+    "Century Gothic",
+    "Comic Sans MS",
+    "Courier New",
+    "Times New Roman",
+  ];
 
-         <Buttons>
-            <h2>Font family</h2>
+  // Function for when the user click the text button
+  const handleTextClick = ({ text, size, fontFamily, fontSize, isBold }) => {
+    postElementAction({
+      newData: {
+        type: "text",
+        text,
+        x: 100,
+        y: 100,
+        width: size,
+        height: size,
+        fontFamily,
+        fontSize,
+        color: "#000000",
+        isBold,
+        isItalic: false,
+        isUnderline: false,
+        isUppercase: false,
+        align: "left",
+      },
+    });
+  };
+
+  const headingButtons = [
+    {
+      text: "Add heading",
+      size: 300,
+      fontSize: 40,
+      isBold: true,
+    },
+    {
+      text: "Add subheading",
+      size: 250,
+      fontSize: 30,
+      isBold: false,
+    },
+    {
+      text: "Add body text",
+      size: 120,
+      fontSize: 16,
+      isBold: false,
+    },
+  ];
+
+  // onClick={() => handleTextClick({ text: "Add subheading", size: 250, fontFamily: "Arial", fontSize: 30 })}
+  return (
+    <>
+      <div>
+        <Button
+          size="big"
+          onClick={() => handleTextClick({ text: "Add text box", size: 140, fontFamily: "Arial", fontSize: 20 })}
+        >
+          Add text box
+        </Button>
+      </div>
+
+      <Buttons>
+        {/* Heading */}
+        <h2>Heading</h2>
+        {headingButtons.map((button) => {
+          return (
             <Button
-               size="big"
-               color="white"
+              key={button.text}
+              size="big"
+              color="white"
+              onClick={() =>
+                handleTextClick({
+                  text: button.text,
+                  size: button.size,
+                  fontFamily: "Arial",
+                  fontSize: button.fontSize,
+                  isBold: button.isBold,
+                })
+              }
             >
-               Nunito
+              {button.text}
             </Button>
+          );
+        })}
+      </Buttons>
+
+      <Buttons>
+        {/* Font Family */}
+        <h2>Font family</h2>
+
+        {fontFamilyButtons.map((button) => {
+          return (
             <Button
-               size="big"
-               color="white"
+              key={button}
+              size="big"
+              color="white"
+              onClick={() =>
+                handleTextClick({ text: button, size: 180, fontFamily: button, fontSize: 20, isBold: false })
+              }
             >
-               Quicksand
+              {button}
             </Button>
-            <Button
-               size="big"
-               color="white"
-            >
-               Roboto
-            </Button>
-            <Button
-               size="big"
-               color="white"
-            >
-               Arial
-            </Button>
-         </Buttons>
-      </>
-   );
+          );
+        })}
+      </Buttons>
+    </>
+  );
 };
 
 const Buttons = styled.div`
-   display: flex;
-   flex-direction: column;
-   gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-   h2 {
-      margin: 10px 0;
-   }
+  h2 {
+    margin: 10px 0;
+  }
 `;
 
 export default TextSection;

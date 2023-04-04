@@ -12,6 +12,7 @@ const TopMenuCreate = () => {
   // Sketch Context
   const {
     sketch,
+    handleDownload,
     actions: { saveAction, patchSketchAction },
   } = useContext(SketchContext);
 
@@ -19,16 +20,21 @@ const TopMenuCreate = () => {
     <TopMenuNav>
       {/* Left TopMenu */}
       <TopMenuActions>
-        <CreateLink to="/">
-          <Action>
-            <FontAwesomeIcon icon="faAngleLeft" />
-            Home
-          </Action>
-        </CreateLink>
+        {/* Home */}
+        <HomeLink to="/">
+          <FontAwesomeIcon icon="faAngleLeft" />
+          Home
+        </HomeLink>
+
+        {/* Save */}
         <Action onClick={saveAction}>Save</Action>
+
+        {/* Undo */}
         <Action>
           <FontAwesomeIcon icon="faRotateLeft" />
         </Action>
+
+        {/* Redo */}
         <Action>
           <FontAwesomeIcon icon="faRotateRight" />
         </Action>
@@ -47,9 +53,9 @@ const TopMenuCreate = () => {
         />
 
         {/* Download */}
-        <Action>
+        <Download onClick={handleDownload}>
           <FontAwesomeIcon icon="faCircleDown" />
-        </Action>
+        </Download>
 
         {/* Share */}
         <Tippy
@@ -84,7 +90,6 @@ const TopMenuNav = styled.nav`
   padding: 20px 10px;
   width: 100%;
   height: ${SIZE.topMenuHeight};
-  font-weight: 700;
   z-index: 2;
 `;
 
@@ -92,23 +97,37 @@ const TopMenuActions = styled.div`
   display: flex;
 `;
 
-const Action = styled.div`
+const HomeLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 10px;
-  cursor: pointer;
   border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+
+  svg {
+    font-size: 14px;
+  }
 
   &:hover {
     background-color: ${COLORS.gray};
   }
 `;
 
-const CreateLink = styled(Link)`
-  text-decoration: none;
-  color: black;
+const Action = styled.button`
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
 
-  div {
-    display: flex;
-    gap: 8px;
+  &:hover {
+    background-color: ${COLORS.gray};
   }
 `;
 
@@ -127,6 +146,22 @@ const InputName = styled.input`
 
   &::placeholder {
     color: black;
+  }
+`;
+
+const Download = styled.button`
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+
+  svg {
+    font-size: 20px;
+  }
+
+  &:hover {
+    background-color: ${COLORS.gray};
   }
 `;
 

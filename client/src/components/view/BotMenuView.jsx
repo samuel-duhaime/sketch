@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { SketchContext } from "../global/context/SketchContext";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 import Tippy from "../global/library/Tippy";
 import ShareTippySection from "../global/tippySection/ShareTippySection";
 
 const BotMenuView = ({ sketchId }) => {
+  const { handleDownload } = useContext(SketchContext); // Sketch Context
+
   return (
     <BotMenuSection>
       <SideDiv>
@@ -13,7 +17,7 @@ const BotMenuView = ({ sketchId }) => {
           content={<div>Download</div>}
           interactive={false}
         >
-          <Icon>
+          <Icon onClick={handleDownload}>
             <FontAwesomeIcon icon="faCircleDown" />
           </Icon>
         </Tippy>

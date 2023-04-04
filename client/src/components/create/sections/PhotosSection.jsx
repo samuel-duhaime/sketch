@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
-import PhotosListing from "./PhotosListing";
+import ImagesListing from "./ImagesListing";
 
 const PhotosSection = () => {
   return (
     <>
+      {/* Search */}
       <SearchDiv>
         <FontAwesomeIcon icon="faMagnifyingGlass" />
         <SearchInput
@@ -12,7 +13,9 @@ const PhotosSection = () => {
           placeholder="Search Photos"
         />
       </SearchDiv>
-      <PhotosListing />
+
+      {/* Images */}
+      <ImagesListing />
     </>
   );
 };

@@ -43,9 +43,9 @@ app.get("/upload/images", getUploadImages); // Get all the Images upload documen
 /* POST */
 app.post("/sketch", postSketch); // Add a new Sketch document
 app.post("/element/:sketchId", postElement); // Add a new element document
-app.post("/upload/image", uploadImageMulter.single("image"), postUploadImage); // Add a new upload image document
+app.post("/upload/image", uploadImageMulter, postUploadImage); // Add a new upload image document with Multer
 
-/* Patch */
+/* PATCH */
 app.patch("/sketch/:sketchId", patchSketch); // Update the Sketch document
 app.patch("/element/:elementId", patchElement); // Update the element document
 

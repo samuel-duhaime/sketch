@@ -1,20 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import useSketch from "../../hooks/useSketch";
 import Page from "../create/pages/Page";
 import BotMenuView from "./BotMenuView";
+import { SketchContext } from "../global/context/SketchContext";
 import Loading from "../global/loading/Loading";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 
 // View page
 const View = () => {
-  const { sketch, sketchId } = useSketch();
-  const [pagesKeyData, setPagesKeyData] = useState([]);
+  const { sketchId } = useParams(); // Take the sketchId params
   const [pageNumber, setPageNumber] = useState(0);
+
+  // Sketch Context
+  const {
+    sketch,
+    pagesKey,
+    actions: { fetchSketchAction },
+  } = useContext(SketchContext);
+
+  // Fetch Sketch inside SketchContext
+  useEffect(() => {
+    fetchSketchAction({ sketchId });
+  }, [sketchId]);
 
   // Handle back page
   const handleBackPage = () => {
-    if (pagesKeyData && pageNumber > 0) {
+    if (pagesKey && pageNumber > 0) {
       // Cant be less than 0
       setPageNumber((number) => {
         return number - 1;
@@ -24,7 +36,7 @@ const View = () => {
 
   // Handle next page
   const handleNextPage = () => {
-    if (pagesKeyData && pageNumber < pagesKeyData.length - 1) {
+    if (pagesKey && pageNumber < pagesKey.length - 1) {
       // Cant be more than the number of pages
       setPageNumber((number) => {
         return number + 1;
@@ -32,19 +44,13 @@ const View = () => {
     }
   };
 
-  useEffect(() => {
-    if (sketch) {
-      setPagesKeyData(Object.keys(sketch).filter((keyName) => keyName.startsWith("page"))); // Set all the pages key
-    }
-  }, [sketch]);
-
   return (
     <ViewPageContainer>
-      {sketch && pagesKeyData ? (
+      {sketch && pagesKey ? (
         <>
           {/* Page */}
           <Page
-            page={sketch && pagesKeyData && sketch[pagesKeyData[pageNumber]]}
+            page={sketch && pagesKey && sketch[pagesKey[pageNumber]]}
             isViewPage={true}
           />
 
@@ -56,7 +62,7 @@ const View = () => {
           )}
 
           {/* Next page */}
-          {pageNumber < pagesKeyData.length - 1 && (
+          {pageNumber < pagesKey.length - 1 && (
             <RightArrow onClick={handleNextPage}>
               <FontAwesomeIcon icon="faChevronRight" />
             </RightArrow>

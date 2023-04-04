@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { Stage, Layer } from "react-konva";
+import { Stage, Layer, Rect } from "react-konva";
 import { COLORS } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import PageActions from "./PageActions";
@@ -8,8 +8,9 @@ import Text from "../elements/Text";
 import Rectangle from "../elements/Rectangle";
 import Image from "../elements/Image";
 
+// TODO: Change ref to other page ("page1" ,"page2", etc.)
 const Page = ({ page, isViewPage }) => {
-  const { selectedElementId, setSelectedElementId } = useContext(SketchContext); // Sketch Context
+  const { stageRef, selectedElementId, setSelectedElementId } = useContext(SketchContext); // Sketch Context
 
   // Deselected an element when clicking outsite but in the Stage
   const handleDeselectedElement = (ev) => {
@@ -26,15 +27,24 @@ const Page = ({ page, isViewPage }) => {
       <PageContainer
         width={page?.width}
         height={page?.height}
-        backgroundColor={page?.backgroundColor}
       >
         <Stage
+          ref={page?.page === 1 ? stageRef : null}
           width={page?.width}
           height={page?.height}
           onMouseDown={handleDeselectedElement}
           onTouchStart={handleDeselectedElement}
         >
           <Layer>
+            {/* Background rectangle for Download */}
+            <Rect
+              x={0}
+              y={0}
+              width={page?.width}
+              height={page?.height}
+              fill={page?.backgroundColor}
+            />
+
             {/* Elements */}
             {page?.elements.map((element) => {
               if (element?.type === "text") {
@@ -82,7 +92,6 @@ const Page = ({ page, isViewPage }) => {
 };
 
 const PageContainer = styled.section`
-  background-color: ${({ backgroundColor }) => backgroundColor};
   height: ${({ height }) => height + "px"};
   width: ${({ width }) => width + "px"};
   box-shadow: ${COLORS.boxShadow};

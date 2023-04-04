@@ -31,7 +31,8 @@ const limitsSize = {
   fileSize: 1024 * 1024,
 };
 
-const uploadImageMulter = multer({ storage: storage, fileFilter: imageFilter, limits: limitsSize });
+// Middleware to upload a single image
+const uploadImageMulter = multer({ storage: storage, fileFilter: imageFilter, limits: limitsSize }).single("image");
 
 module.exports = {
   uploadImageMulter,
