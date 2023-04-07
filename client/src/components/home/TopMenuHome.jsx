@@ -5,6 +5,7 @@ import handleCreateSketch from "../../helpers/handlers/handleCreateSketch";
 import { COLORS, FONTS, SIZE } from "../../helpers/constants/constants";
 import Button from "../global/button/Button";
 import Tippy from "../global/library/Tippy";
+import { alertSuccess } from "../global/library/Alert";
 
 const TopMenuHome = ({ setSketchId }) => {
   const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -25,10 +26,22 @@ const TopMenuHome = ({ setSketchId }) => {
         {/* Button and picture */}
         {isAuthenticated ? (
           <Actions>
-            <Button onClick={() => handleCreateSketch({ setSketchId })}>Create</Button>
+            <Button
+              onClick={() => {
+                handleCreateSketch({ setSketchId });
+                alertSuccess({ message: "Sketch created" });
+              }}
+            >
+              Create
+            </Button>
             <Tippy
               content={
-                <DropDownButton onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+                <DropDownButton
+                  onClick={() => {
+                    logout({ logoutParams: { returnTo: window.location.origin } });
+                    alertSuccess({ message: "User logged out" });
+                  }}
+                >
                   Sign out
                 </DropDownButton>
               }
@@ -42,7 +55,13 @@ const TopMenuHome = ({ setSketchId }) => {
           </Actions>
         ) : (
           <div>
-            <Button onClick={() => loginWithRedirect()}>Sign up</Button>
+            <Button
+              onClick={() => {
+                loginWithRedirect();
+              }}
+            >
+              Sign up
+            </Button>
           </div>
         )}
       </TopMenuContainer>

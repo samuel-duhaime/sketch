@@ -1,5 +1,6 @@
 import { createContext, useReducer, useState, useRef } from "react";
 import { fetchApi } from "../../../helpers/fetch/fetchApi";
+import { alertSuccess } from "../library/Alert";
 
 export const SketchContext = createContext(); // Create the context
 
@@ -216,6 +217,7 @@ export const SketchProvider = ({ children }) => {
       // If everything is good
       if (data) {
         dispatch({ type: "postElementAction", newData: { ...newData, _id: data }, selectedPage });
+        alertSuccess({ message: `Element created` });
       }
     } catch (err) {
       // Error

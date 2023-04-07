@@ -1,11 +1,9 @@
-import { useState } from "react";
 import styled from "styled-components";
 import SwitchInput from "../input/SwitchInput";
 import Button from "../button/Button";
+import { alertSuccess } from "../library/Alert";
 
 const ShareTippySection = ({ isOn, onChange, sketchId, isCreatePage = false }) => {
-  const [text, setText] = useState("Copy view link");
-
   return (
     <ShareSection>
       {isCreatePage && (
@@ -23,10 +21,10 @@ const ShareTippySection = ({ isOn, onChange, sketchId, isCreatePage = false }) =
         size="big"
         onClick={() => {
           navigator.clipboard.writeText(`http://localhost:3000/view/${sketchId}`); // Copy to clipboard
-          setText("Copied"); // Change button text
+          alertSuccess({ message: "Link copied" });
         }}
       >
-        {text}
+        Copy share link
       </Button>
     </ShareSection>
   );

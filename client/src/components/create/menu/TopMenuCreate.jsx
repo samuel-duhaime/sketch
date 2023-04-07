@@ -7,6 +7,7 @@ import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import Button from "../../global/button/Button";
 import Tippy from "../../global/library/Tippy";
 import ShareTippySection from "../../global/tippySection/ShareTippySection";
+import { alertSuccess } from "../../global/library/Alert";
 
 const TopMenuCreate = () => {
   // Sketch Context
@@ -31,11 +32,21 @@ const TopMenuCreate = () => {
         </HomeLink>
 
         {/* Save */}
-        <Action onClick={saveAction}>Save</Action>
+        <Action
+          onClick={() => {
+            saveAction();
+            alertSuccess({ message: "Sketch saved" });
+          }}
+        >
+          Save
+        </Action>
 
         {/* Undo */}
         <Action
-          onClick={handleUndo}
+          onClick={() => {
+            handleUndo();
+            alertSuccess({ message: "Undo save" });
+          }}
           disabled={historyNumber <= 0 ? true : false}
         >
           <FontAwesomeIcon icon="faRotateLeft" />
@@ -43,7 +54,10 @@ const TopMenuCreate = () => {
 
         {/* Redo */}
         <Action
-          onClick={handleRedo}
+          onClick={() => {
+            handleRedo();
+            alertSuccess({ message: "Redo save" });
+          }}
           disabled={historyNumber >= historyLength ? true : false}
         >
           <FontAwesomeIcon icon="faRotateRight" />
@@ -63,7 +77,12 @@ const TopMenuCreate = () => {
         />
 
         {/* Download */}
-        <Download onClick={handleDownload}>
+        <Download
+          onClick={() => {
+            handleDownload();
+            alertSuccess({ message: "Sketch downloaded" });
+          }}
+        >
           <FontAwesomeIcon icon="faCircleDown" />
         </Download>
 

@@ -5,6 +5,7 @@ import { SketchContext } from "../global/context/SketchContext";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 import Tippy from "../global/library/Tippy";
 import ShareTippySection from "../global/tippySection/ShareTippySection";
+import { alertSuccess } from "../global/library/Alert";
 
 const BotMenuView = ({ sketchId }) => {
   const { handleDownload } = useContext(SketchContext); // Sketch Context
@@ -17,7 +18,12 @@ const BotMenuView = ({ sketchId }) => {
           content={<div>Download</div>}
           interactive={false}
         >
-          <Icon onClick={handleDownload}>
+          <Icon
+            onClick={() => {
+              handleDownload();
+              alertSuccess({ message: "Sketch downloaded" });
+            }}
+          >
             <FontAwesomeIcon icon="faCircleDown" />
           </Icon>
         </Tippy>

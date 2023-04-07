@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useUploadImages from "../../../hooks/useUploadImages";
 import ImagesListing from "./ImagesListing";
 import { COLORS } from "../../../helpers/constants/constants";
+import { alertSuccess } from "../../global/library/Alert";
 
 // Upload section
 const UploadSection = () => {
@@ -28,6 +29,7 @@ const UploadSection = () => {
 
         if (data) {
           refetch(); // Refetch upload images
+          alertSuccess({ message: "Image uploaded" });
         }
 
         // For status error that don't start with 20x
