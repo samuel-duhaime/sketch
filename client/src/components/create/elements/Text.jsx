@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Text as TextElement, Transformer } from "react-konva";
 import { SketchContext } from "../../global/context/SketchContext";
+import handleTextEdit from "../../../helpers/handlers/handleTextEdit";
 import handleDragStart from "../../../helpers/handlers/handleDragStart";
 import handleDragEnd from "../../../helpers/handlers/handleDragEnd";
 import handleLimitResize from "../../../helpers/handlers/handleLimitResize";
@@ -13,6 +14,7 @@ const Text = ({ element, isSelected, setSelectedElementId, draggable }) => {
 
   // Sketch Context
   const {
+    stageRef,
     actions: { patchElementAction },
   } = useContext(SketchContext);
 
@@ -41,6 +43,8 @@ const Text = ({ element, isSelected, setSelectedElementId, draggable }) => {
         fill={element.color}
         onClick={() => setSelectedElementId(element._id)}
         onTap={() => setSelectedElementId(element._id)}
+        onDblTap={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
+        onDblClick={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
         onDragStart={() => handleDragStart({ setIsDragging, setSelectedElementId, elementId: element._id })}
         onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging, patchElementAction })}
         onTransformEnd={() => handleTransformEnd({ elementRef, patchElementAction })}

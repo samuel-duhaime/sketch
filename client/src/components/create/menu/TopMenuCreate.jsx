@@ -11,8 +11,12 @@ import ShareTippySection from "../../global/tippySection/ShareTippySection";
 const TopMenuCreate = () => {
   // Sketch Context
   const {
+    historyLength,
+    historyNumber,
     sketch,
     handleDownload,
+    handleUndo,
+    handleRedo,
     actions: { saveAction, patchSketchAction },
   } = useContext(SketchContext);
 
@@ -30,12 +34,18 @@ const TopMenuCreate = () => {
         <Action onClick={saveAction}>Save</Action>
 
         {/* Undo */}
-        <Action>
+        <Action
+          onClick={handleUndo}
+          disabled={historyNumber <= 0 ? true : false}
+        >
           <FontAwesomeIcon icon="faRotateLeft" />
         </Action>
 
         {/* Redo */}
-        <Action>
+        <Action
+          onClick={handleRedo}
+          disabled={historyNumber >= historyLength ? true : false}
+        >
           <FontAwesomeIcon icon="faRotateRight" />
         </Action>
       </TopMenuActions>
@@ -126,7 +136,12 @@ const Action = styled.button`
   font-size: 16px;
   cursor: pointer;
 
-  &:hover {
+  &:disabled {
+    color: ${COLORS.darkGray};
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
     background-color: ${COLORS.gray};
   }
 `;

@@ -11,8 +11,8 @@ const Sections = () => {
   const sections = [
     { id: 0, text: "Text", icon: "faFont" },
     { id: 1, text: "Shapes", icon: "faShapes" },
-    { id: 2, text: "Photos", icon: "faImage" },
-    { id: 3, text: "Uploads", icon: "faCloudArrowUp" },
+    // { id: 2, text: "Photos", icon: "faImage" },
+    { id: 2, text: "Uploads", icon: "faCloudArrowUp" },
   ];
 
   const handleClick = (ev, sectionName) => {

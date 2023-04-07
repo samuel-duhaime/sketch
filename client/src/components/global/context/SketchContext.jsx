@@ -44,14 +44,18 @@ const sketchReducer = (sketch, action) => {
   }
 };
 
+// TODO: Save pages documents
+// TODO: updatePage
 // Context user provider
 export const SketchProvider = ({ children }) => {
   const [sketch, dispatch] = useReducer(sketchReducer, initialSketch);
   const stageRef = useRef(null); // Stage ref for download
-  const [isFetch, setIsFetch] = useState(false); // Only fetch one time
   const [selectedSection, setSelectedSection] = useState("text"); // Selected section
   const [selectedElementId, setSelectedElementId] = useState(null); // Selected element id
   const [selectedPage, setSelectedPage] = useState("page1"); // Selected page
+  const [history, setHistory] = useState([]); // History of the Sketch state
+  const [historyNumber, setHistoryNumber] = useState(1); // Number of the history of the Sketch state
+  const historyLength = history?.length; // Get the number of history Sketch state
   const selectedElement = sketch[selectedPage]?.elements?.filter((element) => element._id === selectedElementId)[0]; // Filter the selectedElement
   const pagesKey = Object.keys(sketch).filter((keyName) => keyName.startsWith("page")); // Set all the pages key
 
@@ -71,34 +75,35 @@ export const SketchProvider = ({ children }) => {
     downloadURI({ imageUrl, name: `${sketch.sketchName}.png` }); // // Download an image with an url
   };
 
-  // Fetch sketch action
-  const fetchSketchAction = async ({ sketchId }) => {
-    if (!isFetch) {
-      // Only fetch one time
-      try {
-        const fetchResult = await fetch("/sketch/" + sketchId, {
-          method: "GET",
-        });
-        const { data, status, message } = await fetchResult.json();
+  // Undo the last save Sketch history
+  const handleUndo = () => {
+    if (historyNumber >= 1) {
+      dispatch({ type: "fetchSketchAction", newData: history[historyNumber - 1] });
+      setHistoryNumber((historyNumber) => {
+        return historyNumber - 1;
+      });
+    }
+  };
 
-        // For status error that don't start with 20x
-        if (!status.toString().startsWith("20")) {
-          throw new Error(message); // Throw error message
-        }
-
-        if (data) {
-          dispatch({ type: "fetchSketchAction", newData: data });
-          setIsFetch(true);
-        }
-      } catch (err) {
-        // Error
-        console.error(err.message);
-      }
+  // Redo the last save Sketch history
+  const handleRedo = () => {
+    if (historyNumber < historyLength) {
+      dispatch({ type: "fetchSketchAction", newData: history[historyNumber] });
+      setHistoryNumber((historyNumber) => {
+        return historyNumber + 1;
+      });
     }
   };
 
   // Save action
   const saveAction = () => {
+    // Push the sketch in the history
+    setHistory((history) => {
+      const newHistory = [...history?.slice(-9), sketch]; // Only have the last 10 Sketch history state
+      setHistoryNumber(newHistory.length);
+      return newHistory;
+    });
+
     // Save sketch document
     if (sketch.isModified === true) {
       // Only fetch if Sketch is modified
@@ -114,8 +119,6 @@ export const SketchProvider = ({ children }) => {
 
     // Save elements documents and pages documents
     pagesKey.forEach((page) => {
-      // TODO: Save pages documents
-
       // Every elements from every pages
       sketch[page].elements.forEach((element) => {
         if (element.isModified === true) {
@@ -144,6 +147,32 @@ export const SketchProvider = ({ children }) => {
         }
       });
     });
+  };
+
+  // Fetch sketch action
+  const fetchSketchAction = async ({ sketchId }) => {
+    if (historyLength === 0) {
+      // Only fetch one time
+      try {
+        const fetchResult = await fetch("/sketch/" + sketchId, {
+          method: "GET",
+        });
+        const { data, status, message } = await fetchResult.json();
+
+        // For status error that don't start with 20x
+        if (!status.toString().startsWith("20")) {
+          throw new Error(message); // Throw error message
+        }
+
+        if (data) {
+          dispatch({ type: "fetchSketchAction", newData: data }); // Fetch only one time
+          setHistory([data]); // Push the sketch in the history
+        }
+      } catch (err) {
+        // Error
+        console.error(err.message);
+      }
+    }
   };
 
   // Post element action
@@ -199,14 +228,10 @@ export const SketchProvider = ({ children }) => {
     dispatch({ type: "patchSketchAction", newData });
   };
 
-  // TODO: updatePage
-
   // Patch element action
   const patchElementAction = ({ newData }) => {
     dispatch({ type: "patchElementAction", newData, selectedElementId, selectedPage });
   };
-
-  // TODO: SketchHistory
 
   return (
     <SketchContext.Provider
@@ -214,6 +239,8 @@ export const SketchProvider = ({ children }) => {
         sketch,
         stageRef,
         handleDownload,
+        handleUndo,
+        handleRedo,
         selectedSection,
         setSelectedSection,
         selectedElementId,
@@ -221,6 +248,8 @@ export const SketchProvider = ({ children }) => {
         selectedPage,
         setSelectedPage,
         selectedElement,
+        historyNumber,
+        historyLength,
         pagesKey,
         actions: {
           fetchSketchAction,

@@ -4,7 +4,7 @@ import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import TextSection from "../sections/TextSection";
 import ShapesSection from "../sections/ShapesSection";
-import PhotosSection from "../sections/PhotosSection";
+// import PhotosSection from "../sections/PhotosSection";
 import UploadSection from "../sections/UploadSection";
 
 const SectionActions = () => {
@@ -16,8 +16,8 @@ const SectionActions = () => {
         <TextSection />
       ) : selectedSection === "shapes" ? (
         <ShapesSection />
-      ) : selectedSection === "photos" ? (
-        <PhotosSection />
+      // ) : selectedSection === "photos" ? (
+      //   <PhotosSection />
       ) : (
         <UploadSection />
       )}
