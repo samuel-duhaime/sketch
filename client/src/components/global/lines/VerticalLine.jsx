@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "../../helpers/constants/constants";
+import { COLORS } from "../../../helpers/constants/constants";
 
 const VerticalLine = () => {
   return <VerticalLineDiv />;

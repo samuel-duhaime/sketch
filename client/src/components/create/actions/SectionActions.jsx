@@ -16,8 +16,6 @@ const SectionActions = () => {
         <TextSection />
       ) : selectedSection === "shapes" ? (
         <ShapesSection />
-      // ) : selectedSection === "photos" ? (
-      //   <PhotosSection />
       ) : (
         <UploadSection />
       )}

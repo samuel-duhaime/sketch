@@ -8,11 +8,13 @@ import handleTransformEnd from "../../../helpers/handlers/handleTransformEnd";
 import useTransformerElement from "../../../hooks/useTransformerElement";
 
 // Rectangle element
-const Rectangle = ({ element, isSelected, setSelectedElementId, draggable }) => {
+const Rectangle = ({ element, pageId, isSelected, draggable }) => {
   const { isDragging, setIsDragging, elementRef, transformerRef } = useTransformerElement({ isSelected });
 
   // Sketch Context
   const {
+    setSelectedElementId,
+    setSelectedPageId,
     actions: { patchElementAction },
   } = useContext(SketchContext);
 
@@ -25,9 +27,17 @@ const Rectangle = ({ element, isSelected, setSelectedElementId, draggable }) => 
         width={element.width}
         height={element.height}
         fill={element.backgroundColor}
-        onClick={() => setSelectedElementId(element._id)}
-        onTap={() => setSelectedElementId(element._id)}
-        onDragStart={() => handleDragStart({ setIsDragging, setSelectedElementId, elementId: element._id })}
+        onClick={() => {
+          setSelectedElementId(element._id);
+          setSelectedPageId(pageId);
+        }}
+        onTap={() => {
+          setSelectedElementId(element._id);
+          setSelectedPageId(pageId);
+        }}
+        onDragStart={() =>
+          handleDragStart({ setIsDragging, setSelectedElementId, elementId: element._id, setSelectedPageId, pageId })
+        }
         onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging, patchElementAction })}
         onTransformEnd={() => handleTransformEnd({ elementRef, patchElementAction })}
         draggable={draggable}

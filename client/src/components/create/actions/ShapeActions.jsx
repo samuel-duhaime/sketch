@@ -1,6 +1,6 @@
 import ButtonIcon from "../../global/button/ButtonIcon";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
-import VerticalLine from "../../lines/VerticalLine";
+import VerticalLine from "../../global/lines/VerticalLine";
 import ColorInput from "../../global/input/ColorInput";
 import Layers from "../../global/button/Layers";
 

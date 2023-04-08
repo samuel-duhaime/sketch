@@ -9,33 +9,42 @@ const initialSketch = {};
 
 // Reducer for all the actions type of sketch
 const sketchReducer = (sketch, action) => {
-  const { type, newData, selectedElementId, selectedPage } = action; // All the action object
+  const { type, newData, selectedElementId, selectedPageId } = action; // All the action object
 
   switch (type) {
     case "fetchSketchAction": {
       return newData;
     }
     case "postElementAction": {
-      const newElements = [...sketch[selectedPage].elements, newData]; // Add the new element to the elements of the page
-      const newPage = { ...sketch[selectedPage], elements: newElements }; // Get the newPage
-      const newSketch = { ...sketch, [selectedPage]: newPage }; // Get the newSketch
+      const newElements = [...sketch[selectedPageId].elements, newData]; // Add the new element to the elements of the page
+      const newPage = { ...sketch[selectedPageId], elements: newElements }; // Get the newPage
+      const newSketch = { ...sketch, [selectedPageId]: newPage }; // Get the newSketch
 
       return newSketch;
     }
     case "patchSketchAction": {
       return { ...sketch, ...newData, isModified: true };
     }
+    case "patchPageAction": {
+      return {
+        _id: sketch._id,
+        sketchName: sketch.sketchName,
+        isShared: sketch.isShared,
+        ...newData,
+        isModified: true,
+      };
+    }
     case "patchElementAction": {
       // Get the newElements
-      const newElements = sketch[selectedPage].elements.map((element) => {
+      const newElements = sketch[selectedPageId].elements.map((element) => {
         if (element._id === selectedElementId) {
           return { ...element, ...newData, isModified: true };
         } else {
           return element;
         }
       });
-      const newPage = { ...sketch[selectedPage], elements: newElements }; // Get the newPage
-      const newSketch = { ...sketch, [selectedPage]: newPage }; // Get the newSketch
+      const newPage = { ...sketch[selectedPageId], elements: newElements }; // Get the newPage
+      const newSketch = { ...sketch, [selectedPageId]: newPage }; // Get the newSketch
 
       return newSketch;
     }
@@ -45,20 +54,23 @@ const sketchReducer = (sketch, action) => {
   }
 };
 
-// TODO: Save pages documents
-// TODO: updatePage
 // Context user provider
 export const SketchProvider = ({ children }) => {
   const [sketch, dispatch] = useReducer(sketchReducer, initialSketch);
   const stageRef = useRef(null); // Stage ref for download
   const [selectedSection, setSelectedSection] = useState("text"); // Selected section
   const [selectedElementId, setSelectedElementId] = useState(null); // Selected element id
-  const [selectedPage, setSelectedPage] = useState("page1"); // Selected page
+  const [selectedPageId, setSelectedPageId] = useState("page1"); // Selected page
   const [history, setHistory] = useState([]); // History of the Sketch state
   const [historyNumber, setHistoryNumber] = useState(1); // Number of the history of the Sketch state
   const historyLength = history?.length; // Get the number of history Sketch state
-  const selectedElement = sketch[selectedPage]?.elements?.filter((element) => element._id === selectedElementId)[0]; // Filter the selectedElement
+  const selectedElement = sketch[selectedPageId]?.elements?.filter((element) => element._id === selectedElementId)[0]; // Filter the selectedElement
+  const selectedPage = sketch[selectedPageId]; // Get the selectedPage
   const pagesKey = Object.keys(sketch).filter((keyName) => keyName.startsWith("page")); // Set all the pages key
+  // Get all the pages
+  const pages = pagesKey.map((pageKey) => {
+    return { ...sketch[pageKey] };
+  });
 
   // Handle download
   const handleDownload = async () => {
@@ -107,13 +119,19 @@ export const SketchProvider = ({ children }) => {
 
     // Save sketch document
     if (sketch.isModified === true) {
+      const newPages = pages.map((page) => {
+        return { ...page, elements: page?.elements?.map((element) => element._id) };
+      });
+      console.log(newPages);
+
       // Only fetch if Sketch is modified
       fetchApi({
         apiUrl: "/sketch/" + sketch._id,
-        method: "PATCH",
+        method: "PUT",
         body: {
           sketchName: sketch.sketchName,
           isShared: sketch.isShared,
+          pages: newPages,
         },
       });
     }
@@ -187,7 +205,7 @@ export const SketchProvider = ({ children }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          pageKey: selectedPage,
+          pageKey: selectedPageId,
           type: newData.type,
           ...(newData.text && { text: newData.text }),
           ...(newData.imageUrl && { imageUrl: newData.imageUrl }),
@@ -216,7 +234,7 @@ export const SketchProvider = ({ children }) => {
 
       // If everything is good
       if (data) {
-        dispatch({ type: "postElementAction", newData: { ...newData, _id: data }, selectedPage });
+        dispatch({ type: "postElementAction", newData: { ...newData, _id: data }, selectedPageId });
         alertSuccess({ message: `Element created` });
       }
     } catch (err) {
@@ -230,9 +248,88 @@ export const SketchProvider = ({ children }) => {
     dispatch({ type: "patchSketchAction", newData });
   };
 
+  // Patch page action
+  const patchPageAction = ({ pageId, pageAction, pageNumber, pageData }) => {
+    let newPages; // Get all the new pages
+    let newData; // Get the new data for Sketch
+
+    // Move the page up
+    if (pageNumber && pageAction === "moveUp" && pageNumber > 1) {
+      const pageSave = pages[pageNumber - 1]; // Save the page
+      pages.splice(pageNumber - 1, 1); // Delete one page
+      pages.splice(pageNumber - 2, 0, pageSave); // Add and save the save page
+
+      newPages = pages.map((page, index) => {
+        return { ...page, _id: `page${index + 1}`, page: index + 1 };
+      });
+    }
+
+    // Move the page down
+    if (pageNumber && pageAction === "moveDown" && pageNumber < pagesKey?.length) {
+      const pageSave = pages[pageNumber - 1]; // Save the page
+      pages.splice(pageNumber - 1, 1); // Delete one page
+      pages.splice(pageNumber, 0, pageSave); // Add and save the save page
+
+      newPages = pages.map((page, index) => {
+        return { ...page, _id: `page${index + 1}`, page: index + 1 };
+      });
+    }
+
+    // Modify the page with backgroundColor or pageName
+    if (pageId && pageAction === "modification" && pageData) {
+      newPages = pages.map((page) => {
+        if (page._id === pageId) {
+          return {
+            ...page,
+            ...(pageData?.backgroundColor && { backgroundColor: pageData?.backgroundColor }),
+            ...(pageData?.pageName && { pageName: pageData?.pageName }),
+          };
+        } else {
+          return { ...page };
+        }
+      });
+    }
+
+    // Delete page
+    if (pageId && pageAction === "delete") {
+      // Filter the delete page
+      newPages = pages
+        .filter((page) => {
+          return page._id !== pageId;
+        })
+        .map((page, index) => {
+          return { ...page, _id: `page${index + 1}`, page: index + 1 };
+        });
+    }
+
+    // Add a new page
+    if (pageNumber && pageAction === "add") {
+      // Insert a new element at pageNumber
+      pages.splice(pageNumber, 0, {
+        _id: null,
+        page: null,
+        pageName: "Undefined",
+        width: 800,
+        height: 500,
+        backgroundColor: "#ffffff",
+        elements: [],
+      });
+      newPages = pages.map((page, index) => {
+        return { ...page, _id: `page${index + 1}`, page: index + 1 };
+      });
+    }
+
+    // Get the newData pages
+    newPages.forEach((page) => {
+      newData = { ...newData, [page._id]: page };
+    });
+
+    dispatch({ type: "patchPageAction", newData });
+  };
+
   // Patch element action
   const patchElementAction = ({ newData }) => {
-    dispatch({ type: "patchElementAction", newData, selectedElementId, selectedPage });
+    dispatch({ type: "patchElementAction", newData, selectedElementId, selectedPageId });
   };
 
   return (
@@ -247,9 +344,10 @@ export const SketchProvider = ({ children }) => {
         setSelectedSection,
         selectedElementId,
         setSelectedElementId,
-        selectedPage,
-        setSelectedPage,
+        selectedPageId,
+        setSelectedPageId,
         selectedElement,
+        selectedPage,
         historyNumber,
         historyLength,
         pagesKey,
@@ -258,6 +356,7 @@ export const SketchProvider = ({ children }) => {
           saveAction,
           postElementAction,
           patchSketchAction,
+          patchPageAction,
           patchElementAction,
         },
       }}

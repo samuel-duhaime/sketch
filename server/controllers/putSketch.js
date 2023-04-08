@@ -1,30 +1,34 @@
 const { getCollections } = require("../configs/mongoDB");
 
-// Update the Sketch document
-const patchSketch = async (req, res) => {
+// Replace the Sketch document
+const putSketch = async (req, res) => {
   const { sketchId } = req.params;
-  const { sketchName, isShared } = req.body;
+  const { sketchName, isShared, pages } = req.body;
 
   // Bad request
-  if (!sketchName && isShared !== undefined) {
+  if (!sketchName || isShared === undefined || !pages) {
     return res.status(400).json({
       status: 400,
       message: "Bad request",
     });
   }
 
-  // Set the new Sketchs modifications
-  const sketchModifications = {
-    ...(sketchName && { sketchName }),
-    ...(isShared !== undefined && { isShared }),
-  };
+  // Get all the pages object of the Sketch
+  let pagesObject = {};
+  pages?.forEach((page) => {
+    pagesObject = { ...pagesObject, [page._id]: page };
+  });
 
   try {
     const { sketchs } = getCollections(); // Get the collections
 
-    const patchSketch = await sketchs.updateOne({ _id: sketchId }, { $set: sketchModifications }); // Update the Sketch
+    // Replace the Sketch
+    const putSketch = await sketchs.replaceOne(
+      { _id: sketchId },
+      { sketchName: sketchName, isShared: isShared, ...(pagesObject && pagesObject) }
+    );
 
-    if (patchSketch.matchedCount !== 1) {
+    if (putSketch.matchedCount !== 1) {
       // No matched sketch
       return res.status(404).json({
         status: 404,
@@ -32,7 +36,7 @@ const patchSketch = async (req, res) => {
       });
     }
 
-    if (patchSketch.modifiedCount !== 1) {
+    if (putSketch.modifiedCount !== 1) {
       // No modified sketch
       return res.status(404).json({
         status: 404,
@@ -54,4 +58,4 @@ const patchSketch = async (req, res) => {
   }
 };
 
-module.exports = { patchSketch };
+module.exports = { putSketch };

@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { SketchContext } from "../../global/context/SketchContext";
-import { COLORS } from "../../../helpers/constants/constants";
 import FontSizeInput from "../../global/input/FontSizeInput";
 import ColorInput from "../../global/input/ColorInput";
 import ButtonIcon from "../../global/button/ButtonIcon";
-import VerticalLine from "../../lines/VerticalLine";
+import VerticalLine from "../../global/lines/VerticalLine";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import SelectOptions from "../../global/input/SelectOptions";
 import Layers from "../../global/button/Layers";

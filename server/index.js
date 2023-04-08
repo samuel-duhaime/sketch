@@ -19,7 +19,7 @@ const { getUploadImages } = require("./controllers/getUploadImages");
 const { postSketch } = require("./controllers/postSketch");
 const { postElement } = require("./controllers/postElement");
 const { postUploadImage } = require("./controllers/postUploadImage");
-const { patchSketch } = require("./controllers/patchSketch");
+const { putSketch } = require("./controllers/putSketch");
 const { patchElement } = require("./controllers/patchElement");
 
 /* Middlewares for the app */
@@ -46,8 +46,10 @@ app.post("/element/:sketchId", postElement); // Add a new element document
 app.post("/upload/image", uploadImageMulter, postUploadImage); // Add a new upload image document with Multer
 
 /* PATCH */
-app.patch("/sketch/:sketchId", patchSketch); // Update the Sketch document
 app.patch("/element/:elementId", patchElement); // Update the element document
+
+/* PUT */
+app.put("/sketch/:sketchId", putSketch); // Replace the Sketch document
 
 /* Catch all endpoint */
 app.get("*", (req, res) => {

@@ -9,12 +9,14 @@ import handleTransformEnd from "../../../helpers/handlers/handleTransformEnd";
 import useTransformerElement from "../../../hooks/useTransformerElement";
 
 // Text element
-const Text = ({ element, isSelected, setSelectedElementId, draggable }) => {
+const Text = ({ element, pageId, isSelected, draggable }) => {
   const { isDragging, setIsDragging, elementRef, transformerRef } = useTransformerElement({ isSelected });
 
   // Sketch Context
   const {
     stageRef,
+    setSelectedElementId,
+    setSelectedPageId,
     actions: { patchElementAction },
   } = useContext(SketchContext);
 
@@ -41,11 +43,19 @@ const Text = ({ element, isSelected, setSelectedElementId, draggable }) => {
         textDecoration={element.isUnderline ? "underline" : ""}
         align={element.align}
         fill={element.color}
-        onClick={() => setSelectedElementId(element._id)}
-        onTap={() => setSelectedElementId(element._id)}
+        onClick={() => {
+          setSelectedElementId(element._id);
+          setSelectedPageId(pageId);
+        }}
+        onTap={() => {
+          setSelectedElementId(element._id);
+          setSelectedPageId(pageId);
+        }}
         onDblTap={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
         onDblClick={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
-        onDragStart={() => handleDragStart({ setIsDragging, setSelectedElementId, elementId: element._id })}
+        onDragStart={() =>
+          handleDragStart({ setIsDragging, setSelectedElementId, elementId: element._id, setSelectedPageId, pageId })
+        }
         onDragEnd={(ev) => handleDragEnd(ev, { setIsDragging, patchElementAction })}
         onTransformEnd={() => handleTransformEnd({ elementRef, patchElementAction })}
         draggable={draggable}

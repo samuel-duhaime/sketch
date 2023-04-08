@@ -5,10 +5,11 @@ import { SketchContext } from "../../global/context/SketchContext";
 import TextActions from "./TextActions";
 import ShapeActions from "./ShapeActions";
 import ImageActions from "./ImageActions";
+import PageActions from "./PageActions";
 
 // Elements actions container
 const ElementActions = () => {
-  const { selectedElement } = useContext(SketchContext); // Sketch Context
+  const { selectedElement, selectedPageId } = useContext(SketchContext); // Sketch Context
 
   return (
     <SectionContainer>
@@ -18,6 +19,8 @@ const ElementActions = () => {
         <ShapeActions />
       ) : selectedElement?.type === "image" ? (
         <ImageActions />
+      ) : selectedPageId ? (
+        <PageActions />
       ) : (
         <>No selected element</>
       )}

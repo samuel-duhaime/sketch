@@ -3,14 +3,15 @@ import styled from "styled-components";
 import { Stage, Layer, Rect } from "react-konva";
 import { COLORS } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
-import PageActions from "./PageActions";
+import PageActions from "./PageButtons";
 import Text from "../elements/Text";
 import Rectangle from "../elements/Rectangle";
 import Image from "../elements/Image";
 
 // TODO: Change ref to other page ("page1" ,"page2", etc.)
 const Page = ({ page, isViewPage }) => {
-  const { stageRef, selectedElementId, setSelectedElementId } = useContext(SketchContext); // Sketch Context
+  const { stageRef, selectedElementId, setSelectedElementId, selectedPageId, setSelectedPageId } =
+    useContext(SketchContext); // Sketch Context
 
   // Deselected an element when clicking outsite but in the Stage
   const handleDeselectedElement = (ev) => {
@@ -29,7 +30,7 @@ const Page = ({ page, isViewPage }) => {
         height={page?.height}
       >
         <Stage
-          ref={page?.page === 1 ? stageRef : null}
+          ref={page?._id === selectedPageId ? stageRef : null}
           width={page?.width}
           height={page?.height}
           onMouseDown={handleDeselectedElement}
@@ -43,6 +44,11 @@ const Page = ({ page, isViewPage }) => {
               width={page?.width}
               height={page?.height}
               fill={page?.backgroundColor}
+              stroke={page?._id === selectedPageId && !selectedElementId ? COLORS.primary : null} // Border
+              onClick={() => {
+                setSelectedPageId(page._id);
+                setSelectedElementId(null);
+              }}
             />
 
             {/* Elements */}
@@ -53,8 +59,8 @@ const Page = ({ page, isViewPage }) => {
                   <Text
                     key={element._id}
                     element={element}
+                    pageId={page._id}
                     isSelected={element._id === selectedElementId}
-                    setSelectedElementId={setSelectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 );
@@ -64,19 +70,19 @@ const Page = ({ page, isViewPage }) => {
                   <Rectangle
                     key={element._id}
                     element={element}
+                    pageId={page._id}
                     isSelected={element._id === selectedElementId}
-                    setSelectedElementId={setSelectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 );
               } else if (element?.type === "image") {
-                /* Images */
+                /* Image */
                 return (
                   <Image
                     key={element._id}
                     element={element}
+                    pageId={page._id}
                     isSelected={element._id === selectedElementId}
-                    setSelectedElementId={setSelectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 );

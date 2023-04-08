@@ -4,19 +4,36 @@ import { SketchContext } from "../context/SketchContext";
 import { COLORS } from "../../../helpers/constants/constants";
 
 // Color input
-const ColorInput = ({ keyName }) => {
+const ColorInput = ({ keyName, selectedType = "element" }) => {
   // Sketch Context
   const {
     selectedElement,
-    actions: { patchElementAction },
+    selectedPage,
+    actions: { patchElementAction, patchPageAction },
   } = useContext(SketchContext);
 
   return (
-    <ColorInputElement
-      type="color"
-      value={selectedElement[keyName]}
-      onChange={(e) => patchElementAction({ newData: { [keyName]: e.target.value } })}
-    />
+    <>
+      <ColorInputElement
+        type="color"
+        value={
+          selectedType === "element" && selectedElement
+            ? selectedElement[keyName]
+            : selectedType === "page" && selectedPage
+            ? selectedPage[keyName]
+            : ""
+        }
+        onChange={(e) => {
+          selectedType === "element" && patchElementAction({ newData: { [keyName]: e.target.value } });
+          selectedType === "page" &&
+            patchPageAction({
+              pageId: selectedPage._id,
+              pageAction: "modification",
+              pageData: { backgroundColor: e.target.value },
+            });
+        }}
+      />
+    </>
   );
 };
 
