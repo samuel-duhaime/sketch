@@ -15,7 +15,10 @@ const ElementActions = () => {
     <SectionContainer>
       {selectedElement?.type === "text" ? (
         <TextActions />
-      ) : selectedElement?.type === "rectangle" ? (
+      ) : selectedElement?.type === "rectangle" ||
+        selectedElement?.type === "ellipse" ||
+        selectedElement?.type === "arrow" ||
+        selectedElement?.type === "line" ? (
         <ShapeActions />
       ) : selectedElement?.type === "image" ? (
         <ImageActions />

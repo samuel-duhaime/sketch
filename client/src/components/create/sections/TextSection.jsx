@@ -30,6 +30,7 @@ const TextSection = () => {
         y: 100,
         width: size,
         height: size,
+        rotation: 0,
         fontFamily,
         fontSize,
         color: "#000000",

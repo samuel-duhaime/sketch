@@ -11,9 +11,9 @@
       "height": 550,
       "backgroundColor": "#ffffff",
       "elements": [
-        "1ad74995-3937-4722-ad4a-e2fefbdc5be9",
-        "390757e4-814d-4989-958b-8bf200e1f303",
-        "466e5334-02ab-4476-bd90-c7626197d5f1"
+        "390757e4-814d-4989-958b-8bf200e1f304",
+        "390757e4-814d-4989-958b-8bf200e1f305",
+        "390757e4-814d-4989-958b-8bf200e1f306"
       ]
     },
     "page2": {
@@ -23,7 +23,11 @@
       "width": 800,
       "height": 550,
       "backgroundColor": "#ffffff",
-      "elements": []
+      "elements": [
+        "1ad74995-3937-4722-ad4a-e2fefbdc5be9",
+        "390757e4-814d-4989-958b-8bf200e1f303",
+        "466e5334-02ab-4476-bd90-c7626197d5f1"
+      ]
     }
   }
 ]

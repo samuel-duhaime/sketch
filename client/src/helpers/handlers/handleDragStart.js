@@ -1,6 +1,5 @@
 // When the user start to drag the element
-const handleDragStart = ({ setIsDragging, setSelectedElementId, elementId, setSelectedPageId, pageId }) => {
-  setIsDragging(true);
+const handleDragStart = ({ setSelectedElementId, elementId, setSelectedPageId, pageId }) => {
   setSelectedElementId(elementId); // Select the element when drag start
   setSelectedPageId(pageId); // Select the page
 };

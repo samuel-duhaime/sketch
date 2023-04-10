@@ -4,11 +4,9 @@ import { Stage, Layer, Rect } from "react-konva";
 import { COLORS } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import PageActions from "./PageButtons";
-import Text from "../elements/Text";
-import Rectangle from "../elements/Rectangle";
-import Image from "../elements/Image";
+import Element from "../elements/Element";
 
-// TODO: Change ref to other page ("page1" ,"page2", etc.)
+// Page Layer
 const Page = ({ page, isViewPage }) => {
   const { stageRef, selectedElementId, setSelectedElementId, selectedPageId, setSelectedPageId } =
     useContext(SketchContext); // Sketch Context
@@ -37,7 +35,7 @@ const Page = ({ page, isViewPage }) => {
           onTouchStart={handleDeselectedElement}
         >
           <Layer>
-            {/* Background rectangle for Download */}
+            {/* Background rectangle for Page and Download */}
             <Rect
               x={0}
               y={0}
@@ -53,42 +51,18 @@ const Page = ({ page, isViewPage }) => {
 
             {/* Elements */}
             {page?.elements.map((element) => {
-              if (element?.type === "text") {
-                /* Text */
-                return (
-                  <Text
+              return (
+                // Element
+                !element.isDelete && (
+                  <Element
                     key={element._id}
                     element={element}
                     pageId={page._id}
                     isSelected={element._id === selectedElementId}
                     draggable={isViewPage ? false : true}
                   />
-                );
-              } else if (element?.type === "rectangle") {
-                /* Rectangle */
-                return (
-                  <Rectangle
-                    key={element._id}
-                    element={element}
-                    pageId={page._id}
-                    isSelected={element._id === selectedElementId}
-                    draggable={isViewPage ? false : true}
-                  />
-                );
-              } else if (element?.type === "image") {
-                /* Image */
-                return (
-                  <Image
-                    key={element._id}
-                    element={element}
-                    pageId={page._id}
-                    isSelected={element._id === selectedElementId}
-                    draggable={isViewPage ? false : true}
-                  />
-                );
-              } else {
-                return null;
-              }
+                )
+              );
             })}
           </Layer>
         </Stage>

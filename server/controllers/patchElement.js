@@ -10,6 +10,9 @@ const patchElement = async (req, res) => {
     y,
     width,
     height,
+    radiusX,
+    radiusY,
+    rotation,
     fontFamily,
     fontSize,
     color,
@@ -19,6 +22,7 @@ const patchElement = async (req, res) => {
     isUnderline,
     isUppercase,
     align,
+    isDelete,
   } = req.body;
 
   // Bad request
@@ -29,15 +33,19 @@ const patchElement = async (req, res) => {
     !y &&
     !width &&
     !height &&
+    !radiusX &&
+    !radiusY &&
+    rotation !== undefined &&
     !fontFamily &&
     !fontSize &&
     !color &&
     !backgroundColor &&
-    isBold !== undefined &&
-    isItalic !== undefined &&
-    isUnderline !== undefined &&
-    isUppercase !== undefined &&
-    !align
+    isBold === undefined &&
+    isItalic === undefined &&
+    isUnderline === undefined &&
+    isUppercase === undefined &&
+    !align &&
+    isDelete === undefined
   ) {
     return res.status(400).json({
       status: 400,
@@ -53,6 +61,9 @@ const patchElement = async (req, res) => {
     ...(y && { y }),
     ...(width && { width }),
     ...(height && { height }),
+    ...(radiusX && { radiusX }),
+    ...(radiusY && { radiusY }),
+    ...(rotation !== undefined && { rotation }),
     ...(fontFamily && { fontFamily }),
     ...(fontSize && { fontSize }),
     ...(color && { color }),
@@ -62,6 +73,7 @@ const patchElement = async (req, res) => {
     ...(isUnderline !== undefined && { isUnderline }),
     ...(isUppercase !== undefined && { isUppercase }),
     ...(align && { align }),
+    ...(isDelete !== undefined && { isDelete }),
   };
 
   try {

@@ -8,6 +8,8 @@ import VerticalLine from "../../global/lines/VerticalLine";
 import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import SelectOptions from "../../global/input/SelectOptions";
 import Layers from "../../global/button/Layers";
+import DuplicateElement from "../../global/button/DuplicateElement";
+import DeleteElement from "../../global/button/DeleteElement";
 
 // Text actions
 const TextActions = () => {
@@ -84,6 +86,14 @@ const TextActions = () => {
 
       {/* Layers */}
       <Layers />
+
+      <VerticalLine />
+
+      {/* Duplicate */}
+      <DuplicateElement />
+
+      {/* Delete */}
+      <DeleteElement />
     </>
   );
 };

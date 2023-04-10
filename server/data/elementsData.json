@@ -6,7 +6,9 @@
     "x": 19.533203124999943,
     "y": 18.445721763471965,
     "width": 364.8289707615479,
-    "height": 504.84441359435846
+    "height": 504.84441359435846,
+    "rotation": 0,
+    "isDelete": false
   },
   {
     "_id": "390757e4-814d-4989-958b-8bf200e1f303",
@@ -15,7 +17,44 @@
     "y": 188.16427819119087,
     "width": 368.8713947894939,
     "height": 184.43569739474685,
-    "backgroundColor": "#000000"
+    "rotation": 0,
+    "backgroundColor": "#000000",
+    "isDelete": false
+  },
+  {
+    "_id": "390757e4-814d-4989-958b-8bf200e1f304",
+    "type": "ellipse",
+    "x": 450,
+    "y": 100,
+    "radiusX": 50,
+    "radiusY": 50,
+    "rotation": 0,
+    "backgroundColor": "#ff0000",
+    "isDelete": false
+  },
+  {
+    "_id": "390757e4-814d-4989-958b-8bf200e1f305",
+    "type": "arrow",
+    "points": [0, 0, 100, 0],
+    "pointerLength": 20,
+    "pointerWidth": 20,
+    "strokeWidth": 10,
+    "x": 100,
+    "y": 100,
+    "rotation": 0,
+    "backgroundColor": "#ff0000",
+    "isDelete": false
+  },
+  {
+    "_id": "390757e4-814d-4989-958b-8bf200e1f306",
+    "type": "line",
+    "points": [0, 0, 100, 0],
+    "strokeWidth": 5,
+    "x": 100,
+    "y": 200,
+    "rotation": 0,
+    "backgroundColor": "#ff0000",
+    "isDelete": false
   },
   {
     "_id": "466e5334-02ab-4476-bd90-c7626197d5f1",
@@ -25,6 +64,7 @@
     "y": 238.20001220703148,
     "width": 200.00000000000017,
     "height": 39.999999999999986,
+    "rotation": 0,
     "fontFamily": "Calibri",
     "fontSize": 80,
     "color": "#ffffff",
@@ -32,6 +72,7 @@
     "isItalic": false,
     "isUnderline": false,
     "isUppercase": false,
-    "align": "left"
+    "align": "left",
+    "isDelete": false
   }
 ]

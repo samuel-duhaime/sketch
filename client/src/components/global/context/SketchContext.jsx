@@ -122,7 +122,6 @@ export const SketchProvider = ({ children }) => {
       const newPages = pages.map((page) => {
         return { ...page, elements: page?.elements?.map((element) => element._id) };
       });
-      console.log(newPages);
 
       // Only fetch if Sketch is modified
       fetchApi({
@@ -152,6 +151,9 @@ export const SketchProvider = ({ children }) => {
               ...(element.y && { y: element.y }),
               ...(element.width && { width: element.width }),
               ...(element.height && { height: element.height }),
+              ...(element.radiusX && { radiusX: element.radiusX }),
+              ...(element.radiusY && { radiusY: element.radiusY }),
+              ...(element.rotation !== undefined && { rotation: element.rotation }),
               ...(element.fontFamily && { fontFamily: element.fontFamily }),
               ...(element.fontSize && { fontSize: element.fontSize }),
               ...(element.color && { color: element.color }),
@@ -161,6 +163,7 @@ export const SketchProvider = ({ children }) => {
               ...(element.isUnderline !== undefined && { isUnderline: element.isUnderline }),
               ...(element.isUppercase !== undefined && { isUppercase: element.isUppercase }),
               ...(element.align && { align: element.align }),
+              ...(element.isDelete !== undefined && { isDelete: element.isDelete }),
             },
           });
         }
@@ -211,8 +214,11 @@ export const SketchProvider = ({ children }) => {
           ...(newData.imageUrl && { imageUrl: newData.imageUrl }),
           x: newData.x,
           y: newData.y,
-          width: newData.width,
-          height: newData.height,
+          ...(newData.width && { width: newData.width }),
+          ...(newData.height && { height: newData.height }),
+          ...(newData.radiusX && { radiusX: newData.radiusX }),
+          ...(newData.radiusY && { radiusY: newData.radiusY }),
+          rotation: newData.rotation,
           ...(newData.fontFamily && { fontFamily: newData.fontFamily }),
           ...(newData.fontSize && { fontSize: newData.fontSize }),
           ...(newData.color && { color: newData.color }),

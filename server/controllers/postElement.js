@@ -13,6 +13,9 @@ const postElement = async (req, res) => {
     y,
     width,
     height,
+    radiusX,
+    radiusY,
+    rotation,
     fontFamily,
     fontSize,
     color,
@@ -25,10 +28,11 @@ const postElement = async (req, res) => {
   } = req.body;
 
   // Bad request
-  if (!pageKey?.startsWith("page") || !type || !x || !y || !width || !height) {
+  if (!pageKey?.startsWith("page") || !type || !x || !y || rotation === undefined) {
     return res.status(400).json({
       status: 400,
       message: "Bad request",
+      body: rotation
     });
   }
 
@@ -54,8 +58,11 @@ const postElement = async (req, res) => {
       ...(imageUrl && { imageUrl }),
       x,
       y,
-      width,
-      height,
+      ...(width && { width }),
+      ...(height && { height }),
+      ...(radiusX && { radiusX }),
+      ...(radiusY && { radiusY }),
+      rotation,
       ...(fontFamily && { fontFamily }),
       ...(fontSize && { fontSize }),
       ...(color && { color }),
@@ -65,6 +72,7 @@ const postElement = async (req, res) => {
       ...(isUnderline !== undefined && { isUnderline }),
       ...(isUppercase !== undefined && { isUppercase }),
       ...(align && { align }),
+      isDelete: false,
     });
 
     if (!postElement.insertedId) {

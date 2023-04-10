@@ -1,21 +1,13 @@
-import ButtonIcon from "../../global/button/ButtonIcon";
-import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 import VerticalLine from "../../global/lines/VerticalLine";
 import ColorInput from "../../global/input/ColorInput";
 import Layers from "../../global/button/Layers";
+import DuplicateElement from "../../global/button/DuplicateElement";
+import DeleteElement from "../../global/button/DeleteElement";
 
 // Shape actions
 const ShapeActions = () => {
   return (
     <>
-      {/* Shapes */}
-      <ButtonIcon>
-        <FontAwesomeIcon icon="faShapes" />
-        <div>Shapes</div>
-      </ButtonIcon>
-
-      <VerticalLine />
-
       {/* Background color */}
       <ColorInput keyName="backgroundColor" />
 
@@ -23,6 +15,14 @@ const ShapeActions = () => {
 
       {/* Layers */}
       <Layers />
+
+      <VerticalLine />
+
+      {/* Duplicate */}
+      <DuplicateElement />
+
+      {/* Delete */}
+      <DeleteElement />
     </>
   );
 };

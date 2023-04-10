@@ -21,7 +21,7 @@ const ColorInput = ({ keyName, selectedType = "element" }) => {
             ? selectedElement[keyName]
             : selectedType === "page" && selectedPage
             ? selectedPage[keyName]
-            : ""
+            : "#ffffff"
         }
         onChange={(e) => {
           selectedType === "element" && patchElementAction({ newData: { [keyName]: e.target.value } });

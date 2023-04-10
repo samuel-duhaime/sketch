@@ -24,6 +24,7 @@ const ImageListing = ({ image }) => {
         y: 100,
         width,
         height,
+        rotation: 0,
       },
     });
   };

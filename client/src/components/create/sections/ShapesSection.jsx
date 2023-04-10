@@ -26,21 +26,64 @@ const ShapesSection = () => {
       height: 200,
       icon: <SquareShape />,
     },
-    // {
-    //   id: 2,
-    //   icon: <CircleShape />,
-    // },
+    {
+      id: 2,
+      type: "ellipse",
+      radiusX: 50,
+      radiusY: 50,
+      icon: <CircleShape />,
+    },
+    {
+      id: 3,
+      type: "ellipse",
+      radiusX: 100,
+      radiusY: 50,
+      icon: <EllipseShape />,
+    },
+    {
+      id: 4,
+      type: "arrow",
+      points: [0, 0, 100, 0],
+      pointerLength: 20,
+      pointerWidth: 20,
+      strokeWidth: 10,
+      icon: <ArrowShape />,
+    },
+    {
+      id: 5,
+      type: "line",
+      points: [0, 0, 100, 0],
+      strokeWidth: 5,
+      icon: <LineShape />,
+    },
   ];
 
   // Function for when the user click the shape button
-  const handleShapeClick = ({ type, width, height }) => {
+  const handleShapeClick = ({
+    type,
+    width,
+    height,
+    radiusX,
+    radiusY,
+    points,
+    pointerLength,
+    pointerWidth,
+    strokeWidth,
+  }) => {
     postElementAction({
       newData: {
         type,
         x: 100,
         y: 100,
-        width,
-        height,
+        ...(width && { width }),
+        ...(height && { height }),
+        ...(radiusX && { radiusX }),
+        ...(radiusY && { radiusY }),
+        ...(points && { points }),
+        ...(pointerLength && { pointerLength }),
+        ...(pointerWidth && { pointerWidth }),
+        ...(strokeWidth && { strokeWidth }),
+        rotation: 0,
         backgroundColor: "#000000",
       },
     });
@@ -54,7 +97,17 @@ const ShapesSection = () => {
           <ShapeDiv
             key={shape.id}
             onClick={() => {
-              handleShapeClick({ type: shape.type, width: shape.width, height: shape.height });
+              handleShapeClick({
+                type: shape.type,
+                width: shape.width,
+                height: shape.height,
+                radiusX: shape.radiusX,
+                radiusY: shape.radiusY,
+                points: shape.points,
+                pointerLength: shape.pointerLength,
+                pointerWidth: shape.pointerWidth,
+                strokeWidth: shape.strokeWidth,
+              });
             }}
           >
             {shape.icon}
@@ -98,11 +151,33 @@ const RectangularShape = styled.div`
   background-color: black;
 `;
 
-// const CircleShape = styled.div`
-//   width: 80px;
-//   height: 80px;
-//   border-radius: 50%;
-//   background-color: black;
-// `;
+const CircleShape = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: black;
+`;
+
+const EllipseShape = styled.div`
+  width: 60px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+`;
+
+const ArrowShape = styled.div`
+  line-height: 24px;
+
+  &::after {
+    content: "→";
+    font-size: 60px;
+  }
+`;
+
+const LineShape = styled.div`
+  width: 60px;
+  height: 2px;
+  background-color: black;
+`;
 
 export default ShapesSection;

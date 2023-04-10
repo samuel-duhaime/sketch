@@ -9,8 +9,11 @@ const handleTransformEnd = ({ patchElementAction, elementRef }) => {
     newData: {
       x: getElement.x(),
       y: getElement.y(),
-      width: Math.max(5, getElement.width() * scaleX),
-      height: Math.max(5, getElement.height() * scaleY),
+      ...(getElement?.width?.() && { width: Math.max(5, getElement.width?.() * scaleX) }),
+      ...(getElement?.height?.() && { height: Math.max(5, getElement.height?.() * scaleY) }),
+      ...(getElement?.radiusX?.() && { radiusX: getElement?.radiusX?.() * scaleX }), // For ellipsis
+      ...(getElement?.radiusY?.() && { radiusY: getElement?.radiusY?.() * scaleY }), // For ellipsis
+      rotation: getElement.rotation(),
     },
   });
 
