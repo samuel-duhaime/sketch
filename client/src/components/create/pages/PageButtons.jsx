@@ -39,7 +39,7 @@ const PageButtons = ({ page }) => {
         <ButtonIcon
           disabled={page?.page === 1 ? true : false}
           onClick={() => {
-            patchPageAction({ pageNumber: page.page, pageAction: "moveUp" });
+            patchPageAction({ pageNumber: page.page, pageAction: "movePageUp" });
             alertSuccess({ message: "Page moved up" });
           }}
         >
@@ -50,7 +50,7 @@ const PageButtons = ({ page }) => {
         <ButtonIcon
           disabled={page?.page >= pagesKey.length ? true : false}
           onClick={() => {
-            patchPageAction({ pageNumber: page.page, pageAction: "moveDown" });
+            patchPageAction({ pageNumber: page.page, pageAction: "movePageDown" });
             alertSuccess({ message: "Page moved down" });
           }}
         >

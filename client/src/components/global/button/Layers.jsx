@@ -1,10 +1,15 @@
-import ButtonIcon from "./ButtonIcon";
-import FontAwesomeIcon from "../library/FontAwesomeIcon";
+import { useContext } from "react";
+import { SketchContext } from "../context/SketchContext";
+import ButtonIcon from "../../global/button/ButtonIcon";
+import FontAwesomeIcon from "../../global/library/FontAwesomeIcon";
 
 // Layers button
 const Layers = () => {
+  // Sketch Context
+  const { setSelectedSection } = useContext(SketchContext);
+
   return (
-    <ButtonIcon>
+    <ButtonIcon onClick={() => setSelectedSection("layers")}>
       <FontAwesomeIcon icon="faLayerGroup" />
       <div>Layers</div>
     </ButtonIcon>

@@ -13,6 +13,7 @@ const Sections = () => {
     { id: 1, text: "Shapes", icon: "faShapes" },
     // { id: 2, text: "Photos", icon: "faImage" },
     { id: 2, text: "Uploads", icon: "faCloudArrowUp" },
+    { id: 3, text: "Layers", icon: "faLayerGroup" },
   ];
 
   const handleClick = (ev, sectionName) => {

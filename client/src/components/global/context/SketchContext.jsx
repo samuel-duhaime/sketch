@@ -1,6 +1,7 @@
 import { createContext, useReducer, useState, useRef } from "react";
 import { fetchApi } from "../../../helpers/fetch/fetchApi";
 import { alertSuccess } from "../library/Alert";
+import { moveInArray } from "../../../helpers/helpers/moveInArray";
 
 export const SketchContext = createContext(); // Create the context
 
@@ -255,29 +256,67 @@ export const SketchProvider = ({ children }) => {
   };
 
   // Patch page action
-  const patchPageAction = ({ pageId, pageAction, pageNumber, pageData }) => {
+  const patchPageAction = ({ pageId, pageAction, pageNumber, pageData, elementId }) => {
     let newPages; // Get all the new pages
     let newData; // Get the new data for Sketch
 
     // Move the page up
-    if (pageNumber && pageAction === "moveUp" && pageNumber > 1) {
-      const pageSave = pages[pageNumber - 1]; // Save the page
-      pages.splice(pageNumber - 1, 1); // Delete one page
-      pages.splice(pageNumber - 2, 0, pageSave); // Add and save the save page
+    if (pageNumber && pageAction === "movePageUp" && pageNumber > 1) {
+      // Move the value at a new position inside the array
+      moveInArray({ array: pages, oldIndex: pageNumber - 1, newIndex: pageNumber - 2 });
 
+      // Update the pages
       newPages = pages.map((page, index) => {
         return { ...page, _id: `page${index + 1}`, page: index + 1 };
       });
     }
 
     // Move the page down
-    if (pageNumber && pageAction === "moveDown" && pageNumber < pagesKey?.length) {
-      const pageSave = pages[pageNumber - 1]; // Save the page
-      pages.splice(pageNumber - 1, 1); // Delete one page
-      pages.splice(pageNumber, 0, pageSave); // Add and save the save page
+    if (pageNumber && pageAction === "movePageDown" && pageNumber < pagesKey?.length) {
+      // Move the value at a new position inside the array
+      moveInArray({ array: pages, oldIndex: pageNumber - 1, newIndex: pageNumber });
 
+      // Update the pages
       newPages = pages.map((page, index) => {
         return { ...page, _id: `page${index + 1}`, page: index + 1 };
+      });
+    }
+
+    // Move the element up
+    if (pageAction === "moveElementUp" && elementId) {
+      const pageElements = sketch[selectedPageId].elements; // Get all the elements of the page
+      const findElementIndex = pageElements.map((page) => page._id).indexOf(elementId); // Find the index of the element
+
+      // Move the value at a new position inside the array
+      moveInArray({ array: pageElements, oldIndex: findElementIndex, newIndex: findElementIndex + 1 });
+      alertSuccess({ message: "Element moved up" });
+
+      // Update the elements page
+      newPages = pages.map((page) => {
+        if (page._id === selectedPageId) {
+          return { ...page, elements: pageElements };
+        } else {
+          return page;
+        }
+      });
+    }
+
+    // Move the element down
+    if (pageAction === "moveElementDown" && elementId) {
+      const pageElements = sketch[selectedPageId].elements; // Get all the elements of the page
+      const findElementIndex = pageElements.map((page) => page._id).indexOf(elementId); // Find the index of the element
+
+      // Move the value at a new position inside the array
+      moveInArray({ array: pageElements, oldIndex: findElementIndex, newIndex: findElementIndex - 1 });
+      alertSuccess({ message: "Element moved down" });
+
+      // Update the elements page
+      newPages = pages.map((page) => {
+        if (page._id === selectedPageId) {
+          return { ...page, elements: pageElements };
+        } else {
+          return page;
+        }
       });
     }
 

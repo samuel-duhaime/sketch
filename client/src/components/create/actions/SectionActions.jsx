@@ -6,6 +6,7 @@ import TextSection from "../sections/TextSection";
 import ShapesSection from "../sections/ShapesSection";
 // import PhotosSection from "../sections/PhotosSection";
 import UploadSection from "../sections/UploadSection";
+import LayersSection from "../sections/LayersSection";
 
 const SectionActions = () => {
   const { selectedSection } = useContext(SketchContext); // Sketch Context
@@ -16,8 +17,12 @@ const SectionActions = () => {
         <TextSection />
       ) : selectedSection === "shapes" ? (
         <ShapesSection />
-      ) : (
+      ) : selectedSection === "uploads" ? (
         <UploadSection />
+      ) : selectedSection === "layers" ? (
+        <LayersSection />
+      ) : (
+        <>No selected section</>
       )}
     </SectionActionsContainer>
   );
