@@ -73,7 +73,7 @@ const BotMenuSection = styled.section`
   align-items: center;
   height: 60px;
   padding: 20px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   color: white;

@@ -45,28 +45,30 @@ const View = () => {
   };
 
   return (
-    <ViewPageContainer>
+    <Background>
       {sketch && pagesKey ? (
         <>
-          {/* Page */}
-          <Page
-            page={sketch && pagesKey && sketch[pagesKey[pageNumber]]}
-            isViewPage={true}
-          />
+          <ViewPageContainer>
+            {/* Page */}
+            <Page
+              page={sketch && pagesKey && sketch[pagesKey[pageNumber]]}
+              isViewPage={true}
+            />
 
-          {/* Back page */}
-          {pageNumber > 0 && (
-            <LeftArrow onClick={handleBackPage}>
-              <FontAwesomeIcon icon="faChevronLeft" />
-            </LeftArrow>
-          )}
+            {/* Back page */}
+            {pageNumber > 0 && (
+              <LeftArrow onClick={handleBackPage}>
+                <FontAwesomeIcon icon="faChevronLeft" />
+              </LeftArrow>
+            )}
 
-          {/* Next page */}
-          {pageNumber < pagesKey.length - 1 && (
-            <RightArrow onClick={handleNextPage}>
-              <FontAwesomeIcon icon="faChevronRight" />
-            </RightArrow>
-          )}
+            {/* Next page */}
+            {pageNumber < pagesKey.length - 1 && (
+              <RightArrow onClick={handleNextPage}>
+                <FontAwesomeIcon icon="faChevronRight" />
+              </RightArrow>
+            )}
+          </ViewPageContainer>
 
           {/* Bot menu */}
           <BotMenuView sketchId={sketchId} />
@@ -74,17 +76,20 @@ const View = () => {
       ) : (
         <Loading theme="dark" />
       )}
-      ;
-    </ViewPageContainer>
+    </Background>
   );
 };
+
+const Background = styled.div`
+  min-height: 100vh;
+  background-color: black;
+`;
 
 const ViewPageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: black;
+  min-height: calc(100vh - 60px);
 `;
 
 const Arrow = styled.button`

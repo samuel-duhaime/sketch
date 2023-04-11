@@ -140,5 +140,40 @@
         "b53943c6-a3da-4c44-bf31-cdc124475d91"
       ]
     }
+  },
+  {
+    "_id": "07b936b9-fde1-4f9a-9601-67fdaf7c6d29",
+    "sketchName": "Class rules poster",
+    "isShared": true,
+    "page1": {
+      "_id": "page1",
+      "page": 1,
+      "pageName": "Class rules poster",
+      "width": 540,
+      "height": 720,
+      "backgroundColor": "#ecd9ef",
+      "elements": [
+        "4fdfb2ea-8be9-4931-8946-68f5dd0437b1",
+        "58b34b08-b377-4626-86f1-761f0546a0c4",
+        "5c5e172a-3747-492c-b6c2-a304ee0015d5",
+        "6b88386f-3153-42ce-9b30-ca0bff7bb2e5",
+        "adc70ddb-6bd3-4c81-9bf2-2f09b311b88d",
+        "3fe477b5-b2dc-4f88-8a35-02fbaa053e99",
+        "7e8d18aa-5a93-4014-8d91-8dd8b80abfe6",
+        "fd87f6b1-50e1-4766-b6e2-1ef40dc2701a",
+        "01d804e0-de60-41ac-8a1c-ea62e133edcc",
+        "f16fe268-63e7-4807-8bea-2b417dac518a",
+        "015f4b15-f1a1-4eb7-8b3a-70173f339299",
+        "69967809-9013-47c2-8afb-cfa8e99f34cb",
+        "fe75854e-cec8-4752-8432-658e2d25afc1",
+        "115eae70-c58b-42b0-9ce7-7a9d0c787abe",
+        "c6183b97-5ab5-4c43-964a-7b5317cc769d",
+        "d0d470eb-7b6f-4da3-9f63-24437ad43f57",
+        "d384ef10-4fda-4735-969f-48973a0dbcaa",
+        "816f3090-e141-452e-b932-4f7a5eece7de",
+        "6244208e-2771-46c6-8c73-992b620aadb6",
+        "03623de0-1973-4d81-b7cf-8b0a63bf2842"
+      ]
+    }
   }
 ]
