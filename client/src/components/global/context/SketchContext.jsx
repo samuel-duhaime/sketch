@@ -60,7 +60,7 @@ const sketchReducer = (sketch, action) => {
 export const SketchProvider = ({ children }) => {
   const [sketch, dispatch] = useReducer(sketchReducer, initialSketch);
   const stageRef = useRef(null); // Stage ref for download
-  const [selectedSection, setSelectedSection] = useState("text"); // Selected section
+  const [selectedSection, setSelectedSection] = useState("templates"); // Selected section
   const [selectedElementId, setSelectedElementId] = useState(null); // Selected element id
   const [selectedPageId, setSelectedPageId] = useState("page1"); // Selected page
   const [history, setHistory] = useState([]); // History of the Sketch state

@@ -93,7 +93,7 @@ const Home = () => {
         </HomeSection>
 
         {/* Recent sketchs */}
-        <SketchsListing />
+        {isAuthenticated && <SketchsListing />}
       </MainLayout>
     </>
   );

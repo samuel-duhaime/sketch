@@ -9,11 +9,12 @@ const Sections = () => {
 
   /* sections object */
   const sections = [
-    { id: 0, text: "Text", icon: "faFont" },
-    { id: 1, text: "Shapes", icon: "faShapes" },
-    // { id: 2, text: "Photos", icon: "faImage" },
-    { id: 2, text: "Uploads", icon: "faCloudArrowUp" },
-    { id: 3, text: "Layers", icon: "faLayerGroup" },
+    { id: 0, text: "Templates", icon: "faTableCellsLarge" },
+    { id: 1, text: "Text", icon: "faFont" },
+    { id: 2, text: "Shapes", icon: "faShapes" },
+    // { id: 3, text: "Photos", icon: "faImage" },
+    { id: 4, text: "Uploads", icon: "faCloudArrowUp" },
+    { id: 5, text: "Layers", icon: "faLayerGroup" },
   ];
 
   const handleClick = (ev, sectionName) => {

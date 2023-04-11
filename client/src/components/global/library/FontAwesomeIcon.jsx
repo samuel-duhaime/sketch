@@ -23,6 +23,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faMagnifyingGlass,
+  faTableCellsLarge,
 } from "@fortawesome/free-solid-svg-icons";
 
 const FontAwesomeIcon = ({ icon }) => {
@@ -98,6 +99,9 @@ const FontAwesomeIcon = ({ icon }) => {
       break;
     case "faMagnifyingGlass":
       iconComponent = faMagnifyingGlass;
+      break;
+    case "faTableCellsLarge":
+      iconComponent = faTableCellsLarge;
       break;
     default:
       iconComponent = faShapes;

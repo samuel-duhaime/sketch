@@ -4,7 +4,7 @@ import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import { SketchContext } from "../../global/context/SketchContext";
 import TextSection from "../sections/TextSection";
 import ShapesSection from "../sections/ShapesSection";
-// import PhotosSection from "../sections/PhotosSection";
+import TemplatesSection from "../sections/TemplatesSection";
 import UploadSection from "../sections/UploadSection";
 import LayersSection from "../sections/LayersSection";
 
@@ -13,7 +13,9 @@ const SectionActions = () => {
 
   return (
     <SectionActionsContainer>
-      {selectedSection === "text" ? (
+      {selectedSection === "templates" ? (
+        <TemplatesSection />
+      ) : selectedSection === "text" ? (
         <TextSection />
       ) : selectedSection === "shapes" ? (
         <ShapesSection />
