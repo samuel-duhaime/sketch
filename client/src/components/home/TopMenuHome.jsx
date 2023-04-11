@@ -75,6 +75,7 @@ const TopMenuNav = styled.nav`
   background-color: white;
   box-shadow: ${COLORS.boxShadow};
   width: 100%;
+  z-index: 1;
 `;
 
 const TopMenuContainer = styled.div`

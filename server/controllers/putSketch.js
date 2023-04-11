@@ -3,7 +3,7 @@ const { getCollections } = require("../configs/mongoDB");
 // Replace the Sketch document
 const putSketch = async (req, res) => {
   const { sketchId } = req.params;
-  const { sketchName, isShared, pages } = req.body;
+  const { sketchName, isShared, imageUrl, pages } = req.body;
 
   // Bad request
   if (!sketchName || isShared === undefined || !pages) {
@@ -25,7 +25,7 @@ const putSketch = async (req, res) => {
     // Replace the Sketch
     const putSketch = await sketchs.replaceOne(
       { _id: sketchId },
-      { sketchName: sketchName, isShared: isShared, ...(pagesObject && pagesObject) }
+      { sketchName, isShared, imageUrl, ...(pagesObject && pagesObject) }
     );
 
     if (putSketch.matchedCount !== 1) {

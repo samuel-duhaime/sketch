@@ -12,8 +12,8 @@ const SketchCard = ({ sketch }) => {
       {/* Image */}
       <Link to={"/view/" + sketch?._id}>
         <Image
-          src="/assets/images/demoSketch.png"
-          alt={sketch.name}
+          src={sketch?.imageUrl}
+          alt={sketch?.name}
         />
       </Link>
 
@@ -76,8 +76,10 @@ const Name = styled(Link)`
 `;
 
 const Image = styled.img`
+  max-height: 170px;
   width: 100%;
   border-radius: 10px;
+  object-fit: contain;
 `;
 
 const Size = styled.div`

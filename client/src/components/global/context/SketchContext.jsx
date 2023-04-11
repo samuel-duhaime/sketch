@@ -65,7 +65,9 @@ export const SketchProvider = ({ children }) => {
   const [history, setHistory] = useState([]); // History of the Sketch state
   const [historyNumber, setHistoryNumber] = useState(1); // Number of the history of the Sketch state
   const historyLength = history?.length; // Get the number of history Sketch state
-  const selectedElement = sketch?.[selectedPageId]?.elements?.filter((element) => element?._id === selectedElementId)[0]; // Filter the selectedElement
+  const selectedElement = sketch?.[selectedPageId]?.elements?.filter(
+    (element) => element?._id === selectedElementId
+  )[0]; // Filter the selectedElement
   const selectedPage = sketch[selectedPageId]; // Get the selectedPage
   const pagesKey = Object.keys(sketch).filter((keyName) => keyName.startsWith("page")); // Set all the pages key
   // Get all the pages
@@ -85,7 +87,7 @@ export const SketchProvider = ({ children }) => {
       document.body.removeChild(link); // Cleanup
     };
 
-    var imageUrl = stageRef.current?.getStage().toDataURL({ mimeType: "image/png", quality: 1 }); // Get the imageUrl
+    var imageUrl = stageRef?.current?.getStage().toDataURL({ mimeType: "image/png", quality: 1 }); // Get the imageUrl
     downloadURI({ imageUrl, name: `${sketch.sketchName}.png` }); // // Download an image with an url
   };
 
@@ -118,23 +120,26 @@ export const SketchProvider = ({ children }) => {
       return newHistory;
     });
 
-    // Save sketch document
-    if (sketch.isModified === true) {
-      const newPages = pages.map((page) => {
-        return { ...page, elements: page?.elements?.map((element) => element._id) };
-      });
+    var imageUrl = stageRef?.current?.getStage().toDataURL({ mimeType: "image/png", quality: 1 }); // Get the imageUrl
 
-      // Only fetch if Sketch is modified
-      fetchApi({
-        apiUrl: "/sketch/" + sketch._id,
-        method: "PUT",
-        body: {
-          sketchName: sketch.sketchName,
-          isShared: sketch.isShared,
-          pages: newPages,
-        },
-      });
-    }
+    // Save sketch document
+    // if (sketch.isModified === true || sketch.page1.isModified === true) {
+    const newPages = pages.map((page) => {
+      return { ...page, elements: page?.elements?.map((element) => element._id) };
+    });
+
+    // Only fetch if Sketch is modified
+    fetchApi({
+      apiUrl: "/sketch/" + sketch._id,
+      method: "PUT",
+      body: {
+        sketchName: sketch.sketchName,
+        isShared: sketch.isShared,
+        imageUrl,
+        pages: newPages,
+      },
+    });
+    // }
 
     // Save elements documents and pages documents
     pagesKey.forEach((page) => {

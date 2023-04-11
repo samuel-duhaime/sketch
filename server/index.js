@@ -30,7 +30,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(morgan("tiny")); // Log for server
-app.use(express.json()); // Only parsed json
+app.use(express.json({ limit: "50mb" })); // Only parsed json. Need a limit to save the imageDataUrl
 app.use(express.urlencoded({ extended: false })); // Only parsed bodies
 
 connectMongoDB(); // Connect to MongoDB

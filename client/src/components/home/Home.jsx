@@ -30,7 +30,7 @@ const Home = () => {
           <H1>Bring your lessons to life.</H1>
 
           <TextContainer>
-            <div>Easily create visual teaching materials to share with Sketch.</div>
+            <div>Easily create visual teaching materials to share.</div>
 
             {/* Button */}
             <FullDiv>
@@ -52,10 +52,44 @@ const Home = () => {
             </FullDiv>
           </TextContainer>
 
-          <Image
-            alt="App demonstration of Sketch"
-            src="/assets/images/demoTest.png"
-          />
+          {/* Demon presentation */}
+          <DemoPresentation>
+            <ImagesContainer>
+              {/* Poster */}
+              <PosterImage
+                alt="Class rules poster"
+                src="/assets/images/class-rules-poster.png"
+              />
+              {/* Schedule */}
+              <ScheduleImage
+                alt="Class schedule"
+                src="/assets/images/class-schedule.png"
+              />
+            </ImagesContainer>
+
+            {/* Video demonstration */}
+            <Video
+              src="/assets/videos/demo-sketch.mp4"
+              title="Demonstration to create a Sketch"
+              type="video/mp4"
+              preload="auto"
+              autoPlay
+              muted
+              loop
+              playsInline
+            />
+
+            <ImagesContainer>
+              <MeetImage
+                alt="Meet your teacher"
+                src="/assets/images/meet-the-teacher.png"
+              />
+              <GameImage
+                alt="Activity - This or that"
+                src="/assets/images/this-or-that.png"
+              />
+            </ImagesContainer>
+          </DemoPresentation>
         </HomeSection>
 
         {/* Recent sketchs */}
@@ -79,7 +113,7 @@ const HomeSection = styled.section`
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - ${SIZE.topMenuHeight});
-  gap: 20px;
+  gap: 40px;
   padding: 20px 0;
 `;
 
@@ -98,13 +132,56 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  max-width: 400px;
+  max-width: 320px;
   text-align: center;
   font-size: 18px;
 `;
 
-const Image = styled.img`
-  width: 100%;
+const DemoPresentation = styled.div`
+  display: flex;
+  gap: 40px;
+`;
+
+const ImagesContainer = styled.div`
+  position: relative;
+  width: 280px;
+`;
+
+const PosterImage = styled.img`
+  position: absolute;
+  right: 0;
+  width: 130px;
+  border-radius: 10px;
+  transform: rotate(10deg);
+`;
+
+const ScheduleImage = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  border-radius: 10px;
+  transform: rotate(-5deg);
+`;
+
+const Video = styled.video`
+  max-width: 600px;
+`;
+
+const MeetImage = styled.img`
+  position: absolute;
+  left: 0;
+  width: 200px;
+  border-radius: 10px;
+  transform: rotate(-10deg);
+`;
+
+const GameImage = styled.img`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 200px;
+  border-radius: 10px;
+  transform: rotate(10deg);
 `;
 
 export default Home;

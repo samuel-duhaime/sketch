@@ -8,7 +8,7 @@ const getSketchs = async (req, res) => {
     // Get all the Sketch document that match is shared
     const getSketchs = await sketchs
       .find({ isShared: true })
-      .project({ _id: 1, sketchName: 1, "page1.width": 1, "page1.height": 1 }) // Select only the project fields
+      .project({ _id: 1, sketchName: 1, imageUrl: 1, "page1.width": 1, "page1.height": 1 }) // Select only the project fields
       .toArray();
 
     if (!getSketchs) {
