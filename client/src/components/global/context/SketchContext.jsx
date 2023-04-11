@@ -2,6 +2,7 @@ import { createContext, useReducer, useState, useRef } from "react";
 import { fetchApi } from "../../../helpers/fetch/fetchApi";
 import { alertSuccess } from "../library/Alert";
 import { moveInArray } from "../../../helpers/helpers/moveInArray";
+import { downloadURI } from "../../../helpers/helpers/downloadURI";
 
 export const SketchContext = createContext(); // Create the context
 
@@ -77,18 +78,8 @@ export const SketchProvider = ({ children }) => {
 
   // Handle download
   const handleDownload = async () => {
-    // Download an image with an url
-    const downloadURI = ({ imageUrl, name }) => {
-      var link = document.createElement("a"); // Create a link
-      link.download = name; // Name of the download
-      link.href = imageUrl; //
-      document.body.appendChild(link); // Join the link
-      link.click(); // Click the link
-      document.body.removeChild(link); // Cleanup
-    };
-
     var imageUrl = stageRef?.current?.getStage().toDataURL({ mimeType: "image/png", quality: 1 }); // Get the imageUrl
-    downloadURI({ imageUrl, name: `${sketch.sketchName}.png` }); // // Download an image with an url
+    downloadURI({ imageUrl, name: `${sketch.sketchName}.png` }); // Download an image with an url
   };
 
   // Undo the last save Sketch history
@@ -178,28 +169,26 @@ export const SketchProvider = ({ children }) => {
   };
 
   // Fetch sketch action
-  const fetchSketchAction = async ({ sketchId }) => {
-    if (historyLength === 0) {
-      // Only fetch one time
-      try {
-        const fetchResult = await fetch("/sketch/" + sketchId, {
-          method: "GET",
-        });
-        const { data, status, message } = await fetchResult.json();
+  const fetchSketchAction = async ({ sketchId, signal }) => {
+    try {
+      const fetchResult = await fetch("/sketch/" + sketchId, {
+        method: "GET",
+        signal,
+      });
+      const { data, status, message } = await fetchResult.json();
 
-        // For status error that don't start with 20x
-        if (!status.toString().startsWith("20")) {
-          throw new Error(message); // Throw error message
-        }
-
-        if (data) {
-          dispatch({ type: "fetchSketchAction", newData: data }); // Fetch only one time
-          setHistory([data]); // Push the sketch in the history
-        }
-      } catch (err) {
-        // Error
-        console.error(err.message);
+      // For status error that don't start with 20x
+      if (!status.toString().startsWith("20")) {
+        throw new Error(message); // Throw error message
       }
+
+      if (data) {
+        dispatch({ type: "fetchSketchAction", newData: data }); // Fetch only one time
+        setHistory([data]); // Push the sketch in the history only one time
+      }
+    } catch (err) {
+      // Error
+      console.error(err.message);
     }
   };
 

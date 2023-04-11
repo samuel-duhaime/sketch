@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useContext } from "react";
 import styled from "styled-components";
 import { SIZE } from "../../helpers/constants/constants";
 import { SketchContext } from "../global/context/SketchContext";
@@ -8,22 +7,17 @@ import Sections from "./sections/Sections";
 import SectionActions from "./actions/SectionActions";
 import ElementActions from "./actions/ElementActions";
 import Pages from "./pages/Pages";
-import Loading from "../global/loading/Loading";
+import useSketch from "../../hooks/useSketch";
 
 // Create page
 const Create = () => {
-  const { sketchId } = useParams(); // Take the sketchId params
-  
-  // Sketch Context
   const {
     sketch,
     actions: { fetchSketchAction },
   } = useContext(SketchContext);
 
   // Fetch Sketch inside SketchContext
-  useEffect(() => {
-    fetchSketchAction({ sketchId });
-  }, [sketchId]);
+  const { sketchId } = useSketch({ fetchSketchAction });
 
   return (
     <>
@@ -42,7 +36,10 @@ const Create = () => {
           <ElementActions />
 
           {/* Pages container */}
-          {sketch ? <Pages sketch={sketch} /> : <Loading />}
+          <Pages
+            sketch={sketch}
+            sketchId={sketchId} // To verify the sketchId for loading
+          />
         </ContentLayout>
       </MainLayout>
     </>

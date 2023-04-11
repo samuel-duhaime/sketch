@@ -1,29 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchApi } from "../helpers/fetch/fetchApi";
 
-// FIXME: Bug with 2 useEffect() when loading Create page
 // Custom hook to getSketch
-const useSketch = () => {
+const useSketch = ({ fetchSketchAction }) => {
   const { sketchId } = useParams(); // Take the sketchId params
-  const [sketch, setSketch] = useState(null);
-  const [isRefetch, setIsRefetch] = useState(null);
 
   // Usefull to refetch data
-  const refetch = () => {
-    if (isRefetch === null) {
-      setIsRefetch(true);
-    } else {
-      setIsRefetch(!isRefetch);
-    }
-  };
-
-  // Fetch the getSketch. Refetch when needed.
   useEffect(() => {
-    fetchApi({ apiUrl: "/sketch/" + sketchId, setData: setSketch });
-  }, [isRefetch, sketchId]);
+    const controller = new AbortController(); // Allow you to abort the fetch
+    const signal = controller.signal; // Return the abort signal object
 
-  return { sketch, setSketch, sketchId, refetch };
+    fetchSketchAction({ sketchId, signal }); // Fetch inside SketchContext
+
+    // Cancel the request before component unmounts
+    return () => {
+      controller.abort();
+    };
+  }, [sketchId]);
+
+  return { sketchId };
 };
 
 export default useSketch;

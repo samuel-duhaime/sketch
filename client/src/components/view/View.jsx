@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import useSketch from "../../hooks/useSketch";
 import Page from "../create/pages/Page";
 import BotMenuView from "./BotMenuView";
 import { SketchContext } from "../global/context/SketchContext";
@@ -9,7 +9,6 @@ import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 
 // View page
 const View = () => {
-  const { sketchId } = useParams(); // Take the sketchId params
   const [pageNumber, setPageNumber] = useState(0);
 
   // Sketch Context
@@ -20,9 +19,7 @@ const View = () => {
   } = useContext(SketchContext);
 
   // Fetch Sketch inside SketchContext
-  useEffect(() => {
-    fetchSketchAction({ sketchId });
-  }, [sketchId]);
+  const { sketchId } = useSketch({ fetchSketchAction });
 
   // Handle back page
   const handleBackPage = () => {
@@ -46,7 +43,7 @@ const View = () => {
 
   return (
     <Background>
-      {sketch && pagesKey ? (
+      {sketch._id === sketchId && pagesKey ? (
         <>
           <ViewPageContainer>
             {/* Page */}
@@ -74,7 +71,9 @@ const View = () => {
           <BotMenuView sketchId={sketchId} />
         </>
       ) : (
-        <Loading theme="dark" />
+        <ViewPageContainer>
+          <Loading theme="dark" />
+        </ViewPageContainer>
       )}
     </Background>
   );

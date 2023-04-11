@@ -3,8 +3,8 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Home from "../home/Home";
 import Create from "../create/Create";
 import View from "../view/View";
-import { SketchProvider } from "./context/SketchContext";
 
+// Routes of the application
 const App = () => {
   return (
     <Router>
@@ -14,21 +14,15 @@ const App = () => {
           path="/"
           element={<Home />}
         />
+        <Route
+          path="/create/:sketchId"
+          element={<Create />}
+        />
+        <Route
+          path="/view/:sketchId"
+          element={<View />}
+        />
       </Routes>
-
-      {/* Sketch provider context */}
-      <SketchProvider>
-        <Routes>
-          <Route
-            path="/create/:sketchId"
-            element={<Create />}
-          />
-          <Route
-            path="/view/:sketchId"
-            element={<View />}
-          />
-        </Routes>
-      </SketchProvider>
     </Router>
   );
 };

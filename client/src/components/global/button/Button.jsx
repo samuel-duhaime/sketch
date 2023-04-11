@@ -8,7 +8,7 @@ const Button = ({ children, className, type = "button", size, color = "primary",
       className={className}
       onClick={onClick}
       size={size} // "big"
-      color={color} // "primary" || "white"
+      color={color} // "primary" || "white" || " gray"
     >
       {children}
     </ButtonComponent>
@@ -37,6 +37,8 @@ const ButtonComponent = styled.button`
       ? `background-color: ${COLORS.primary};color: white;`
       : color === "white"
       ? `background-color: white; color: black;`
+      : color === "gray"
+      ? `background-color: ${COLORS.gray}; color: black;`
       : ""}
    
    &:is(:hover, :focus-visible) {

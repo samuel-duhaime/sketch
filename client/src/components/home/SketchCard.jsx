@@ -4,6 +4,7 @@ import { COLORS } from "../../helpers/constants/constants";
 import FontAwesomeIcon from "../global/library/FontAwesomeIcon";
 import Tippy from "../global/library/Tippy";
 import ShareTippySection from "../global/tippySection/ShareTippySection";
+import { downloadURI } from "../../helpers/helpers/downloadURI";
 
 // Sketch card for HomePage
 const SketchCard = ({ sketch }) => {
@@ -32,7 +33,7 @@ const SketchCard = ({ sketch }) => {
           content={<div>Download</div>}
           interactive={false}
         >
-          <Icon>
+          <Icon onClick={() => downloadURI({ imageUrl: sketch?.imageUrl, name: `${sketch?.sketchName}.png` })}>
             <FontAwesomeIcon icon="faCircleDown" />
           </Icon>
         </Tippy>

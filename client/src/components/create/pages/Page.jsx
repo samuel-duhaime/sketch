@@ -33,6 +33,7 @@ const Page = ({ page, isViewPage }) => {
           height={page?.height}
           onMouseDown={handleDeselectedElement}
           onTouchStart={handleDeselectedElement}
+          listening={isViewPage ? false : true} // Cancel or not event listening
         >
           <Layer>
             {/* Background rectangle for Page and Download */}

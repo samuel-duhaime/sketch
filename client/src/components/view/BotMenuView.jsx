@@ -7,8 +7,9 @@ import Tippy from "../global/library/Tippy";
 import ShareTippySection from "../global/tippySection/ShareTippySection";
 import { alertSuccess } from "../global/library/Alert";
 
-const BotMenuView = ({ sketchId }) => {
-  const { handleDownload } = useContext(SketchContext); // Sketch Context
+// Bottom menu for view page
+const BotMenuView = () => {
+  const { sketch, handleDownload } = useContext(SketchContext); // Sketch Context
 
   return (
     <BotMenuSection>
@@ -33,7 +34,7 @@ const BotMenuView = ({ sketchId }) => {
           content={<div>Edit</div>}
           interactive={false}
         >
-          <LinkNoDecoration to={"/create/" + sketchId}>
+          <LinkNoDecoration to={"/create/" + sketch?._id}>
             <Icon>
               <FontAwesomeIcon icon="faPenToSquare" />
             </Icon>
@@ -41,7 +42,7 @@ const BotMenuView = ({ sketchId }) => {
         </Tippy>
 
         {/* Share */}
-        <Tippy content={<ShareTippySection sketchId={sketchId} />}>
+        <Tippy content={<ShareTippySection sketchId={sketch?._id} />}>
           <Icon>
             <FontAwesomeIcon icon="faArrowUpFromBracket" />
           </Icon>

@@ -1,22 +1,27 @@
 import styled from "styled-components";
 import { COLORS, SIZE } from "../../../helpers/constants/constants";
 import Page from "./Page";
+import Loading from "../../global/loading/Loading";
 
-const Pages = ({ sketch }) => {
+const Pages = ({ sketch, sketchId }) => {
   const pagesKeyData = Object.keys(sketch).filter((keyName) => keyName.startsWith("page")); // Find all the pages key
 
   return (
     <PagesContainer>
       {/* Pages */}
-      {pagesKeyData.map((pageKey) => {
-        return (
-          <Page
-            key={sketch?.[pageKey].page}
-            page={sketch?.[pageKey]}
-            isViewPage={false}
-          />
-        );
-      })}
+      {sketch._id === sketchId && pagesKeyData ? (
+        pagesKeyData.map((pageKey) => {
+          return (
+            <Page
+              key={sketch?.[pageKey].page}
+              page={sketch?.[pageKey]}
+              isViewPage={false}
+            />
+          );
+        })
+      ) : (
+        <Loading />
+      )}
     </PagesContainer>
   );
 };
