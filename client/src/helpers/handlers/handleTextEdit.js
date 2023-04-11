@@ -1,9 +1,14 @@
-// TODO: Style the rotation
 // When the Text is about to get edit
 const handleTextEdit = (ev, { element, elementRef, stageRef, transformerRef, patchElementAction }) => {
   const stagePosition = stageRef.current.container().getBoundingClientRect(); // Find position of stage container
   const textPosition = elementRef.current.getAbsolutePosition(); // Find position of Text relative to the stage
   const textarea = document.createElement("textarea"); // Create a textarea to edit the text
+
+  // Get the area position of the Text
+  const areaPosition = {
+    x: stagePosition.x + textPosition.x,
+    y: stageRef.current.container().offsetTop + 106 + textPosition.y, // Put it the closer possible of the target
+  };
 
   elementRef.current.hide(); // Hide the Text
   transformerRef.current.hide(); // Hide the transformer
@@ -13,8 +18,8 @@ const handleTextEdit = (ev, { element, elementRef, stageRef, transformerRef, pat
   // Style the textarea
   textarea.value = elementRef.current.text();
   textarea.style.position = "absolute";
-  textarea.style.top = textPosition.y + stagePosition.y + "px";
-  textarea.style.left = textPosition.x + +stagePosition.x + "px";
+  textarea.style.top = areaPosition.y + "px";
+  textarea.style.left = areaPosition.x + "px";
   textarea.style.border = "none";
   textarea.style.padding = "0px";
   textarea.style.margin = "0px";
@@ -34,7 +39,7 @@ const handleTextEdit = (ev, { element, elementRef, stageRef, transformerRef, pat
   textarea.style.textDecoration = elementRef.current.textDecoration();
   textarea.style.textAlign = elementRef.current.align();
   textarea.style.color = elementRef.current.fill();
-  // rotation = elementRef.current.rotation();
+  textarea.style.transform = `rotate(${elementRef.current.rotation()}deg)`;
 
   textarea.focus(); // Focus the textarea to edit
 
@@ -46,9 +51,9 @@ const handleTextEdit = (ev, { element, elementRef, stageRef, transformerRef, pat
       newData: { text: textarea.value, height: textarea.scrollHeight + elementRef.current.fontSize() },
     });
     window.removeEventListener("click", handleOutsideClick);
-    elementRef.current.show(); // Show the element
-    transformerRef.current.show(); // Show the transformer
-    transformerRef.current.forceUpdate();
+    elementRef?.current?.show(); // Show the element
+    transformerRef?.current?.show(); // Show the transformer
+    transformerRef?.current?.forceUpdate();
   };
 
   // When the user click outsite the Text element

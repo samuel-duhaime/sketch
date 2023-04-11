@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
   /* Name of the image */
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now();
-    cb(null, uniqueSuffix + "-" + file.originalname); // Unique name
+    cb(null, uniqueSuffix + "-" + file.originalname.split(" ").join("-")); // Unique name with no space
   },
 });
 

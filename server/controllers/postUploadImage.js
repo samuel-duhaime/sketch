@@ -14,6 +14,8 @@ const postUploadImage = async (req, res) => {
       });
     }
 
+    console.log(req.file);
+
     // Add a Sketch
     const postUploadImage = await images.insertOne({
       _id: uuidv4(),
