@@ -11,7 +11,6 @@
       "height": 550,
       "backgroundColor": "#ffffff",
       "elements": [
-        "dc416cd6-93e9-49fa-ba55-55e80557c7ed",
         "997c6bbd-ee05-4683-b9cf-9cab885edaf3",
         "583c1c9c-7fd9-44f2-8a86-b888c3383f82",
         "c8a74263-0d4d-48d4-8f4c-d4ad03bd6e2b",
@@ -21,7 +20,6 @@
         "6f2259bf-612e-42f4-86bd-b3102822a415",
         "5d6636be-ea6b-40f8-bda3-e71e7cab1521",
         "ced5ca4e-3ea7-48f9-8cbb-ee5c5970db30",
-        "913fd0af-e45c-42ea-a879-5c8e2bd351a5",
         "635e6567-854a-49ca-8cea-78578356d025",
         "dcbc8294-c682-4b43-8d9f-50d9a4ba81f4",
         "5bddcc12-cec6-4c98-b883-796676838b7c",
@@ -42,22 +40,18 @@
       "backgroundColor": "#6c839b",
       "elements": [
         "ecc6d2fd-101e-421a-8488-34e56ebfd7be",
-        "67414e0f-8cb4-475d-8dc8-1395329faeba",
         "9e78f937-1f83-4c77-a193-16521315a584",
-        "71f00bf8-55f5-47a5-9315-399b61c39ed5",
         "2090ae1c-d35f-407f-9c08-7bf99df8d1d8",
         "7d9e6640-80b2-4a79-bbd6-11fb8a995699",
-        "1813f706-5be1-45f2-b3fd-abf3b8ea407c",
-        "5272f83b-f89f-4524-a767-e9b83bfee379"
-      ],
-      "isModified": false
+        "1813f706-5be1-45f2-b3fd-abf3b8ea407c"
+      ]
     },
     "page2": {
       "_id": "page2",
-      "page": { "$numberInt": "2" },
+      "page": 2,
       "pageName": "What I love",
-      "width": { "$numberInt": "800" },
-      "height": { "$numberInt": "500" },
+      "width": 800,
+      "height": 550,
       "backgroundColor": "#6c839b",
       "elements": [
         "d50e89c1-56fa-4f3f-9593-88bce687e78a",
@@ -69,10 +63,10 @@
     },
     "page3": {
       "_id": "page3",
-      "page": { "$numberInt": "3" },
+      "page": 3,
       "pageName": "Quick facts",
-      "width": { "$numberInt": "800" },
-      "height": { "$numberInt": "500" },
+      "width": 800,
+      "height": 550,
       "backgroundColor": "#6c839b",
       "elements": [
         "308c2159-eefe-4f19-9f9a-a71a18724aa9",
@@ -82,6 +76,68 @@
         "ccc4b16b-6391-49fc-b0c1-a8cc4ab7f76c",
         "0ac6ca9c-e153-4f68-9dc9-19000e2e9c5e",
         "11995435-8ac5-4aa9-9329-4343fe6d4647"
+      ]
+    }
+  },
+  {
+    "_id": "652747b9-f1ac-43f6-aca8-cf80ac9a33f8",
+    "sketchName": "This or that",
+    "isShared": true,
+    "page1": {
+      "_id": "page1",
+      "page": 1,
+      "pageName": "Games rules",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "#7b61ff",
+      "elements": [
+        "87a5be09-fb8d-40eb-8c69-b4d1ff1e49dd",
+        "ae67d9cc-e2d4-4f25-a99d-06d4f5b656ec",
+        "fa653615-b718-490c-9c20-0c8a7c20577a",
+        "68ca811c-90e6-4ce7-bfec-f6e2decdeaf6",
+        "bc319973-41be-4d37-9bf5-ec61ce81c61d"
+      ]
+    },
+    "page2": {
+      "_id": "page2",
+      "page": 2,
+      "pageName": "Dog or cat",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "#7b61ff",
+      "elements": [
+        "d34f5abd-dd08-4684-b4df-ff5458308fc0",
+        "5ba74615-fe9c-4046-8041-370575466fff",
+        "3e3e1c0c-8950-417c-b4de-7b69b1bd56ab",
+        "602fd0fd-64ba-4ba8-a182-5e1877a5dd11"
+      ]
+    },
+    "page3": {
+      "_id": "page3",
+      "page": 3,
+      "pageName": "Moutain or beach",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "#7b61ff",
+      "elements": [
+        "217ff528-f4a9-4bce-8b6e-18a3595680ba",
+        "81e67b7e-2d23-4f51-90a0-7a9df134c37b",
+        "062e64e9-c1d1-4b01-8dfa-83bce3f89485",
+        "1f42afbc-be88-4477-b04d-43fdd8b88ca8"
+      ]
+    },
+    "page4": {
+      "_id": "page4",
+      "page": 4,
+      "pageName": "Travel or home",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "#7b61ff",
+      "elements": [
+        "ee7bebb9-ad04-4faf-8cfa-cb910dd0ee0e",
+        "7c77e232-40a5-4a80-802b-893917501f1c",
+        "357403e3-16a5-4a50-9428-8325f511f717",
+        "b53943c6-a3da-4c44-bf31-cdc124475d91"
       ]
     }
   }

@@ -25,18 +25,18 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
   // Common props for the element
   const elementCommonProps = {
     ref: elementRef,
-    x: element.x,
-    y: element.y,
-    rotation: element.rotation,
+    x: element?.x,
+    y: element?.y,
+    rotation: element?.rotation,
     onClick: () => {
-      setSelectedElementId(element._id);
+      setSelectedElementId(element?._id);
       setSelectedPageId(pageId);
     },
     onTap: () => {
-      setSelectedElementId(element._id);
+      setSelectedElementId(element?._id);
       setSelectedPageId(pageId);
     },
-    onDragStart: () => handleDragStart({ setSelectedElementId, elementId: element._id, setSelectedPageId, pageId }),
+    onDragStart: () => handleDragStart({ setSelectedElementId, elementId: element?._id, setSelectedPageId, pageId }),
     onDragEnd: (ev) => handleDragEnd(ev, { patchElementAction }),
     onTransformEnd: () => handleTransformEnd({ elementRef, patchElementAction }),
     draggable: draggable,
@@ -48,22 +48,22 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
         // Text element
         <Text
           {...elementCommonProps}
-          text={element.text}
-          fontFamily={element.fontFamily}
-          fontSize={element.fontSize}
+          text={element?.text}
+          fontFamily={element?.fontFamily}
+          fontSize={element?.fontSize}
           fontStyle={
-            element.isItalic && element.isBold
+            element?.isItalic && element?.isBold
               ? "italic bold"
-              : element.isItalic
+              : element?.isItalic
               ? "italic"
-              : element.isBold
+              : element?.isBold
               ? "bold"
               : "normal"
           }
-          fontVariant={element.isUppercase ? "small-caps" : "normal"}
-          textDecoration={element.isUnderline ? "underline" : ""}
-          align={element.align}
-          fill={element.color}
+          fontVariant={element?.isUppercase ? "small-caps" : "normal"}
+          textDecoration={element?.isUnderline ? "underline" : ""}
+          align={element?.align}
+          fill={element?.color}
           onDblTap={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
           onDblClick={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
         />
@@ -71,44 +71,44 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
         // Rectangle element
         <Rect
           {...elementCommonProps}
-          width={element.width}
-          height={element.height}
-          cornerRadius={element.cornerRadius}
-          fill={element.backgroundColor}
+          width={element?.width}
+          height={element?.height}
+          cornerRadius={element?.cornerRadius}
+          fill={element?.backgroundColor}
         />
       ) : element?.type === "ellipse" ? (
         // Ellipse element
         <Ellipse
           {...elementCommonProps}
-          radiusX={element.radiusX}
-          radiusY={element.radiusY}
-          fill={element.backgroundColor}
+          radiusX={element?.radiusX}
+          radiusY={element?.radiusY}
+          fill={element?.backgroundColor}
         />
       ) : element?.type === "arrow" ? (
         // Arrow element
         <Arrow
           {...elementCommonProps}
-          points={element.points}
-          pointerLength={element.pointerLength}
-          pointerWidth={element.pointerWidth}
-          stroke={element.backgroundColor}
-          strokeWidth={element.strokeWidth}
+          points={element?.points}
+          pointerLength={element?.pointerLength}
+          pointerWidth={element?.pointerWidth}
+          stroke={element?.backgroundColor}
+          strokeWidth={element?.strokeWidth}
         />
       ) : element?.type === "line" ? (
         // Arrow element
         <Line
           {...elementCommonProps}
-          points={element.points}
-          stroke={element.backgroundColor}
-          strokeWidth={element.strokeWidth}
+          points={element?.points}
+          stroke={element?.backgroundColor}
+          strokeWidth={element?.strokeWidth}
         />
       ) : element?.type === "image" ? (
         // Image element
         <Image
           {...elementCommonProps}
           image={imageUrl}
-          width={element.width}
-          height={element.height}
+          width={element?.width}
+          height={element?.height}
         />
       ) : null}
 

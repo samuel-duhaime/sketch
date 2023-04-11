@@ -58,9 +58,9 @@ const PageButtons = ({ page }) => {
         </ButtonIcon>
 
         {/* Page duplicate */}
-        <ButtonIcon>
+        {/* <ButtonIcon>
           <FontAwesomeIcon icon="faCopy" />
-        </ButtonIcon>
+        </ButtonIcon> */}
 
         {/* Page delete */}
         <ButtonIcon

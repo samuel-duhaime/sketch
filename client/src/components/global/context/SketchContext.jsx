@@ -65,7 +65,7 @@ export const SketchProvider = ({ children }) => {
   const [history, setHistory] = useState([]); // History of the Sketch state
   const [historyNumber, setHistoryNumber] = useState(1); // Number of the history of the Sketch state
   const historyLength = history?.length; // Get the number of history Sketch state
-  const selectedElement = sketch[selectedPageId]?.elements?.filter((element) => element._id === selectedElementId)[0]; // Filter the selectedElement
+  const selectedElement = sketch?.[selectedPageId]?.elements?.filter((element) => element?._id === selectedElementId)[0]; // Filter the selectedElement
   const selectedPage = sketch[selectedPageId]; // Get the selectedPage
   const pagesKey = Object.keys(sketch).filter((keyName) => keyName.startsWith("page")); // Set all the pages key
   // Get all the pages

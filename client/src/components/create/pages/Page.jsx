@@ -50,15 +50,15 @@ const Page = ({ page, isViewPage }) => {
             />
 
             {/* Elements */}
-            {page?.elements.map((element) => {
+            {page?.elements?.map((element) => {
               return (
                 // Element
-                !element.isDelete && (
+                !element?.isDelete && (
                   <Element
-                    key={element._id}
+                    key={element?._id}
                     element={element}
-                    pageId={page._id}
-                    isSelected={element._id === selectedElementId}
+                    pageId={page?._id}
+                    isSelected={element?._id === selectedElementId}
                     draggable={isViewPage ? false : true}
                   />
                 )
