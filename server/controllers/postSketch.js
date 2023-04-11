@@ -9,16 +9,15 @@ const postSketch = async (req, res) => {
     // Add a Sketch
     const postSketch = await sketchs.insertOne({
       _id: uuidv4(),
-      sketchName: "Undefined Sketch name",
-      isModified: false,
+      sketchName: "Undefined",
       page1: {
+        _id: "page1",
         page: 1,
-        pageName: "Undefined page name",
+        pageName: "Undefined",
         width: 800,
         height: 550,
-        backgroundColor: "white",
+        backgroundColor: "#ffffff",
         elements: [],
-        isModified: false,
       },
     });
 

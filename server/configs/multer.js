@@ -28,7 +28,7 @@ const imageFilter = (req, file, callback) => {
 
 // Limits the size of the file upload
 const limitsSize = {
-  fileSize: 1024 * 1024,
+  fileSize: 10 * 1024 * 1024,
 };
 
 // Middleware to upload a single image

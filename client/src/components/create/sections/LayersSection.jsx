@@ -14,57 +14,55 @@ const LayersSection = () => {
 
   return (
     <Elements>
-      {sketch[selectedPageId].elements.map((element, index) => {
-        return (
-          !element.isDelete && (
-            <Element>
-              <ElementInfo>
-                {element.type === "text" ? (
-                  <Text color={element.color}>{element.text}</Text>
-                ) : element.type === "image" ? (
-                  <Image
-                    alt=""
-                    src={element.imageUrl}
-                  />
-                ) : element.type === "rectangle" ? (
-                  <Rectangle
-                    backgroundColor={element.backgroundColor}
-                    width={(element.width / element.height) * 30}
-                  />
-                ) : element.type === "ellipse" ? (
-                  <Ellipse
-                    backgroundColor={element.backgroundColor}
-                    width={(element.radiusX / element.radiusY) * 30}
-                  />
-                ) : element.type === "arrow" ? (
-                  <Arrow
-                    backgroundColor={element.backgroundColor}
-                    rotation={element.rotation + "deg"}
-                  />
-                ) : element.type === "line" ? (
-                  <Line
-                    backgroundColor={element.backgroundColor}
-                    rotation={element.rotation + "deg"}
-                  />
-                ) : null}
-              </ElementInfo>
-              <Buttons>
-                <Button
-                  disabled={index < sketch[selectedPageId].elements.length - 1 ? false : true}
-                  onClick={() => patchPageAction({ pageAction: "moveElementUp", elementId: element._id })}
-                >
-                  <FontAwesomeIcon icon="faAngleUp" />
-                </Button>
-                <Button
-                  disabled={index > 0 ? false : true}
-                  onClick={() => patchPageAction({ pageAction: "moveElementDown", elementId: element._id })}
-                >
-                  <FontAwesomeIcon icon="faAngleDown" />
-                </Button>
-              </Buttons>
-            </Element>
-          )
-        );
+      {sketch[selectedPageId]?.elements?.map((element, index) => {
+        return !element?.isDelete ? (
+          <Element>
+            <ElementInfo>
+              {element.type === "text" ? (
+                <Text color={element.color}>{element.text}</Text>
+              ) : element.type === "image" ? (
+                <Image
+                  alt=""
+                  src={element.imageUrl}
+                />
+              ) : element.type === "rectangle" ? (
+                <Rectangle
+                  backgroundColor={element.backgroundColor}
+                  width={(element.width / element.height) * 30}
+                />
+              ) : element.type === "ellipse" ? (
+                <Ellipse
+                  backgroundColor={element.backgroundColor}
+                  width={(element.radiusX / element.radiusY) * 30}
+                />
+              ) : element.type === "arrow" ? (
+                <Arrow
+                  backgroundColor={element.backgroundColor}
+                  rotation={element.rotation + "deg"}
+                />
+              ) : element.type === "line" ? (
+                <Line
+                  backgroundColor={element.backgroundColor}
+                  rotation={element.rotation + "deg"}
+                />
+              ) : null}
+            </ElementInfo>
+            <Buttons>
+              <Button
+                disabled={index < sketch[selectedPageId].elements.length - 1 ? false : true}
+                onClick={() => patchPageAction({ pageAction: "moveElementUp", elementId: element._id })}
+              >
+                <FontAwesomeIcon icon="faAngleUp" />
+              </Button>
+              <Button
+                disabled={index > 0 ? false : true}
+                onClick={() => patchPageAction({ pageAction: "moveElementDown", elementId: element._id })}
+              >
+                <FontAwesomeIcon icon="faAngleDown" />
+              </Button>
+            </Buttons>
+          </Element>
+        ) : null;
       })}
     </Elements>
   );
@@ -103,7 +101,9 @@ const Buttons = styled.div`
 const Button = styled.button`
   border-radius: 5px;
   border: none;
+  background-color: ${COLORS.gray};
   cursor: pointer;
+  font-size: 18px;
 
   &:disabled {
     opacity: 0.8;

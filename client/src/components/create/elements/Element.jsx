@@ -44,7 +44,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
 
   return (
     <>
-      {element?.type === "text"  ? (
+      {element?.type === "text" ? (
         // Text element
         <Text
           {...elementCommonProps}
@@ -73,6 +73,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           {...elementCommonProps}
           width={element.width}
           height={element.height}
+          cornerRadius={element.cornerRadius}
           fill={element.backgroundColor}
         />
       ) : element?.type === "ellipse" ? (

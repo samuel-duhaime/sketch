@@ -1,32 +1,87 @@
 [
   {
-    "_id": "39471209-15e8-4d62-9f9b-deb712579888",
-    "sketchName": "Balou",
+    "_id": "93817ba0-60ee-46fb-b04d-c8e6c11b2b2a",
+    "sketchName": "Class schedule",
     "isShared": true,
     "page1": {
       "_id": "page1",
       "page": 1,
-      "pageName": "Page name 1",
+      "pageName": "Class schedule",
       "width": 800,
       "height": 550,
       "backgroundColor": "#ffffff",
       "elements": [
-        "390757e4-814d-4989-958b-8bf200e1f304",
-        "390757e4-814d-4989-958b-8bf200e1f305",
-        "390757e4-814d-4989-958b-8bf200e1f306"
+        "dc416cd6-93e9-49fa-ba55-55e80557c7ed",
+        "997c6bbd-ee05-4683-b9cf-9cab885edaf3",
+        "583c1c9c-7fd9-44f2-8a86-b888c3383f82",
+        "c8a74263-0d4d-48d4-8f4c-d4ad03bd6e2b",
+        "d73aae67-0415-4103-b3b4-84a44914e5e6",
+        "77be92bd-a4da-47cd-b920-b5c9172d63a5",
+        "a3fb0bc6-8f18-4122-9215-52855a16ec87",
+        "6f2259bf-612e-42f4-86bd-b3102822a415",
+        "5d6636be-ea6b-40f8-bda3-e71e7cab1521",
+        "ced5ca4e-3ea7-48f9-8cbb-ee5c5970db30",
+        "913fd0af-e45c-42ea-a879-5c8e2bd351a5",
+        "635e6567-854a-49ca-8cea-78578356d025",
+        "dcbc8294-c682-4b43-8d9f-50d9a4ba81f4",
+        "5bddcc12-cec6-4c98-b883-796676838b7c",
+        "9e907b6f-caab-4a85-baff-1d83ef250a9a"
       ]
+    }
+  },
+  {
+    "_id": "0a5a4b2f-e5e6-40ee-8f9d-7c896905fbb4",
+    "sketchName": "Meet the teacher",
+    "isShared": true,
+    "page1": {
+      "_id": "page1",
+      "page": 1,
+      "pageName": "Meet your teacher",
+      "width": 800,
+      "height": 550,
+      "backgroundColor": "#6c839b",
+      "elements": [
+        "ecc6d2fd-101e-421a-8488-34e56ebfd7be",
+        "67414e0f-8cb4-475d-8dc8-1395329faeba",
+        "9e78f937-1f83-4c77-a193-16521315a584",
+        "71f00bf8-55f5-47a5-9315-399b61c39ed5",
+        "2090ae1c-d35f-407f-9c08-7bf99df8d1d8",
+        "7d9e6640-80b2-4a79-bbd6-11fb8a995699",
+        "1813f706-5be1-45f2-b3fd-abf3b8ea407c",
+        "5272f83b-f89f-4524-a767-e9b83bfee379"
+      ],
+      "isModified": false
     },
     "page2": {
       "_id": "page2",
-      "page": 2,
-      "pageName": "Page name 2",
-      "width": 800,
-      "height": 550,
-      "backgroundColor": "#ffffff",
+      "page": { "$numberInt": "2" },
+      "pageName": "What I love",
+      "width": { "$numberInt": "800" },
+      "height": { "$numberInt": "500" },
+      "backgroundColor": "#6c839b",
       "elements": [
-        "1ad74995-3937-4722-ad4a-e2fefbdc5be9",
-        "390757e4-814d-4989-958b-8bf200e1f303",
-        "466e5334-02ab-4476-bd90-c7626197d5f1"
+        "d50e89c1-56fa-4f3f-9593-88bce687e78a",
+        "06868e9a-1fbf-4fb8-b84c-ae7fc47732d3",
+        "262e5774-ebec-4564-ae14-0f371d8ab894",
+        "d898ff9c-fec9-48a5-80e4-301fa1e614ac",
+        "53b0f88f-4b60-4c63-bc5a-2dd19d220312"
+      ]
+    },
+    "page3": {
+      "_id": "page3",
+      "page": { "$numberInt": "3" },
+      "pageName": "Quick facts",
+      "width": { "$numberInt": "800" },
+      "height": { "$numberInt": "500" },
+      "backgroundColor": "#6c839b",
+      "elements": [
+        "308c2159-eefe-4f19-9f9a-a71a18724aa9",
+        "8b64cec9-a2d5-42b8-b004-4e79e02b81be",
+        "c30fcf01-a9c8-40fb-b111-bbd262847c47",
+        "dc33509c-71f5-45e8-9ed5-2c0d23605754",
+        "ccc4b16b-6391-49fc-b0c1-a8cc4ab7f76c",
+        "0ac6ca9c-e153-4f68-9dc9-19000e2e9c5e",
+        "11995435-8ac5-4aa9-9329-4343fe6d4647"
       ]
     }
   }

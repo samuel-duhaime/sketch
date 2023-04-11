@@ -37,14 +37,14 @@ const sketchReducer = (sketch, action) => {
     }
     case "patchElementAction": {
       // Get the newElements
-      const newElements = sketch[selectedPageId].elements.map((element) => {
+      const newElements = sketch[selectedPageId]?.elements?.map((element) => {
         if (element._id === selectedElementId) {
           return { ...element, ...newData, isModified: true };
         } else {
           return element;
         }
       });
-      const newPage = { ...sketch[selectedPageId], elements: newElements }; // Get the newPage
+      const newPage = { ...sketch?.[selectedPageId], elements: newElements }; // Get the newPage
       const newSketch = { ...sketch, [selectedPageId]: newPage }; // Get the newSketch
 
       return newSketch;
@@ -355,7 +355,7 @@ export const SketchProvider = ({ children }) => {
         page: null,
         pageName: "Undefined",
         width: 800,
-        height: 500,
+        height: 550,
         backgroundColor: "#ffffff",
         elements: [],
       });
