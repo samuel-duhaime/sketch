@@ -6,9 +6,10 @@ import handleTextEdit from "../../../helpers/handlers/handleTextEdit";
 import handleDragStart from "../../../helpers/handlers/handleDragStart";
 import handleDragEnd from "../../../helpers/handlers/handleDragEnd";
 import handleLimitResize from "../../../helpers/handlers/handleLimitResize";
-import handleTransformEnd from "../../../helpers/handlers/handleTransformEnd";
+import handleTransform from "../../../helpers/handlers/handleTransform";
 import useTransformerElement from "../../../hooks/useTransformerElement";
 
+// FIXME: Bug with handleTransform for Arrow and Line
 // Element ("Rectangle" || "Text" || "Image")
 const Rectangle = ({ element, pageId, isSelected, draggable }) => {
   const { elementRef, transformerRef } = useTransformerElement({ isSelected }); // Hook to transform the element
@@ -38,7 +39,6 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
     },
     onDragStart: () => handleDragStart({ setSelectedElementId, elementId: element?._id, setSelectedPageId, pageId }),
     onDragEnd: (ev) => handleDragEnd(ev, { patchElementAction }),
-    onTransformEnd: () => handleTransformEnd({ elementRef, patchElementAction }),
     draggable: draggable,
   };
 
@@ -49,6 +49,8 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
         <Text
           {...elementCommonProps}
           text={element?.text}
+          width={element?.width}
+          height={element?.height}
           fontFamily={element?.fontFamily}
           fontSize={element?.fontSize}
           fontStyle={
@@ -66,6 +68,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           fill={element?.color}
           onDblTap={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
           onDblClick={(ev) => handleTextEdit(ev, { element, elementRef, stageRef, transformerRef, patchElementAction })}
+          onTransform={() => handleTransform({ elementRef, patchElementAction })}
         />
       ) : element?.type === "rectangle" ? (
         // Rectangle element
@@ -75,6 +78,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           height={element?.height}
           cornerRadius={element?.cornerRadius}
           fill={element?.backgroundColor}
+          onTransformEnd={() => handleTransform({ elementRef, patchElementAction })}
         />
       ) : element?.type === "ellipse" ? (
         // Ellipse element
@@ -83,6 +87,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           radiusX={element?.radiusX}
           radiusY={element?.radiusY}
           fill={element?.backgroundColor}
+          onTransformEnd={() => handleTransform({ elementRef, patchElementAction })}
         />
       ) : element?.type === "arrow" ? (
         // Arrow element
@@ -93,6 +98,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           pointerWidth={element?.pointerWidth}
           stroke={element?.backgroundColor}
           strokeWidth={element?.strokeWidth}
+          onTransformEnd={() => handleTransform({ elementRef, patchElementAction })}
         />
       ) : element?.type === "line" ? (
         // Arrow element
@@ -101,6 +107,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           points={element?.points}
           stroke={element?.backgroundColor}
           strokeWidth={element?.strokeWidth}
+          onTransformEnd={() => handleTransform({ elementRef, patchElementAction })}
         />
       ) : element?.type === "image" ? (
         // Image element
@@ -109,6 +116,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           image={imageUrl}
           width={element?.width}
           height={element?.height}
+          onTransformEnd={() => handleTransform({ elementRef, patchElementAction })}
         />
       ) : null}
 
@@ -119,6 +127,7 @@ const Rectangle = ({ element, pageId, isSelected, draggable }) => {
           boundBoxFunc={handleLimitResize}
           rotationSnaps={[0, 90, 180, 270]} // Snap at rotation
           rotationSnapTolerance={5} // Snap at x degres of target
+          // enabledAnchors={element?.type === "text" ? ["middle-left", "middle-right"] : null} // Enabled anchors depending of the type
         />
       )}
     </>
