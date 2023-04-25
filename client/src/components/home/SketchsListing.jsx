@@ -9,7 +9,7 @@ const SketchsListing = () => {
 
   return (
     <ListingWrapper>
-      <ListingTitle>Your recent Sketchs</ListingTitle>
+      <ListingTitle>Your recent Sketches</ListingTitle>
       <Listing>
         {sketchs ? (
           sketchs?.map((sketch) => {
